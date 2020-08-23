@@ -36,7 +36,7 @@ Class Project List [Suresh had used in class](https://docs.google.com/spreadshee
 Include a full list of features that have been [prioritized](https://res.cloudinary.com/doaftkgbv/image/upload/v1583773146/ValueVSComplexity_u2inhx.png) based on the `Time and Priority` Matix.  This involves drawing a a square.  In the middle of the square, on the x axis draw a line.  The most left part of the line should start with 0hrs and the end of the line should include 2hrs.  This line will be used to estimate how much time any one feature will take to complete. 
 
 Desktop [Wireframes](https://res.cloudinary.com/techhire/image/upload/v1598211291/Vacation_-_Social_Platform_Desktop_uduwbw.png) 
-Mobbile [Wireframes](https://res.cloudinary.com/techhire/image/upload/v1598211300/Vacation_-_Social_Platform_Mobile_nzu6p3.png) 
+Mobile [Wireframes](https://res.cloudinary.com/techhire/image/upload/v1598211300/Vacation_-_Social_Platform_Mobile_nzu6p3.png) 
 
 #### MVP (examples)
 
