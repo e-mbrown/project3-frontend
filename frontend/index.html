@@ -15,22 +15,33 @@
 </head>
 <body>
 <div id="app">
-    <!-- LOGIN FORM -->
+
+    <!----------- CREATE / LOGIN SCREEN ----------->
     <div id="nologin" v-if="!loggedin">
         <div id="loginform">
         <h1> This is the login area</h1>
 
+            <!-- LOGIN FORM -->
             <form v-on:submit.prevent="handleLogin">
-            <fieldset><legend>LOGIN</legend>
-            <input type="text" placeholder="username" v-model="createUN">
-            <input type="password" placeholder="password" v-model="createPW">
-            <input type="submit" value="create user"> 
-            </fieldset>
+                <fieldset><legend>LOGIN</legend>
+                <input type="text" placeholder="username" v-model="loginUN">
+                <input type="password" placeholder="password" v-model="loginPW">
+                <input type="submit" value="Login">
+                </fieldset>
+            </form>
+
+            <!-- CREATE ACCOUNT FORM-->
+            <form v-on:submit.prevent="handleLogin">
+                <fieldset><legend>Create Account</legend>
+                    <input type="text" placeholder="username" v-model="createUN">
+                    <input type="password" placeholder="password" v-model="createPW">
+                    <input type="submit" value="Sign Up">
+                </fieldset>
             </form>
         </div>
 </div>
 
-
+    <!---- LOG OUT --->
     <div id="login" v-if="loggedin">
         <h1> This is the user area </h1>
         <button v-on:click="handleLogout">Logout</button>

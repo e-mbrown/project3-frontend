@@ -10,6 +10,7 @@ const app = new Vue({
     },
 
     methods: {
+        //////////// LOGIN /////////////
         handleLogin: function(event){
             event.preventDefault()
             const URL = this.prodURL ? this.prodURL : this.devURL
@@ -25,21 +26,20 @@ const app = new Vue({
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data) //this displays token in console when logging in
-                /*AS OF 5AM, this is where I got up to, it's fetching the data but not displaying token in the console like expected
-                ERROR MESSAGE
-
-                UPDATE: 5:09AM I GOT THE TOKEN TO WORK after adding event parameter and event.preventDefault() in handleLogin()
-                */
-
-                this.user = data.user
-                this.token = data.token
-                this.loggedin = true 
-                this.createUN = "" //resets: clears out when you log in
-                this.createPW = "" //resets: clears out when you log in 
+                if (data.error) {
+                    alert('Error logging in. Please try again.')
+                } else {
+                    this.user = data.user
+                    this.token = data.token
+                    this.loggedin = true
+                    this.createUN = "" //resets: clears out when you log in
+                    this.createPW = "" //resets: clears out when you log in
+                }
             })
             
         },
+
+        //////////// LOG OUT /////////////
         handleLogout: function() {
             const URL = this.prodURL ? this.prodURL : this.devURL
             this.loggedin = false 
