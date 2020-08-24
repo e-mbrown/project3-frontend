@@ -33,7 +33,7 @@ Class Project List [Suresh had used in class](https://docs.google.com/spreadshee
 
 ## Time/Priority Matrix 
 
-Time Priority Matrix [TPM](https://res.cloudinary.com/techhire/image/upload/v1598211291/Vacation_-_Social_Platform_Desktop_uduwbw.png)
+Time Priority Matrix [TPM](https://res.cloudinary.com/stephaniev/image/upload/v1598241331/P3_-_Time_Priority_Matrix_x3jsgr.png)
 
 Include a full list of features that have been [prioritized](https://res.cloudinary.com/doaftkgbv/image/upload/v1583773146/ValueVSComplexity_u2inhx.png) based on the `Time and Priority` Matix.  This involves drawing a a square.  In the middle of the square, on the x axis draw a line.  The most left part of the line should start with 0hrs and the end of the line should include 2hrs.  This line will be used to estimate how much time any one feature will take to complete. 
 
