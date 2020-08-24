@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel App</title>
+    <!--VUE SCRIPT-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!--JS & CSS-->
+    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+<div id="app">
+    <div id="nologin" v-if="!loggedin">
+        <div id="loginform">
+        <h1> This is the login area</h1>
+
+            <form v-on:submit.prevent="handleLogin">
+            <fieldset><legend>LOGIN</legend>
+            <input type="text" placeholder="username" v-model="createUN">
+            <input type="password" placeholder="password" v-model="createPW">
+            <input type="submit" value="create user"> 
+            </fieldset>
+            </form>
+        </div>
+</div>
+
+
+    <div id="login" v-if="loggedin">
+        <h1> This is the user area </h1>
+        <button v-on:click="handleLogout">Logout</button>
+    </div>
+</div>
+</body>
+</html>
