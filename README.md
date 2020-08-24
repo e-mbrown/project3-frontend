@@ -1,4 +1,4 @@
-# Project Overview - Travel App BACK END 
+# Project Overview - Travel App FRONTEND
 
 ## Project Schedule
 
@@ -27,8 +27,8 @@ Our project will be focused on creating a travel app, where users can save their
 [Time Priority Matrix](https://res.cloudinary.com/stephaniev/image/upload/v1598241331/P3_-_Time_Priority_Matrix_x3jsgr.png)
 
 ## Wireframes 
-Desktop [Wireframes](https://res.cloudinary.com/techhire/image/upload/v1598211291/Vacation_-_Social_Platform_Desktop_uduwbw.png) 
-Mobile [Wireframes](https://res.cloudinary.com/techhire/image/upload/v1598211300/Vacation_-_Social_Platform_Mobile_nzu6p3.png) 
+- Desktop [Wireframes](https://res.cloudinary.com/techhire/image/upload/v1598211291/Vacation_-_Social_Platform_Desktop_uduwbw.png) 
+- Mobile [Wireframes](https://res.cloudinary.com/techhire/image/upload/v1598211300/Vacation_-_Social_Platform_Mobile_nzu6p3.png) 
 
 #### MVP
 
