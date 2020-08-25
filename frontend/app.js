@@ -89,14 +89,14 @@ const app = new Vue({
             fetch(`${URL}/activities/${id}`, {
                 method: "get",
                 headers: {
-                    Authorization: `bearer ${this.token}`
+                    "Authorization": `bearer ${this.token}`
                 }
             })
-                .then(response => response.json())
+                .then(response => response.json()
                 .then(data => {
                     this.activities = data
                     console.log(data)
-                })
+                }))
         }
     }
 })
