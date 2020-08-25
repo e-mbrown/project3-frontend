@@ -8,7 +8,8 @@ const app = new Vue({
         createUN: "",
         createPW: "",
         devURL: "http://localhost:3000",
-        prodURL: null
+        prodURL: null,
+        cities: ["Tokyo", "New York City", "San Francisco", "Los Angeles", "Paris", "London","Sydney", "Buenos Aires", "Cape Town","Rome"]
     },
 
     methods: {
