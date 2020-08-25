@@ -30,7 +30,6 @@
 
         <div class="handlelogin">
             <form v-on:submit.prevent="handleLogin">
-<<<<<<< HEAD
                 <fieldset class="firstFieldset"><legend class="legendLogin">LOGIN</legend>
                     <div class="loginFieldset">
                 <input class="username" type="text" placeholder="username" v-model="loginUN">
@@ -49,7 +48,6 @@
                     <input class="createPW" type="password" placeholder="password" v-model="createPW">
                     <input class="signupButton"type="submit" value="Sign Up">
                             </div>
-=======
                 <fieldset><legend>LOGIN</legend>
                 <input type="text" placeholder="username" v-model="loginUN">
                 <input type="password" placeholder="password" v-model="loginPW">
@@ -63,15 +61,12 @@
                     <input type="text" placeholder="username" v-model="createUN">
                     <input type="password" placeholder="password" v-model="createPW">
                     <button v-on:click="handleSignup">Create Account</button>
->>>>>>> 092c049c9e55094fdb6a53919ababb27278645ab
                 </fieldset>
             </form>
          </div>
         </div>
 </div>
-<<<<<<< HEAD
     <!-- CHANGE THE POSITION OF THIS TO LOG OUT-->
-=======
 
     <!---- DASHBOARD --->
     <div id="log-in" v-if="loggedin">
@@ -91,16 +86,12 @@
         <h1>{{ activities.name }}</h1>
     </div>
 
->>>>>>> 092c049c9e55094fdb6a53919ababb27278645ab
     <!---- LOG OUT --->
     <div id="login" v-if="loggedin">
         <button v-on:click="handleLogout">Logout</button>
     </div>
-<<<<<<< HEAD
     <!-- LOGOUT -->
-=======
 
->>>>>>> 092c049c9e55094fdb6a53919ababb27278645ab
 </div>
 </body>
 </html>
