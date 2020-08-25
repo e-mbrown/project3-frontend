@@ -104,19 +104,17 @@ const app = new Vue({
                     console.log(data.data)
                     console.log(`${URL}/activities/q/${id}`)
                 })
-                this.activities.push({name:"omg"})
-                // console.log(this.activities.length);
-                // const copy = this.activities;
-                // for(i = 0; i < this.activities.length; i ++){
-                //     const fav = await fetch(`${URL}/favorites/${this.activities[i].id}`, {
-                //         method: "get",
-                //         headers: {
-                //             Authorization: `bearer ${this.token}`
-                //         }
-                //     })
-                //     copy[i].className = !!fav ? "fas fa-heart" : "far fa-heart"
-                //  }
-                //  this.activities = copy;
+                console.log(this.activities.length);
+                for(i = 0; i < this.activities.length; i ++){
+                    const fav = await fetch(`${URL}/favorites/${this.activities[i].id}`, {
+                        method: "get",
+                        headers: {
+                            Authorization: `bearer ${this.token}`
+                        }
+                    })
+                    this.activities[i].className = !!fav ? Vue.set(this.activities[i], "className", "fas fa-heart" ) : Vue.set(this.activities[i], "className", "far fa-heart" )
+                     
+                 }
         },
 
         getFav: function(event){
