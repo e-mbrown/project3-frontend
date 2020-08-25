@@ -45,7 +45,7 @@ const app = new Vue({
             this.loggedin = false 
             this.user = null
             this.token = null
-            //undo everything once logged out 
+            //undoes everything once logged out 
         }
 
     }
