@@ -86,7 +86,7 @@ const app = new Vue({
             const URL = this.prodURL ? this.prodURL : this.devURL
             const id = event.target.id
 
-            fetch(`${URL}/activities/${id}`, {
+            fetch(`${URL}/activities/q/${id}`, {
                 method: "get",
                 headers: {
                     Authorization: `bearer ${this.token}`

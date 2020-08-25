@@ -48,7 +48,7 @@
             <article>
                 <h1>Where do you wanna travel?</h1>
                 <div class="city-names" v-for="city in cities">
-                    <button class="font-bold rounded" v-on:click="handleActivities" v-bind:id="city.id">{{ city }}</button>
+                    <button class="font-bold rounded" v-on:click="handleActivities" v-bind:id="city">{{ city }}</button>
 <!--                    <div v-if="modal" class="modal-cities">Hello!</div>-->
                 </div>
             </article>
