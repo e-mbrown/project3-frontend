@@ -1,0 +1,112 @@
+html {
+    background: url(https://media.timeout.com/images/105476859/image.jpg);
+    background-repeat: no-repeat;
+    background-size: 1920px 1550px;
+    opacity: 0.8;
+}
+
+/* vacation social platform header*/
+#loginform {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.loginDiv {
+    display:flex;
+    justify-content: center;
+}
+/*responsible for the color and design */
+.loginHeader {
+    text-align: center;
+    color: black;
+    background-color: lightslategray;
+    width: 40%;
+    height: 50px;
+    margin-top: 50px;
+}
+/* end of header */
+
+/* targets the entire login form*/
+.handlelogin {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+/* div to center the fieldset*/
+.loginFieldset{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+}
+/* directly targeting fieldset*/
+.firstFieldset {
+    text-align: center;
+    height: 200px;
+}
+
+.username {
+    width: 150px;
+    height: 20px;
+}
+
+.password{
+    width: 150px;
+    height: 20px;
+}
+
+.loginButton{
+    font-size: 15px;
+}
+/*targeting the login text*/
+.legendLogin {
+    color: black;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+/*end of login form*/
+
+/*beginning of signup form*/
+.signuplogin {
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+/* div to center the fieldset
+.signupFieldset{
+   background-color: slategray;
+}
+*/
+.createUN{
+    width: 150px;
+    height: 20px;
+}
+
+.createPW {
+    width: 150px;
+    height: 20px;
+}
+
+.signupButton {
+    font-size: 15px;
+}
+/* directly targeting fieldset*/
+.secondFieldset {
+    text-align: center;
+    height: 200px;
+}
+
+/*targeting the Create Account text*/
+.legendSignup {
+    color: black;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.modal-cities {
+    border: 1px solid black;
+}
