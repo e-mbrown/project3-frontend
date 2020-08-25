@@ -112,7 +112,9 @@ const app = new Vue({
                             Authorization: `bearer ${this.token}`
                         }
                     })
-                    this.activities[i].className = !!fav ? Vue.set(this.activities[i], "className", "fas fa-heart" ) : Vue.set(this.activities[i], "className", "far fa-heart" )
+                    const booly = await fav.json() //omg i have to await this im literally on the floor
+                    console.log(booly);
+                    !!(booly) ? Vue.set(this.activities[i], "className", "fas fa-heart" ) : Vue.set(this.activities[i], "className", "far fa-heart" )
                      
                  }
         },
