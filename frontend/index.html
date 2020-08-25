@@ -64,20 +64,15 @@
         <h1> This is the user area </h1>
         <button v-on:click="handleLogout">Logout</button>
     </div>
-    <!-- LOGOUT -->
+    <!-- LOGOUT END -->
 
      <!---- DASHBOARD --->
      <div v-if="loggedin"> <!--this div had a id="log-in" in case it messes something up later-->
         <div>
             <article>
                 <h1>Where do you wanna travel?</h1>
-<<<<<<< HEAD
-                <div class="city-names" v-for="city in cities">
-                    <button class="font-bold rounded" v-on:click="handleActivities" v-bind:id="city">{{ city }}</button>
-=======
                 <div v-for="city in cities">
                     <button v-on:click="handleActivities" v-bind:id="city">{{ city }}</button>
->>>>>>> 842f1c6f87f21bb8bcec14c7ba630e31590bc355
 <!--                    <div v-if="modal" class="modal-cities">Hello!</div>-->
                 </div>
             </article>
