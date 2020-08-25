@@ -10,7 +10,7 @@ const app = new Vue({
         devURL: "http://localhost:3000",
         prodURL: null,
         cities: ["Tokyo", "New York City", "San Francisco", "Los Angeles", "Paris", "London","Sydney", "Buenos Aires", "Cape Town","Rome"],
-        modal: false
+        activities: []
     },
 
     methods: {
@@ -78,7 +78,25 @@ const app = new Vue({
                         this.createUN = ""
                     }
                 })
-        }
+        },
 
+        //////////// GETTING ACTIVITY INFO FROM DB /////////////
+        // requires event bc we are waiting for an on click on the button
+        handleActivites: function(event){
+            const URL = this.prodURL ? this.prodURL : this.devURL
+            const id = event.target.id
+
+            fetch(`${URL}/activites/${id}`, {
+                method: "get",
+                headers: {
+                    Authorization: `bearer ${this.token}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.activities = data
+                    console.log(data)
+                })
+        }
     }
 })
