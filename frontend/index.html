@@ -20,6 +20,10 @@
     <div id="nologin" v-if="!loggedin">
         <div id="loginform">
         <div class=loginDiv><h1 class="loginHeader"> Vacation Social Platform</h1></div> 
+        <!-- WILL DELETE ONLY TESTING SOMETHING-->
+        <a href="" target="_blank">Open page in new window</a>
+        <!-- SOON TO BE DELETED-->
+
 
             <!-- LOGIN FORM -->
 
@@ -48,12 +52,13 @@
          </div>
         </div>
 </div>
-
+    <!-- CHANGE THE POSITION OF THIS TO LOG OUT-->
     <!---- LOG OUT --->
     <div id="login" v-if="loggedin">
         <h1> This is the user area </h1>
         <button v-on:click="handleLogout">Logout</button>
     </div>
+    <!-- LOGOUT -->
 </div>
 </body>
 </html>
