@@ -107,3 +107,7 @@ font-size: 15px;
     font-size: 30px;
     font-weight: bolder;
 }
+
+.modal-cities {
+    border: 1px solid black;
+}

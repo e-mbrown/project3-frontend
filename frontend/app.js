@@ -8,7 +8,9 @@ const app = new Vue({
         createUN: "",
         createPW: "",
         devURL: "http://localhost:3000",
-        prodURL: null
+        prodURL: null,
+        cities: ["Tokyo", "New York City", "San Francisco", "Los Angeles", "Paris", "London","Sydney", "Buenos Aires", "Cape Town","Rome"],
+        activities: []
     },
 
     methods: {
@@ -16,7 +18,7 @@ const app = new Vue({
         handleLogin: function(event){
             event.preventDefault()
             const URL = this.prodURL ? this.prodURL : this.devURL
-            //console.log(URL) //if you click login and it gives you URL it works
+            // console.log(URL) //if you click login and it gives you URL it works
             const user = {username: this.loginUN, password: this.loginPW}
             console.log(user) //if you type in username and password and see it in the console it works
             fetch(`${URL}/login`, {
@@ -29,6 +31,7 @@ const app = new Vue({
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
+                    console.log(data.error)
                     alert('Error logging in. Please try again.')
                 } else {
                     this.user = data.user
@@ -56,7 +59,7 @@ const app = new Vue({
             const URL = this.prodURL ? this.prodURL : this.devURL
             const user = {
                 username: this.createUN,
-                password:this.createPW
+                password: this.createPW
             }
             fetch(`${URL}/users`, {
                 method: "post",
@@ -75,7 +78,25 @@ const app = new Vue({
                         this.createUN = ""
                     }
                 })
+        },
+
+        //////////// GETTING ACTIVITY INFO FROM DB /////////////
+        // requires event bc we are waiting for an on click on the button
+        handleActivities: function(event){
+            const URL = this.prodURL ? this.prodURL : this.devURL
+            const id = event.target.id
+
+            fetch(`${URL}/activities/${id}`, {
+                method: "get",
+                headers: {
+                    Authorization: `bearer ${this.token}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.activities = data
+                    console.log(data)
+                })
         }
-        //
     }
 })
