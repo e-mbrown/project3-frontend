@@ -9,7 +9,8 @@ const app = new Vue({
         createPW: "",
         devURL: "http://localhost:3000",
         prodURL: null,
-        cities: ["Tokyo", "New York City", "San Francisco", "Los Angeles", "Paris", "London","Sydney", "Buenos Aires", "Cape Town","Rome"]
+        cities: ["Tokyo", "New York City", "San Francisco", "Los Angeles", "Paris", "London","Sydney", "Buenos Aires", "Cape Town","Rome"],
+        modal: false
     },
 
     methods: {

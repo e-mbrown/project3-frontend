@@ -48,13 +48,13 @@
             <article>
                 <h1>Where do you wanna travel?</h1>
                 <div class="city-names" v-for="city in cities">
-                    <h4>{{ city }}</h4>
+                    <button class="font-bold rounded">{{ city }}</button>
+<!--                    <div v-if="modal" class="modal-cities">Hello!</div>-->
                 </div>
             </article>
 
         </div>
     </div>
-
 
     <!---- LOG OUT --->
     <div id="login" v-if="loggedin">
@@ -63,3 +63,5 @@
 </div>
 </body>
 </html>
+
+
