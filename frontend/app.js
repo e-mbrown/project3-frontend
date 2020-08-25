@@ -96,10 +96,21 @@ const app = new Vue({
             })
                 .then(response => response.json())
                 .then(data => {
-                    this.activities = data.data
+                    // console.log(data);
+                    for(i = 0; i < data.data.length; i ++){
+                       data.data[i].name += "cardi b"
+                    }
+                    this.activities = data.data 
                     console.log(data.data)
                     console.log(`${URL}/activities/q/${id}`)
                 })
+                // this.activities.forEach(d=>{
+                //     d = d + ' cardi b'
+                // })
+        },
+
+        theCity: function(event){
+            event.target.appendChild(document.createTextNode('the sitty'))
         }
     }
 })
