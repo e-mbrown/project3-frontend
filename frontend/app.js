@@ -100,6 +100,6 @@ const app = new Vue({
                     console.log(data.data)
                     console.log(`${URL}/activities/q/${id}`)
                 })
-        }
+                }
     }
 })
