@@ -14,6 +14,7 @@
     <!--JS & CSS-->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+    <script src ="mapbox.js" defer></script>
     <script src="app.js" defer></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
@@ -67,14 +68,12 @@
         <h1> This is the user area </h1>
         <button v-on:click="handleLogout">Logout</button>
     </div>
-<<<<<<< HEAD
     <!-- LOGOUT END -->
-=======
-    <!-- LOGOUT -->
+
     <!--Map Box-->
     <div id="map"></div>
->>>>>>> 65417d4d02f8a9eb2069a4b0acc84f1c55b4179a
 
+    
      <!---- DASHBOARD --->
      <div v-if="loggedin"> <!--this div had a id="log-in" in case it messes something up later-->
         <div>
@@ -93,6 +92,9 @@
         <h1>{{ activity.name }}</h1>
     </div>
 </div>
+<!--Map Box-->
+<div id="map"></div>
+<!-- Map Box end -->
 </body>
 </html>
 
