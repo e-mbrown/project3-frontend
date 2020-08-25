@@ -27,21 +27,25 @@
             <form v-on:submit.prevent="handleLogin">
                 <fieldset class="firstFieldset"><legend class="legendLogin">LOGIN</legend>
                     <div class="loginFieldset">
-                <input type="text" placeholder="username" v-model="loginUN">
-                <input type="password" placeholder="password" v-model="loginPW">
-                <input type="submit" value="Login">
+                <input class="username" type="text" placeholder="username" v-model="loginUN">
+                <input class="password" type="password" placeholder="password" v-model="loginPW">
+                <input class="loginButton" type="submit" value="Login">
                     </div>  
                 </fieldset>
             </form>
         </div>
             <!-- CREATE ACCOUNT FORM-->
+            <div class="handleSignup"> 
             <form v-on:submit.prevent="handleSignup">
-                <fieldset><legend>Create Account</legend>
-                    <input type="text" placeholder="username" v-model="createUN">
-                    <input type="password" placeholder="password" v-model="createPW">
-                    <input type="submit" value="Sign Up">
+                <fieldset class="secondFieldset"><legend class="legendSignup">Create Account</legend>
+                            <div class="signupFieldset">
+                    <input class="createUN" type="text" placeholder="username" v-model="createUN">
+                    <input class="createPW" type="password" placeholder="password" v-model="createPW">
+                    <input class="signupButton"type="submit" value="Sign Up">
+                            </div>
                 </fieldset>
             </form>
+         </div>
         </div>
 </div>
 

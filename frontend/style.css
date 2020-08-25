@@ -47,11 +47,62 @@ html {
 .firstFieldset {
     text-align: center;
     height: 200px;
-    color: black
 }
 
+.username {
+    width: 150px;
+    height: 20px;
+}
+
+.password{
+    width: 150px;
+    height: 20px;
+}
+
+.loginButton{
+    font-size: 15px;
+}
 /*targeting the login text*/
 .legendLogin {
+    color: black;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+/*end of login form*/
+ 
+/*beginning of signup form*/
+.signuplogin {
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+/* div to center the fieldset
+.signupFieldset{
+   background-color: slategray;
+}
+*/
+.createUN{
+    width: 150px;
+    height: 20px;
+}
+
+.createPW {
+    width: 150px;
+    height: 20px;
+}
+
+.signupButton {
+font-size: 15px;
+}
+/* directly targeting fieldset*/
+.secondFieldset {
+    text-align: center;
+    height: 200px;
+}
+
+/*targeting the Create Account text*/
+.legendSignup {
     color: black;
     font-size: 30px;
     font-weight: bolder;
