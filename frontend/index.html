@@ -48,7 +48,7 @@
             <article>
                 <h1>Where do you wanna travel?</h1>
                 <div class="city-names" v-for="city in cities">
-                    <button class="font-bold rounded" v-on:click="handleActivites">{{ city }}</button>
+                    <button class="font-bold rounded" v-on:click="handleActivities" v-bind:id="city.id">{{ city }}</button>
 <!--                    <div v-if="modal" class="modal-cities">Hello!</div>-->
                 </div>
             </article>
@@ -64,6 +64,7 @@
     <div id="login" v-if="loggedin">
         <button v-on:click="handleLogout">Logout</button>
     </div>
+
 </div>
 </body>
 </html>

@@ -82,11 +82,11 @@ const app = new Vue({
 
         //////////// GETTING ACTIVITY INFO FROM DB /////////////
         // requires event bc we are waiting for an on click on the button
-        handleActivites: function(event){
+        handleActivities: function(event){
             const URL = this.prodURL ? this.prodURL : this.devURL
             const id = event.target.id
 
-            fetch(`${URL}/activites/${id}`, {
+            fetch(`${URL}/activities/${id}`, {
                 method: "get",
                 headers: {
                     Authorization: `bearer ${this.token}`
