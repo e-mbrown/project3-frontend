@@ -94,7 +94,7 @@ const app = new Vue({
             })
                 .then(response => response.json()
                 .then(data => {
-                    this.activities = data
+                    this.activities = data.data
                     console.log(data)
                 }))
         }
