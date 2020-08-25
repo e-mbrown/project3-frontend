@@ -1,0 +1,58 @@
+
+html {
+    background: url(https://media.timeout.com/images/105476859/image.jpg);
+    background-repeat: no-repeat;
+    background-size: 1920px 1550px;
+    opacity: 0.8;
+}
+
+/* vacation social platform header*/
+#loginform {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.loginDiv {
+    display:flex;
+    justify-content: center;
+}
+/*responsible for the color and design */
+.loginHeader {
+    text-align: center;
+    color: black;
+    background-color: lightslategray;
+    width: 40%;
+    height: 50px;
+    margin-top: 50px;
+}
+/* end of header */
+
+/* targets the entire login form*/
+.handlelogin {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+/* div to center the fieldset*/
+.loginFieldset{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+}
+/* directly targeting fieldset*/
+.firstFieldset {
+    text-align: center;
+    height: 200px;
+    color: black
+}
+
+/*targeting the login text*/
+.legendLogin {
+    color: black;
+    font-size: 30px;
+    font-weight: bolder;
+}
