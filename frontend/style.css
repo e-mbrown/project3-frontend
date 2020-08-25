@@ -110,3 +110,21 @@ html {
 .modal-cities {
     border: 1px solid black;
 }
+/*Mapbox styles*/
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+}
+
+.marker {
+    background-image: url('/marker.png');
+    background-size: cover;
+    /* bottom: 100px; */
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+}
