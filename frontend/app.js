@@ -16,7 +16,7 @@ const app = new Vue({
         handleLogin: function(event){
             event.preventDefault()
             const URL = this.prodURL ? this.prodURL : this.devURL
-            //console.log(URL) //if you click login and it gives you URL it works
+            // console.log(URL) //if you click login and it gives you URL it works
             const user = {username: this.loginUN, password: this.loginPW}
             console.log(user) //if you type in username and password and see it in the console it works
             fetch(`${URL}/login`, {
@@ -29,6 +29,7 @@ const app = new Vue({
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
+                    console.log(data.error)
                     alert('Error logging in. Please try again.')
                 } else {
                     this.user = data.user
@@ -56,7 +57,7 @@ const app = new Vue({
             const URL = this.prodURL ? this.prodURL : this.devURL
             const user = {
                 username: this.createUN,
-                password:this.createPW
+                password: this.createPW
             }
             fetch(`${URL}/users`, {
                 method: "post",
