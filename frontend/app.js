@@ -85,6 +85,8 @@ const app = new Vue({
         handleActivities: function(event){
             const URL = this.prodURL ? this.prodURL : this.devURL
             const id = event.target.id
+            console.log(id)
+            console.log(URL)
 
             fetch(`${URL}/activities/q/${id}`, {
                 method: "get",
@@ -95,8 +97,9 @@ const app = new Vue({
                 .then(response => response.json()
                 .then(data => {
                     this.activities = data.data
-                    console.log(data)
-                }))
+                    console.log(data.data)
+                    console.log(`${URL}/activities/q/${id}`)
+                })
         }
     }
 })
