@@ -82,7 +82,7 @@ const app = new Vue({
 
         //////////// GETTING ACTIVITY INFO FROM DB /////////////
         // requires event bc we are waiting for an on click on the button
-        handleActivities: function(event){
+        handleActivities: async function(event){
             const URL = this.prodURL ? this.prodURL : this.devURL
             const id = event.target.id
             console.log(id)
@@ -97,20 +97,28 @@ const app = new Vue({
                 .then(response => response.json())
                 .then(data => {
                     // console.log(data);
-                    for(i = 0; i < data.data.length; i ++){
-                       data.data[i].name += "cardi b"
-                    }
+                    // for(i = 0; i < data.data.length; i ++){
+                    //    data.data[i].className = "fas fa-heart"
+                    // } //made the hearts
                     this.activities = data.data 
                     console.log(data.data)
                     console.log(`${URL}/activities/q/${id}`)
                 })
-                // this.activities.forEach(d=>{
-                //     d = d + ' cardi b'
-                // })
+                console.log(this.activities.length);
+                for(i = 0; i < this.activities.length; i ++){
+                    const fav = await fetch(`${URL}/favorites/${this.activities[i].id}`, {
+                        method: "get",
+                        headers: {
+                            Authorization: `bearer ${this.token}`
+                        }
+                    })
+                    this.activities[i].className = !!fav ? "fas fa-heart" : "far fa-heart"
+                 }
         },
 
-        theCity: function(event){
-            event.target.appendChild(document.createTextNode('the sitty'))
+        getFav: function(event){
+            console.log("favorite");
+            // event.target.appendChild(document.createTextNode('the sitty'))
         }
     }
 })

@@ -14,6 +14,7 @@
     <!--JS & CSS-->
     <script src="app.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/e3ce9e053c.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -58,7 +59,7 @@
     </div>
 
     <div v-if="loggedin" v-for="activity of activities">
-        <h1>{{ activity.name }}</h1>
+        <h1>{{ activity.name }}<i created="getFav" :class="activity.className" :act_id="activity.id"></i></h1>
     </div>
 
     <!---- LOG OUT --->
