@@ -165,7 +165,7 @@ html, .username, .password, .createUN, .createPW {
 }
 
 .marker {
-    background-image: url('/marker.png');
+    background-image: url('./marker.png');
     background-size: cover;
     width: 25px;
     height: 25px;
