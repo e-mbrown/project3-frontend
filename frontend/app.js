@@ -87,7 +87,7 @@ const app = new Vue({
 
         //////////// GETTING ACTIVITY INFO FROM DB /////////////
         // requires event bc we are waiting for an on click on the button
-        handleActivities: function(event){
+        handleActivities: async function(event){
             const URL = this.prodURL ? this.prodURL : this.devURL
             const id = event.target.id
             console.log(id)
@@ -101,12 +101,44 @@ const app = new Vue({
             })
                 .then(response => response.json())
                 .then(data => {
-                    this.activities = data.data
-                    console.log(data.data, "this is my data")
+                    // console.log(data);
+                    // for(i = 0; i < data.data.length; i ++){
+                    //    data.data[i].className = "fas fa-heart"
+                    // } //made the hearts
+                    this.activities = data.data 
+                    console.log(data.data)
                     console.log(`${URL}/activities/q/${id}`)
                 })
+                console.log(this.activities.length);
+                for(i = 0; i < this.activities.length; i ++){
+                    const fav = await fetch(`${URL}/favorites/${this.activities[i].id}`, {
+                        method: "get",
+                        headers: {
+                            Authorization: `bearer ${this.token}`
+                        }
+                    })
+                    const booly = await fav.json() //omg i have to await this im literally on the floor
+                    console.log(booly);
+                    !!(booly) ? Vue.set(this.activities[i], "className", "fas fa-heart" ) : Vue.set(this.activities[i], "className", "far fa-heart" )
+                     
+                 }
         },
 
+        toggleFav: function(event){
+            const URL = this.prodURL ? this.prodURL : this.devURL
+            const actId = event.target.getAttribute("act_id")
+            fetch(`${URL}/favorites/${actId}`, {
+                method: "post",
+                headers: {
+                    Authorization: `bearer ${this.token}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.activities.filter(a=>a.id == actId)[0].className = data.status ? "fas fa-heart" : "far fa-heart"
+                })
+            console.log()
+        },
         //////////// TAKES USER TO THE ACCOUNT PG /////////////
         ////// When the user is taken to their account page, they will automatically see a list of all their favorites
         goToAccount: function(event){
@@ -163,23 +195,39 @@ toggleButton.addEventListener('click', () => {
 // ==Moved Functions
 console.log(app)
 
-const handleActivities = function(event){
+const handleActivities = async function(event){
     const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
     const id = event.target.id
     console.log(id)
     console.log(URL)
     console.log(app._data.token)
 
-    fetch(`${URL}/activities/q/${id}`, {
+    const f = await fetch(`${URL}/activities/q/${id}`, {
         method: "get",
         headers: {
             Authorization: `bearer ${app._data.token}`
         }
     })
-        .then(response => response.json())
-        .then(data => {
-            app._data.activities = data.data
-            console.log(data.data, "this is my data")
-            console.log(`${URL}/activities/q/${id}`)
+
+    const data = await f.json()
+    app._data.activities = data.data 
+    await handleFavs()
+}
+
+async function handleFavs(){
+    const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
+    for(i = 0; i < app.activities.length; i++){
+        const fav = await fetch(`${URL}/favorites/${app.activities[i].id}`, {
+            method: "get",
+            headers: {
+                Authorization: `bearer ${app.token}`
+            }
         })
+        console.log(fav)
+        const booly = await fav.json()
+
+        console.log(booly);
+        booly ? Vue.set(app.activities[i], "className", "fas fa-heart" ) : Vue.set(app.activities[i], "className", "far fa-heart" )
+         
+     }
 }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel App</title>
+
     <!--VUE SCRIPT-->
     <link href="https://cdn.jsdelivr.net/npm/vuetify@1.2.2/dist/vuetify.min.css" rel="stylesheet" /> <!--*added*/-->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -17,6 +18,8 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/e3ce9e053c.js" crossorigin="anonymous"></script>
+</head>
 
     <script
   src="https://code.jquery.com/jquery-3.5.1.js"
@@ -105,7 +108,7 @@
         </div>
 
         <div v-if="loggedin && !onAccount" v-for="activity of activities">
-            <h1>{{ activity.name }}</h1>
+            <h1>{{ activity.name }} <i v-on:click="toggleFav" :class="activity.className" :act_id="activity.id"></i></h1>
         </div>
     </div>
 
