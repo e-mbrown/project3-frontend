@@ -1,5 +1,5 @@
 html, .username, .password, .createUN, .createPW {
-    background: url(https://media.timeout.com/images/105476859/image.jpg); */
+    background: url(https://media.timeout.com/images/105476859/image.jpg);
     background-repeat: no-repeat;
     background-size: 1920px 1550px;
     opacity: 0.8;
@@ -165,13 +165,14 @@ html, .username, .password, .createUN, .createPW {
 }
 
 .marker {
-    background-image: url('/marker.png');
+    background-image: url('./marker.png');
     background-size: cover;
     width: 25px;
     height: 25px;
     border-radius: 50%;
     cursor: pointer;
 }
+
 .modal{
   display: none;
 }

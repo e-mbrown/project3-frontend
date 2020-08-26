@@ -112,7 +112,12 @@ const app = new Vue({
             const URL = this.prodURL ? this.prodURL : this.devURL
             console.log(URL)
             this.onAccount = true
-            // $("my-account-button").text("Dashboard") testing toggling the text on the botton
+
+            if (this.onAccount == true){
+                $("#my-account-button").html("Dashboard")
+            } else {
+                $("#my-account-button").html("My Account")
+            }
 
             // fetch(`${URL}/favorites`, {
             //     method: "get",
@@ -126,9 +131,16 @@ const app = new Vue({
             //         console.log(data.data)
             //         console.log(`${URL}/favorites`)
             //     })
+        },
+
+        // toggleAccountButton: function(){
+        //    if onAccount == true {
+        //        document.g
+        //    }
         }
-    }
 })
+
+/////////////////////////////////////////////////////////////////////////////////////////////
 
 // ==NAV BAR ONLY==
 
