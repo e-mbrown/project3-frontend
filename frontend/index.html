@@ -61,6 +61,11 @@
         </div>
 </div>
 
+    <!-- MY ACCOUNT BUTTON -->
+    <div v-if="loggedin">
+        <button v-on:click="goToAccount">My Account</button>
+    </div>
+
     <!-- CHANGE THE POSITION OF THIS TO LOG OUT-->
     <!---- LOG OUT --->
     <div id="login" v-if="loggedin">

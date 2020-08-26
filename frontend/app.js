@@ -100,6 +100,11 @@ const app = new Vue({
                     console.log(data.data)
                     console.log(`${URL}/activities/q/${id}`)
                 })
+        },
+
+        //////////// TAKES USER TO THE ACCOUNT PG /////////////
+        goToAccount: function(event){
+            const URL = this.prodURL ? this.prodURL : this.devURL
         }
     }
 })
