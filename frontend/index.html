@@ -81,20 +81,13 @@
         </div>
         <!-- END LOG OUT -->
 
-        <!-- TESTING -->
-        <div v-if="loggedin">
-        <button v-on:click="toggleAccountButton" id="btn">ON</button>
-            <p id="option">ON</p>
-        </div>
-
-
         <!-- MY ACCOUNT / BACK TO DASHBOARD BUTTON -->
         <div v-if="loggedin">
-            <button id="my-account-button" v-on:click="goToAccount">My Account</button>
+            <button id="acct-btn" v-on:click="toggleAccountButton" >My Account</button>
         </div>
         <!-- MY ACCOUNT PROFILE PAGE -->
         <div v-if="onAccount">
-            <h2>This is the profile area</h2>
+            <h2 class="option">This is the profile area</h2>
         </div>
 
         <!---- DASHBOARD --->

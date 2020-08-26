@@ -130,11 +130,13 @@ const app = new Vue({
 
         toggleAccountButton: function(event){
             if (!this.clicked){
-                $("#btn").text("ON..")
-                $("#option").text("THIS IS ON")
+                $("#acct-btn").text("My Account")
+                // $(".option").text("THIS IS ON")
+                this.onAccount = false
             } else {
-                $("#btn").text("OFF..")
-                $("#option").text("THIS IS OFF")
+                $("#acct-btn").text("Dashboard")
+                // $(".option").text("THIS IS OFF")
+                this.onAccount = true
             }
             this.clicked = !this.clicked
            }
