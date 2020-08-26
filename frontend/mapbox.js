@@ -1,3 +1,5 @@
+
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiZWJzb25hcmkiLCJhIjoiY2tlN2V3ejB0MTh3NjJycXY5dWI3NDZwcyJ9.FYsqJqvdaamnEcpWF6d-mQ';
 
 
@@ -123,15 +125,17 @@ const geojson = {
         },
     ]
 };
-
+const cities = ["Tokyo", "New York City", "San Francisco", "Los Angeles", "Paris", "London","Sydney", "Buenos Aires", "Cape Town","Rome"];
+i = 0
 
 geojson.features.forEach(function(marker) { 
-    //changed 'button' from 'div' CLAUDIA
+    //changed 'button' from 'div' CLAUDIA'
     const mark = document.createElement('button'); 
     mark.className = 'marker';
+    mark.setAttribute("id", `${cities[i]}`)
     new mapboxgl.Marker(mark)
         .setLngLat(marker.geometry.coordinates)
         .addTo(map)
-    
+    i++
 })
 
