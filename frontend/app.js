@@ -1,3 +1,5 @@
+
+
 const app = new Vue({
     el: "#app",
     data: {
@@ -9,8 +11,11 @@ const app = new Vue({
         createPW: "",
         devURL: "http://localhost:3000",
         prodURL: null,
-        cities: ["Tokyo", "New York City", "San Francisco", "Los Angeles", "Paris", "London","Sydney", "Buenos Aires", "Cape Town","Rome"],
-        activities: []
+        activities: [],
+        token: '',
+        activities: [],
+        onAccount: false,
+        favoriteActivities: []
     },
 
     methods: {
@@ -133,6 +138,80 @@ const app = new Vue({
                     this.activities.filter(a=>a.id == actId)[0].className = data.status ? "fas fa-heart" : "far fa-heart"
                 })
             console.log()
+        },
+        goToAccount: function(event){
+            const URL = this.prodURL ? this.prodURL : this.devURL
+            console.log(URL)
+            this.onAccount = true
+            // $("my-account-button").text("Dashboard") testing toggling the text on the botton
+
+            // fetch(`${URL}/favorites`, {
+            //     method: "get",
+            //     headers: {
+            //         "Content-Type": "application/json"
+            //     }
+            // })
+            //     .then(response => response.json())
+            //     .then(data => {
+            //         this.favoriteActivities = data.data
+            //         console.log(data.data)
+            //         console.log(`${URL}/favorites`)
+            //     })
         }
     }
 })
+
+// ==NAV BAR ONLY==
+
+let firstDiv = $(".navbar").append('<div class ="brand-title"><img class="logo" src="https://res.cloudinary.com/techhire/image/upload/v1598408188/travel-logo_bmeebn.png"></div>')
+let firstAttr = $(".navbar").append('<a href ="#" class="toggle-button"><span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </a>')
+let secondDiv = $(".navbar").append('<div class="navbar-links"><ul><li><a class="aaa" href="#pageCoverPhoto">Learn More</a></li><li><a class="aaa" href="#products">Help</a></li><li><a class="aaa" href="#contact">About</a></li></ul></div>')
+
+const toggleButton = document.getElementsByClassName('toggle-button')[0]
+const navbarLinks = document.getElementsByClassName('navbar-links')[0]
+
+toggleButton.addEventListener('click', () => {
+  navbarLinks.classList.toggle('active')
+})
+// ==NAV BAR ONLY end ==
+
+
+// ==Moved Functions
+console.log(app)
+
+const handleActivities = async function(event){
+    const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
+    const id = event.target.id
+    console.log(id)
+    console.log(URL)
+    console.log(app._data.token)
+
+    const f = await fetch(`${URL}/activities/q/${id}`, {
+        method: "get",
+        headers: {
+            Authorization: `bearer ${app._data.token}`
+        }
+    })
+
+    const data = await f.json()
+    app._data.activities = data.data 
+    await handleFavs()
+}
+
+async function handleFavs(){
+    const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
+    for(i = 0; i < app.activities.length; i++){
+        const fav = await fetch(`${URL}/favorites/${app.activities[i].id}`, {
+            method: "get",
+            headers: {
+                Authorization: `bearer ${app.token}`
+            }
+        })
+        console.log(fav)
+        const booly = await fav.json()
+
+        console.log(booly);
+        booly ? Vue.set(app.activities[i], "className", "fas fa-heart" ) : Vue.set(app.activities[i], "className", "far fa-heart" )
+         
+     }
+}
