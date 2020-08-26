@@ -124,10 +124,15 @@ const geojson = {
     ]
 };
 
-geojson.features.forEach(function(marker) {
-    const mark = document.createElement('div');
+
+geojson.features.forEach(function(marker) { 
+    //changed 'button' from 'div' CLAUDIA
+
+    const mark = document.createElement('button'); 
     mark.className = 'marker';
     new mapboxgl.Marker(mark)
         .setLngLat(marker.geometry.coordinates)
         .addTo(map)
+    
 })
+
