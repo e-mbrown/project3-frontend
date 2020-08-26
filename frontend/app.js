@@ -144,6 +144,7 @@ toggleButton.addEventListener('click', () => {
 })
 // ==NAV BAR ONLY end ==
 
+
 // ==Moved Functions
 console.log(app)
 
