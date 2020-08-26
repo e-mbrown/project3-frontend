@@ -10,7 +10,9 @@ const app = new Vue({
         devURL: "http://localhost:3000",
         prodURL: null,
         cities: ["Tokyo", "New York City", "San Francisco", "Los Angeles", "Paris", "London","Sydney", "Buenos Aires", "Cape Town","Rome"],
-        activities: []
+        activities: [],
+        onAccount: false,
+        favoriteActivities: []
     },
 
     methods: {
@@ -105,6 +107,22 @@ const app = new Vue({
         //////////// TAKES USER TO THE ACCOUNT PG /////////////
         goToAccount: function(event){
             const URL = this.prodURL ? this.prodURL : this.devURL
+            console.log(URL)
+            this.onAccount = true
+            // $("my-account-button").text("Dashboard") testing toggling the text on the botton
+
+            // fetch(`${URL}/favorites`, {
+            //     method: "get",
+            //     headers: {
+            //         "Content-Type": "application/json"
+            //     }
+            // })
+            //     .then(response => response.json())
+            //     .then(data => {
+            //         this.favoriteActivities = data.data
+            //         console.log(data.data)
+            //         console.log(`${URL}/favorites`)
+            //     })
         }
     }
 })
