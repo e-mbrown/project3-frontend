@@ -35,7 +35,6 @@
         <!-- <a href="" target="_blank">Open page in new window</a> -->
         <!-- SOON TO BE DELETED-->
 
-
             <!-- LOGIN FORM -->
 
         <div class="handlelogin">
@@ -65,17 +64,19 @@
         </div>
 </div>
 
-    <!-- CHANGE THE POSITION OF THIS TO LOG OUT-->
-    <!---- LOG OUT --->
-    <div id="login" v-if="loggedin">
-        <h1> This is the user area </h1>
-        <button v-on:click="handleLogout">Logout</button>
+    <!-- MY ACCOUNT / BACK TO DASHBOARD BUTTON -->
+    <div v-if="loggedin">
+        <button id="my-account-button" v-on:click="goToAccount">My Account</button>
     </div>
-    <!-- LOGOUT -->
+
+    <!-- MY ACCOUNT PROFILE PAGE -->
+    <div v-if="onAccount">
+        <h2>This is the profile area</h2>
+    </div>
     
 
      <!---- DASHBOARD --->
-     <div v-if="loggedin"> <!--this div had a id="log-in" in case it messes something up later-->
+     <div v-if="loggedin && !onAccount"> <!--this div had a id="log-in" in case it messes something up later-->
         <div>
             <article>
                 <h1>Where do you wanna travel?</h1>
@@ -88,12 +89,12 @@
         </div>
     </div>
 
-    <div v-if="loggedin" v-for="activity of activities">
+    <div v-if="loggedin && !onAccount" v-for="activity of activities">
         <h1>{{ activity.name }}</h1>
     </div>
 </div>
 <!--Map Box-->
-<div id="map" class="marker"></div>
+<div id="map" v-if="loggedin && !onAccount"></div>
 <!-- Map Box end -->
 </body>
 </html>
