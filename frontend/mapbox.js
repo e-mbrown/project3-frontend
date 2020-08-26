@@ -139,5 +139,6 @@ geojson.features.forEach(function(marker) {
         .setLngLat(marker.geometry.coordinates)
         .addTo(map)
     i++
+    console.log('running')
 })
 
