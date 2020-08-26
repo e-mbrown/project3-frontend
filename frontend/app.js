@@ -1,3 +1,5 @@
+
+
 const app = new Vue({
     el: "#app",
     data: {
@@ -9,8 +11,11 @@ const app = new Vue({
         createPW: "",
         devURL: "http://localhost:3000",
         prodURL: null,
-        cities: ["Tokyo", "New York City", "San Francisco", "Los Angeles", "Paris", "London","Sydney", "Buenos Aires", "Cape Town","Rome"],
-        activities: []
+        activities: [],
+        token: '',
+        activities: [],
+        onAccount: false,
+        favoriteActivities: []
     },
 
     methods: {
@@ -100,6 +105,45 @@ const app = new Vue({
                     console.log(data.data)
                     console.log(`${URL}/activities/q/${id}`)
                 })
-                }
+                )}
     }
 })
+
+// ==NAV BAR ONLY==
+
+let firstDiv = $(".navbar").append('<div class ="brand-title"><img class="logo" src="https://res.cloudinary.com/techhire/image/upload/v1598408188/travel-logo_bmeebn.png"></div>')
+let firstAttr = $(".navbar").append('<a href ="#" class="toggle-button"><span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </a>')
+let secondDiv = $(".navbar").append('<div class="navbar-links"><ul><li><a class="aaa" href="#pageCoverPhoto">Learn More</a></li><li><a class="aaa" href="#products">Help</a></li><li><a class="aaa" href="#contact">About</a></li></ul></div>')
+
+const toggleButton = document.getElementsByClassName('toggle-button')[0]
+const navbarLinks = document.getElementsByClassName('navbar-links')[0]
+
+toggleButton.addEventListener('click', () => {
+  navbarLinks.classList.toggle('active')
+})
+// ==NAV BAR ONLY end ==
+
+
+// ==Moved Functions
+console.log(app)
+
+const handleActivities = function(event){
+    const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
+    const id = event.target.id
+    console.log(id)
+    console.log(URL)
+    console.log(app._data.token)
+
+    fetch(`${URL}/activities/q/${id}`, {
+        method: "get",
+        headers: {
+            Authorization: `bearer ${app._data.token}`
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            app._data.activities = data.data
+            console.log(data.data, "this is my data")
+            console.log(`${URL}/activities/q/${id}`)
+        })
+}
