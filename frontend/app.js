@@ -12,7 +12,10 @@ const app = new Vue({
         devURL: "http://localhost:3000",
         prodURL: null,
         activities: [],
-        token: ''
+        token: '',
+        activities: [],
+        onAccount: false,
+        favoriteActivities: []
     },
 
     methods: {
@@ -84,6 +87,46 @@ const app = new Vue({
 
         //////////// GETTING ACTIVITY INFO FROM DB /////////////
         // requires event bc we are waiting for an on click on the button
+        handleActivities: function(event){
+            const URL = this.prodURL ? this.prodURL : this.devURL
+            const id = event.target.id
+            console.log(id)
+            console.log(URL)
+
+            fetch(`${URL}/activities/q/${id}`, {
+                method: "get",
+                headers: {
+                    Authorization: `bearer ${this.token}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.activities = data.data
+                    console.log(data.data, "this is my data")
+                    console.log(`${URL}/activities/q/${id}`)
+                })
+        },
+
+        //////////// TAKES USER TO THE ACCOUNT PG /////////////
+        goToAccount: function(event){
+            const URL = this.prodURL ? this.prodURL : this.devURL
+            console.log(URL)
+            this.onAccount = true
+            // $("my-account-button").text("Dashboard") testing toggling the text on the botton
+
+            // fetch(`${URL}/favorites`, {
+            //     method: "get",
+            //     headers: {
+            //         "Content-Type": "application/json"
+            //     }
+            // })
+            //     .then(response => response.json())
+            //     .then(data => {
+            //         this.favoriteActivities = data.data
+            //         console.log(data.data)
+            //         console.log(`${URL}/favorites`)
+            //     })
+        }
     }
 })
 
