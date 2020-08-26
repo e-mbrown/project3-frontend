@@ -1,4 +1,7 @@
-
+// == Modal Global Variables
+const $modal = $('.modal');
+const $span = $('.close')
+// 
 
 const app = new Vue({
     el: "#app",
@@ -145,9 +148,7 @@ toggleButton.addEventListener('click', () => {
 // ==NAV BAR ONLY end ==
 
 
-// ==Moved Functions
-console.log(app)
-
+// == Functions that look into Vue container ==
 const handleActivities = function(event){
     const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
     const id = event.target.id
@@ -164,7 +165,30 @@ const handleActivities = function(event){
         .then(response => response.json())
         .then(data => {
             app._data.activities = data.data
-            console.log(data.data, "this is my data")
-            console.log(`${URL}/activities/q/${id}`)
+            fillModal(data.data, id)
         })
 }
+
+const fillModal = (data, id) =>{
+    $modal.css('display', 'flex')
+    $('.modal-footer').text(id)
+    let count = 0
+    data.forEach((activity) =>{
+        console.log(activity)
+        const $event = $('<p>').text(`${activity.name} located at ${activity.address}`)
+        $('.modal-body').append($event)
+    })
+   
+};
+
+$span.on('click', () =>{
+    $modal.css('display', 'none')
+});
+
+window.addEventListener('click', (event) => {
+    console.log('click')   
+    // matching the event target and jquery exactly
+    if (event.target == $modal[0]) {
+            $modal.css('display', "none")
+    }
+})

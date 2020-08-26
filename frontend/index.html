@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify@1.2.2/dist/vuetify.min.js"></script>
 
     <!-- BOOTSTRAP (for modals) -->
-    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     -->
     <!--JS & CSS-->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
@@ -31,7 +31,7 @@
 <body>
     <nav class="navbar"></nav>
     <div id="app">
-
+        <button onclick="fillModal(1,2)">Make modal appear</button>
         <!----------- CREATE / LOGIN SCREEN ----------->
         <div id="nologin" v-if="!loggedin">
             <div id="loginform">
@@ -87,7 +87,6 @@
         <div v-if="loggedin"> <!--this div had a id="log-in" in case it messes something up later-->
             <div>
                 <article>
-                    <h1>Where do you wanna travel?</h1>
                     <!-- <div v-for="city in cities">
                         <button v-on:click="handleActivities" v-bind:id="city">{{ city }}</button> -->
     <!--<div v-if="modal" class="modal-cities">Hello!</div>-->
@@ -105,25 +104,21 @@
     <div id="map" class="marker"></div>
     <!-- Map Box end -->
     <!-- Modal -->
-    <div class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Modal body text goes here.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
+   <!-- Modal content -->
+   <div class="modal">
+    <div id="contain">
+    <div class="modal-title">
+        <span class="close">&times;</span>
+        <h2 class="title">Where do you wanna travel?</h2>
     </div>
+    <div class="modal-body">
+    </div>
+    <div class="modal-footer">
+        <h3>Modal Footer</h3>
+    </div>
+    </div>
+</div>
+
 <!-- Modal end -->
 </body>
 </html>
