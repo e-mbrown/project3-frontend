@@ -82,7 +82,7 @@ const app = new Vue({
 
         //////////// GETTING ACTIVITY INFO FROM DB /////////////
         // requires event bc we are waiting for an on click on the button
-        handleActivities: function(event){
+        handleActivities: async function(event){
             const URL = this.prodURL ? this.prodURL : this.devURL
             const id = event.target.id
             console.log(id)
@@ -100,6 +100,35 @@ const app = new Vue({
                     console.log(data.data, "this is my data")
                     console.log(`${URL}/activities/q/${id}`)
                 })
+                console.log(this.activities.length);
+                for(i = 0; i < this.activities.length; i ++){
+                    const fav = await fetch(`${URL}/favorites/${this.activities[i].id}`, {
+                        method: "get",
+                        headers: {
+                            Authorization: `bearer ${this.token}`
+                        }
+                    })
+                    const booly = await fav.json() //omg i have to await this im literally on the floor
+                    console.log(booly);
+                    !!(booly) ? Vue.set(this.activities[i], "className", "fas fa-heart" ) : Vue.set(this.activities[i], "className", "far fa-heart" )
+                     
+                 }
+        },
+
+        toggleFav: function(event){
+            const URL = this.prodURL ? this.prodURL : this.devURL
+            const actId = event.target.getAttribute("act_id")
+            fetch(`${URL}/favorites/${actId}`, {
+                method: "post",
+                headers: {
+                    Authorization: `bearer ${this.token}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.activities.filter(a=>a.id == actId)[0].className = data.status ? "fas fa-heart" : "far fa-heart"
+                })
+            console.log()
         }
     }
 })
