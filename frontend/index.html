@@ -15,90 +15,115 @@
     <!--JS & CSS-->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
-    <script src ="mapbox.js" defer></script>
-    <script src="app.js" defer></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
 
+    <script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous" defer></script>
+
+    <script src="app.js" defer></script>
+    <script src ="mapbox.js" defer></script>
+    
 
 </head>
 <body>
     <nav class="navbar"></nav>
+    <div id="app">
 
-<div id="app">
+        <!----------- CREATE / LOGIN SCREEN ----------->
+        <div id="nologin" v-if="!loggedin">
+            <div id="loginform">
+                <div class=loginDiv><h1 class="loginHeader"> Choose your next vacation!</h1></div> 
 
-    <!----------- CREATE / LOGIN SCREEN ----------->
-    <div id="nologin" v-if="!loggedin">
-        <div id="loginform">
-        <div class=loginDiv><h1 class="loginHeader">Choose Your Next Vacation</h1></div> 
+                <!-- WILL DELETE ONLY TESTING SOMETHING-->
+                <!-- <a href="" target="_blank">Open page in new window</a> -->
+                <!-- SOON TO BE DELETED-->
 
         <!-- WILL DELETE ONLY TESTING SOMETHING
         <a href="" target="_blank">Open page in new window</a>
          SOON TO BE DELETED-->
 
-            <!-- LOGIN FORM -->
+                    <!-- LOGIN FORM -->
 
-        <div class="handlelogin">
-            <form v-on:submit.prevent="handleLogin">
-                <fieldset class="firstFieldset"><legend class="legendLogin">LOGIN</legend>
-                    <div class="loginFieldset">
-                <input class="username" type="text" placeholder="username" v-model="loginUN">
-                <input class="password" type="password" placeholder="password" v-model="loginPW">
-                <input class="loginButton" type="submit" value="Login">
-                    </div>  
-                </fieldset>
-            </form>
-        </div>
-            <!-- CREATE ACCOUNT FORM-->
-            <div class="handleSignup"> 
-            <form v-on:submit.prevent="handleSignup">
-                <fieldset class="secondFieldset"><legend class="legendSignup">Create Account</legend>
-                            <div class="signupFieldset">
-                    <input class="createUN" type="text" placeholder="username" v-model="createUN">
-                    <input class="createPW" type="password" placeholder="password" v-model="createPW">
-                    <input class="signupButton"type="submit" value="Sign Up">
-                            </div>
-                </fieldset>
-            </form>
-         </div>
-        </div>
-</div>
-
-    <!-- MY ACCOUNT / BACK TO DASHBOARD BUTTON -->
-    <div v-if="loggedin">
-        <button id="my-account-button" v-on:click="goToAccount">My Account</button>
-    </div>
-
-    <!-- MY ACCOUNT PROFILE PAGE -->
-    <div v-if="onAccount">
-        <h2>This is the profile area</h2>
-    </div>
-    
-
-     <!---- DASHBOARD --->
-
-     <div class="dashboard" v-if="loggedin && !onAccount"> <!--this div had a id="log-in" in case it messes something up later-->
-        <div class="citiesParentDiv">
-       <div>
-
-            <article>
-                <div class="testingGrid"></div>
-                <h1>Where do you wanna travel?</h1>
-
-                <div class="cityButtonsDiv" v-for="city in cities">
-                    <button class="cityButtons" v-on:click="handleActivities" v-bind:id="city">{{ city }}</button>
+                <div class="handlelogin">
+                    <form v-on:submit.prevent="handleLogin">
+                        <fieldset class="firstFieldset"><legend class="legendLogin">LOGIN</legend>
+                            <div class="loginFieldset">
+                        <input class="username" type="text" placeholder="username" v-model="loginUN">
+                        <input class="password" type="password" placeholder="password" v-model="loginPW">
+                        <input class="loginButton" type="submit" value="Login">
+                            </div>  
+                            <button>Create Account</button>
+                        </fieldset>
+                    </form>
                 </div>
-            </article>
+                    <!-- CREATE ACCOUNT FORM-->
+                <div class="handleSignup"> 
+                <form v-on:submit.prevent="handleSignup">
+                    <fieldset class="secondFieldset"><legend class="legendSignup">Create Account</legend>
+                                <div class="signupFieldset">
+                        <input class="createUN" type="text" placeholder="username" v-model="createUN">
+                        <input class="createPW" type="password" placeholder="password" v-model="createPW">
+                        <input class="signupButton"type="submit" value="Sign Up">
+                                </div>
+                    </fieldset>
+                </form>
+                </div>
+            </div>
+        </div>
 
+        <!-- CHANGE THE POSITION OF THIS TO LOG OUT-->
+        <!---- LOG OUT --->
+        <div id="login" v-if="loggedin">
+            <h1> This is the user area </h1>
+            <button v-on:click="handleLogout">Logout</button>
+        </div>
+        <!-- LOGOUT -->
+        
+
+        <!---- DASHBOARD --->
+        <div v-if="loggedin"> <!--this div had a id="log-in" in case it messes something up later-->
+            <div>
+                <article>
+                    <h1>Where do you wanna travel?</h1>
+                    <!-- <div v-for="city in cities">
+                        <button v-on:click="handleActivities" v-bind:id="city">{{ city }}</button> -->
+    <!--<div v-if="modal" class="modal-cities">Hello!</div>-->
+                    <!-- </div> -->
+                </article>
+
+            </div>
+        </div>
+
+        <div v-if="loggedin" v-for="activity of activities">
+            <h1>{{ activity.name }}</h1>
         </div>
     </div>
-
-    <div v-if="loggedin && !onAccount" v-for="activity of activities">
-        <h1>{{ activity.name }}</h1>
+    <!--Map Box-->
+    <div id="map" class="marker"></div>
+    <!-- Map Box end -->
+    <!-- Modal -->
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<!--Map Box-->
-<div id="map" v-if="loggedin && !onAccount"></div>
-<!-- Map Box end -->
+<!-- Modal end -->
 </body>
 </html>

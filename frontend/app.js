@@ -1,3 +1,5 @@
+
+
 const app = new Vue({
     el: "#app",
     data: {
@@ -9,7 +11,8 @@ const app = new Vue({
         createPW: "",
         devURL: "http://localhost:3000",
         prodURL: null,
-        cities: ["Tokyo", "New York City", "San Francisco", "Los Angeles", "Paris", "London","Sydney", "Buenos Aires", "Cape Town","Rome"],
+        activities: [],
+        token: '',
         activities: [],
         onAccount: false,
         favoriteActivities: []
@@ -140,3 +143,27 @@ toggleButton.addEventListener('click', () => {
   navbarLinks.classList.toggle('active')
 })
 // ==NAV BAR ONLY end ==
+
+// ==Moved Functions
+console.log(app)
+
+const handleActivities = function(event){
+    const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
+    const id = event.target.id
+    console.log(id)
+    console.log(URL)
+    console.log(app._data.token)
+
+    fetch(`${URL}/activities/q/${id}`, {
+        method: "get",
+        headers: {
+            Authorization: `bearer ${app._data.token}`
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            app._data.activities = data.data
+            console.log(data.data, "this is my data")
+            console.log(`${URL}/activities/q/${id}`)
+        })
+}
