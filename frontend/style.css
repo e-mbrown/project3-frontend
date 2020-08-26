@@ -211,6 +211,11 @@ html {
     border-radius: 10px;
     
   }
+  /* Bootstrap Modal */
+  .modal {
+    display:none
+  }
+  /* Modal End */
   
   
   @media (max-width: 600px) {
