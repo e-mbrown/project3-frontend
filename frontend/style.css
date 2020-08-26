@@ -1,4 +1,4 @@
-html {
+html, .username, .password {
     background: url(https://media.timeout.com/images/105476859/image.jpg);
     background-repeat: no-repeat;
     background-size: 1920px 1550px;
@@ -33,33 +33,54 @@ html {
     justify-content: center;
     margin-top: 50px;
     margin-bottom: 100px;
+    
 }
 
 /* div to center the fieldset*/
 .loginFieldset{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: stretch;
+    align-items: center;
 }
+
 /* directly targeting fieldset*/
 .firstFieldset {
     text-align: center;
-    height: 200px;
+    height: 300px;
+    width: 500px;
 }
 
 .username {
-    width: 150px;
-    height: 20px;
+    width: 300px;
+    height: 50px;
+    text-align: center;
+    color: black;
+    font-weight: bolder;
+    border: 3px solid slategray;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 
 .password{
-    width: 150px;
-    height: 20px;
+    width: 300px;
+    height: 50px;
+    text-align: center;
+    border: 3px solid slategray;
+    border-radius: 10px;
+    margin-bottom: 40px;
 }
 
 .loginButton{
     font-size: 15px;
+    width: 100px;
+    height: 30px;
+    border: 3px solid black;
+    border-radius: 5px;
+    font-size: 20px;
+    color: black;
+    font-weight: bolder;
+    background-color: slategray
 }
 /*targeting the login text*/
 .legendLogin {
@@ -116,11 +137,12 @@ html {
     height: 500px;
     width: 100%;
     background-color: black;
-    display: none; 
+    display: none
+    /*LEAVING DISPLAY:NONE TEMPORARILY*/
 }
 
 .marker {
-    background-image: url('/marker.png');
+    /*background-image: url('/marker.png');*/
     background-size: cover;
     /* bottom: 100px; */
     width: 25px;
@@ -128,3 +150,41 @@ html {
     border-radius: 50%;
     cursor: pointer;
 }
+
+
+/*THIS IS FOR ACTIVITIES PAGE AFTER RECENT VERSION HAS BEEN COMMITTED*/
+/*leave display:none on map until dashboard css is completed*/
+.dashboard {
+    background-color: black;
+    /* display: flex; */
+}
+
+.citiesParentDiv{
+    display: flex;
+    justify-content: center; 
+    
+} 
+/* 
+.testingGrid {
+    grid-area: test; 
+    color: white;
+}
+ */
+
+.cityButtonsDiv {
+    display: flex; 
+    justify-content: center; 
+}
+
+.cityButtons{
+    color: purple;
+    font-size: 40px;
+    /* height: 200%;
+    padding: 200px;
+    margin-top: 200px;
+    margin-bottom: 200px;
+    */
+}
+/*NOT COMMITTED UNTIL PASTING THE LAST VERSION BY CLAUDIA*/ 
+
+

@@ -85,8 +85,10 @@ const app = new Vue({
         handleActivities: function(event){
             const URL = this.prodURL ? this.prodURL : this.devURL
             const id = event.target.id
+            console.log(id)
+            console.log(URL)
 
-            fetch(`${URL}/activities/${id}`, {
+            fetch(`${URL}/activities/q/${id}`, {
                 method: "get",
                 headers: {
                     Authorization: `bearer ${this.token}`
@@ -94,8 +96,9 @@ const app = new Vue({
             })
                 .then(response => response.json())
                 .then(data => {
-                    this.activities = data
-                    console.log(data)
+                    this.activities = data.data
+                    console.log(data.data)
+                    console.log(`${URL}/activities/q/${id}`)
                 })
         }
     }

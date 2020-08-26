@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel App</title>
     <!--VUE SCRIPT-->
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@1.2.2/dist/vuetify.min.css" rel="stylesheet" /> <!--*added*/-->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@1.2.2/dist/vuetify.min.js"></script>
 
     <!-- BOOTSTRAP (for modals) -->
     <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -71,12 +73,14 @@
     
 
      <!---- DASHBOARD --->
-     <div v-if="loggedin"> <!--this div had a id="log-in" in case it messes something up later-->
-        <div>
+     <div class="dashboard" v-if="loggedin"> <!--this div had a id="log-in" in case it messes something up later-->
+        <div class="citiesParentDiv">
             <article>
+                <div class="testingGrid"></div>
                 <h1>Where do you wanna travel?</h1>
-                <div v-for="city in cities">
-                    <button v-on:click="handleActivities" v-bind:id="city">{{ city }}</button>
+
+                <div class="cityButtonsDiv" v-for="city in cities">
+                    <button class="cityButtons" v-on:click="handleActivities" v-bind:id="city">{{ city }}</button>
 <!--                    <div v-if="modal" class="modal-cities">Hello!</div>-->
                 </div>
             </article>
