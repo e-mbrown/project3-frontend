@@ -1,18 +1,4 @@
-<<<<<<< HEAD
 html, .username, .password, .createUN, .createPW {
-=======
-/* * {
-  border: 1px solid red;
-}     */
-
-* {
-    font-family: 'Josefin Sans', sans-serif;
-}     
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
-
-
-html {
->>>>>>> c32e198364e804244d7dc606de8237479e47da8d
     background: url(https://media.timeout.com/images/105476859/image.jpg);
     background-repeat: no-repeat;
     background-size: 1920px 1550px;
@@ -24,22 +10,20 @@ html {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 100%;
 }
 
 .loginDiv {
     display:flex;
     justify-content: center;
-    padding-top: 40px;
 }
 /*responsible for the color and design */
 .loginHeader {
     text-align: center;
     color: black;
+    background-color: lightslategray;
     width: 40%;
     height: 50px;
     margin-top: 50px;
-    font-style: italic;
 }
 /* end of header */
 
@@ -56,26 +40,15 @@ html {
 .loginFieldset{
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
     align-items: center;
-=======
-    justify-content: space-around;
-    align-items: stretch;
-    background-color: azure;
->>>>>>> c32e198364e804244d7dc606de8237479e47da8d
 }
 
 /* directly targeting fieldset*/
 .firstFieldset {
     text-align: center;
-<<<<<<< HEAD
     height: 300px;
     width: 500px;
     border: 10px black;
-=======
-    height: 200px;
-    background-color: azure;
->>>>>>> c32e198364e804244d7dc606de8237479e47da8d
 }
 
 .username {
@@ -190,7 +163,7 @@ html {
 }
 
 .marker {
-    background-image: url('/marker.png');
+    /*background-image: url('/marker.png');*/
     background-size: cover;
     /* bottom: 100px; */
     width: 25px;
@@ -234,120 +207,3 @@ html {
     */
 }
 /*NOT COMMITTED UNTIL PASTING THE LAST VERSION BY CLAUDIA*/ 
-
-
-
-/*======== NAV ========*/
-
-  .navbar {
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
-     background-color: rgb(70, 70, 70);
-     color: black;
-     width: 100%;
-     top: 0px;
-     opacity: 70%;
-  }
-
-  
-  .logo{
-    float: left; 
-    width: 120px; 
-    height: 100px;
-  }
-  
-  .navbar-links {
-    height: 100%;  
-  }
-  
-  .navbar-links ul {
-    margin: 0;
-    padding: 0;
-    display: flex;
-  
-  }
-  
-  .navbar-links li {
-    list-style: none;
-  }
-
-  .navbar-links li a {
-    display: block;
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    margin: 10px;
-  }
-  
-  .navbar-links li:hover {
-    background-color: rgb(138, 138, 138);
-  }
-  
-  .toggle-button {
-    position: absolute;
-    top: .75rem;
-    right: 1rem;
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-    background-color: rgba(179, 255, 0, 0.072);
-  
-  }
-  
-  .toggle-button .bar{
-    height: 3px;
-    width: 100%; 
-    background-color: black;
-    border-radius: 10px;
-    
-  }
-  
-  
-  @media (max-width: 600px) {
-    .toggle-button{
-      display: flex;
-    }
-  
-    .navbar-links{
-      display: none;
-      width: 100%;
-    }
-  
-    .navbar {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .navbar-links ul {
-       width: 100%;
-       flex-direction: column;
-    }
-    .navbar-links ul li {
-      text-align: center;
-    }
-  
-    .navbar-links ul li a {
-      padding: .5rem 1rem;
-    }
-  
-    .navbar-links.active {
-      display: flex;
-    }
-  
-    .root {
-      display : flex;
-      position: relative;
-      padding-left: 50px;
-    } 
-    
-    .container {
-      /* margin: 7px; */
-      flex-wrap: wrap;
-      position: relative;
-    }
-  
-  
-  } 
-  /*======== NAV END ========*/
