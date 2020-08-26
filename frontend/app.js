@@ -128,17 +128,16 @@ const app = new Vue({
                 })
         },
 
-        // toggleAccountButton: function(){
-        //     if (!clicked){
-        //         clicked = true;
-        //         $("#test").html("ON")
-        //         $("#option").html("THIS IS ON")
-        //     } else {
-        //         clicked = false;
-        //         $("#test").html("FALSE")
-        //         $("#option").html("THIS IS OFF")
-        //     }
-        //    }
+        toggleAccountButton: function(event){
+            if (!this.clicked){
+                $("#btn").text("ON..")
+                $("#option").text("THIS IS ON")
+            } else {
+                $("#btn").text("OFF..")
+                $("#option").text("THIS IS OFF")
+            }
+            this.clicked = !this.clicked
+           }
         }
 })
 
