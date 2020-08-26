@@ -119,9 +119,20 @@ const app = new Vue({
                  }
         },
 
-        getFav: function(event){
-            console.log("favorite");
-            // event.target.appendChild(document.createTextNode('the sitty'))
+        toggleFav: function(event){
+            const URL = this.prodURL ? this.prodURL : this.devURL
+            const actId = event.target.getAttribute("act_id")
+            fetch(`${URL}/favorites/${actId}`, {
+                method: "post",
+                headers: {
+                    Authorization: `bearer ${this.token}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.activities.filter(a=>a.id == actId)[0].className = data.status ? "fas fa-heart" : "far fa-heart"
+                })
+            console.log()
         }
     }
 })
