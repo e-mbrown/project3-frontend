@@ -15,7 +15,8 @@ const app = new Vue({
         token: '',
         activities: [],
         onAccount: false,
-        favoriteActivities: []
+        favoriteActivities: [],
+        clicked: false
     },
 
     methods: {
@@ -55,7 +56,6 @@ const app = new Vue({
             this.loggedin = false 
             this.user = null
             this.token = null
-            //undo everything once logged out 
         },
 
 
@@ -108,34 +108,36 @@ const app = new Vue({
         },
 
         //////////// TAKES USER TO THE ACCOUNT PG /////////////
+        ////// When the user is taken to their account page, they will automatically see a list of all their favorites
         goToAccount: function(event){
             const URL = this.prodURL ? this.prodURL : this.devURL
-            console.log(URL)
+            // console.log(URL)
             this.onAccount = true
 
-            if (this.onAccount == true){
-                $("#my-account-button").html("Dashboard")
-            } else {
-                $("#my-account-button").html("My Account")
-            }
-
-            // fetch(`${URL}/favorites`, {
-            //     method: "get",
-            //     headers: {
-            //         "Content-Type": "application/json"
-            //     }
-            // })
-            //     .then(response => response.json())
-            //     .then(data => {
-            //         this.favoriteActivities = data.data
-            //         console.log(data.data)
-            //         console.log(`${URL}/favorites`)
-            //     })
+            fetch(`${URL}/favorites/`, {
+                method: "get",
+                headers: {
+                    Authorization: `bearer ${this.token}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.favoriteActivities = data.data
+                    console.log(data.data)
+                    console.log(`${URL}/favorites`)
+                })
         },
 
         // toggleAccountButton: function(){
-        //    if onAccount == true {
-        //        document.g
+        //     if (!clicked){
+        //         clicked = true;
+        //         $("#test").html("ON")
+        //         $("#option").html("THIS IS ON")
+        //     } else {
+        //         clicked = false;
+        //         $("#test").html("FALSE")
+        //         $("#option").html("THIS IS OFF")
+        //     }
         //    }
         }
 })
