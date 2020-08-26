@@ -180,7 +180,7 @@ const fillModal = async (data, id) =>{
         console.log(activity)
         const $event = $('<p>').text(`${activity.name} located at ${activity.address}`)
         const className = await getFav(activity.id, URL)
-        const $heart = $('<i>').addClass(className)
+        const $heart = $('<i>').addClass(className).attr('act_id',activity.id).on('click',toggleClass)
         $('.modal-body').append($event).append($heart)
     }
     // data.forEach((activity) =>{
@@ -188,6 +188,22 @@ const fillModal = async (data, id) =>{
     // })
    
 };
+
+const toggleClass = async(event) =>{
+    const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
+    const id = event.target.getAttribute("act_id")
+    const resp = await fetch(`${URL}/favorites/${id}`, {
+        method: "post",
+        headers: {
+            Authorization: `bearer ${app._data.token}`
+        }
+    })
+
+    const toggle = await resp.json()
+
+    event.target.className = toggle.status ? "fas fa-heart" : "far fa-heart" 
+
+}
 
 //gets class name for a favorite icon
 const getFav = async (id, url) =>{

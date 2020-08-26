@@ -1,3 +1,7 @@
+.fas{
+    color:red
+}
+
 html, .username, .password, .createUN, .createPW {
     background: url(https://media.timeout.com/images/105476859/image.jpg);
     background-repeat: no-repeat;
