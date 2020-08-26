@@ -15,7 +15,8 @@ const app = new Vue({
         token: '',
         activities: [],
         onAccount: false,
-        favoriteActivities: []
+        favoriteActivities: [],
+        clicked: false
     },
 
     methods: {
@@ -55,7 +56,6 @@ const app = new Vue({
             this.loggedin = false 
             this.user = null
             this.token = null
-            //undo everything once logged out 
         },
 
 
@@ -108,27 +108,42 @@ const app = new Vue({
         },
 
         //////////// TAKES USER TO THE ACCOUNT PG /////////////
+        ////// When the user is taken to their account page, they will automatically see a list of all their favorites
         goToAccount: function(event){
             const URL = this.prodURL ? this.prodURL : this.devURL
-            console.log(URL)
+            // console.log(URL)
             this.onAccount = true
-            // $("my-account-button").text("Dashboard") testing toggling the text on the botton
 
-            // fetch(`${URL}/favorites`, {
-            //     method: "get",
-            //     headers: {
-            //         "Content-Type": "application/json"
-            //     }
-            // })
-            //     .then(response => response.json())
-            //     .then(data => {
-            //         this.favoriteActivities = data.data
-            //         console.log(data.data)
-            //         console.log(`${URL}/favorites`)
-            //     })
+            fetch(`${URL}/favorites/`, {
+                method: "get",
+                headers: {
+                    Authorization: `bearer ${this.token}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.favoriteActivities = data.data
+                    console.log(data.data)
+                    console.log(`${URL}/favorites`)
+                })
+        },
+
+        toggleAccountButton: function(event){
+            if (!this.clicked){
+                $("#acct-btn").text("My Account")
+                // $(".option").text("THIS IS ON")
+                this.onAccount = false
+            } else {
+                $("#acct-btn").text("Dashboard")
+                // $(".option").text("THIS IS OFF")
+                this.onAccount = true
+            }
+            this.clicked = !this.clicked
+           }
         }
-    }
 })
+
+/////////////////////////////////////////////////////////////////////////////////////////////
 
 // ==NAV BAR ONLY==
 

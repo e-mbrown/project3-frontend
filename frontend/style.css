@@ -172,6 +172,7 @@ html, .username, .password, .createUN, .createPW {
     border-radius: 50%;
     cursor: pointer;
 }
+
 .modal{
   display: none;
 }
