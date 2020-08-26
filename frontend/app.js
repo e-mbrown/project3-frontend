@@ -170,6 +170,7 @@ const handleActivities = function(event){
 }
 
 const fillModal = (data, id) =>{
+    $('.modal-body').empty()
     $modal.css('display', 'flex')
     $('.modal-footer').text(id)
     let count = 0
