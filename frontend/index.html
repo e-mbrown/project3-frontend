@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel App</title>
     <!--VUE SCRIPT-->
-    <link href="https://cdn.jsdelivr.net/npm/vuetify@1.2.2/dist/vuetify.min.css" rel="stylesheet" /> <!--*added*/-->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vuetify@1.2.2/dist/vuetify.min.js"></script>
 
     <!-- BOOTSTRAP (for modals) -->
     <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -38,9 +36,6 @@
                 <!-- <a href="" target="_blank">Open page in new window</a> -->
                 <!-- SOON TO BE DELETED-->
 
-        <!-- WILL DELETE ONLY TESTING SOMETHING
-        <a href="" target="_blank">Open page in new window</a>
-         SOON TO BE DELETED-->
 
                     <!-- LOGIN FORM -->
 
@@ -80,43 +75,48 @@
         <!-- LOGOUT -->
         
 
-    <!-- MY ACCOUNT / BACK TO DASHBOARD BUTTON -->
-    <div v-if="loggedin">
-        <button id="my-account-button" v-on:click="goToAccount">My Account</button>
-    </div>
+        <!---- DASHBOARD --->
+        <div v-if="loggedin"> <!--this div had a id="log-in" in case it messes something up later-->
+            <div>
+                <article>
+                    <h1>Where do you wanna travel?</h1>
+                    <!-- <div v-for="city in cities">
+                        <button v-on:click="handleActivities" v-bind:id="city">{{ city }}</button> -->
+    <!--<div v-if="modal" class="modal-cities">Hello!</div>-->
+                    <!-- </div> -->
+                </article>
 
-    <!-- MY ACCOUNT PROFILE PAGE -->
-    <div v-if="onAccount">
-        <h2>This is the profile area</h2>
-    </div>
-    
-
-     <!---- DASHBOARD --->
-
-     <div class="dashboard" v-if="loggedin && !onAccount"> <!--this div had a id="log-in" in case it messes something up later-->
-        <div class="citiesParentDiv">
-       <div>
-
-            <article>
-                <div class="testingGrid"></div>
-                <h1>Where do you wanna travel?</h1>
-
-                <div class="cityButtonsDiv" v-for="city in cities">
-                    <button class="cityButtons" v-on:click="handleActivities" v-bind:id="city">{{ city }}</button>
-                </div>
-            </article>
+            </div>
+        </div>
 
         <div v-if="loggedin" v-for="activity of activities">
             <h1>{{ activity.name }}</h1>
         </div>
     </div>
-
-    <div v-if="loggedin && !onAccount" v-for="activity of activities">
-        <h1>{{ activity.name }}</h1>
+    <!--Map Box-->
+    <div id="map" class="marker"></div>
+    <!-- Map Box end -->
+    <!-- Modal -->
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<!--Map Box-->
-<div id="map" v-if="loggedin && !onAccount"></div>
-<!-- Map Box end -->
+<!-- Modal end -->
 </body>
 </html>
+
