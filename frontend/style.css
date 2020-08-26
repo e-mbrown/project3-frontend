@@ -4,7 +4,20 @@ html, .username, .password, .createUN, .createPW {
     background-size: 1920px 1550px;
     opacity: 0.8;
 }
+/* claudia code */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(70, 70, 70);
+    color: black;
+    width: 100%;
+    top: 0px;
+    opacity: 70%;
+ }
 
+ 
+/**/ 
 /* vacation social platform header*/
 #loginform {
     display: flex;
@@ -207,3 +220,4 @@ html, .username, .password, .createUN, .createPW {
     */
 }
 /*NOT COMMITTED UNTIL PASTING THE LAST VERSION BY CLAUDIA*/ 
+
