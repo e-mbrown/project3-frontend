@@ -165,22 +165,45 @@ const handleActivities = function(event){
         .then(response => response.json())
         .then(data => {
             app._data.activities = data.data
-            fillModal(data.data, id)
+            return fillModal(data.data, id)
         })
 }
 
-const fillModal = (data, id) =>{
+const fillModal = async (data, id) =>{
+    const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
     $('.modal-body').empty()
     $modal.css('display', 'flex')
     $('.modal-footer').text(id)
     let count = 0
-    data.forEach((activity) =>{
+    for(i = 0; i < data.length; i++){
+        const activity = data[i]
         console.log(activity)
         const $event = $('<p>').text(`${activity.name} located at ${activity.address}`)
-        $('.modal-body').append($event)
-    })
+        const className = await getFav(activity.id, URL)
+        const $heart = $('<i>').addClass(className)
+        $('.modal-body').append($event).append($heart)
+    }
+    // data.forEach((activity) =>{
+
+    // })
    
 };
+
+//gets class name for a favorite icon
+const getFav = async (id, url) =>{
+    const urlstring = `${url}/favorites/${id}`
+    const fav = await fetch(urlstring, {
+        method: "get",
+        headers: {
+            Authorization: `bearer ${app.token}`
+        }
+    })
+    console.log(urlstring);
+    const booly = await fav.json()
+
+    console.log(booly);
+    return booly ? "fas fa-heart" : "far fa-heart" 
+}
 
 $span.on('click', () =>{
     $modal.css('display', 'none')
