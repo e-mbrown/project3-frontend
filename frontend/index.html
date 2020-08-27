@@ -85,7 +85,7 @@
         <!-- MY ACCOUNT PROFILE PAGE -->
         <div v-if="onAccount" id="profile-grid"  v-for="favoriteActivity of favoriteActivities">
             <box id="test-box">
-                <h1>{{ favoriteActivity }} </h1>
+                <h1>{{ favoriteActivity.activity }} </h1>
             </box> <i class="fas fa-comment-dots"></i>
 
             <!--- DATE INPUT FIELD AND SUBMIT BUTTON -->
@@ -93,7 +93,7 @@
                 <label for="start">Visited?</label>
                 <input type="date" id="start" name="trip-start"
                        min="2005-01-01" max="2025-12-31">
-                <button v-on:click="editVisited">Submit</button>
+                <button v-on:click="editVisited" v-bind:id="favoriteActivity.id">Submit</button>
                 <h4>Have you visited this location?:</h4>
                 <form type="text">{{ dateVisited }}</form>
             </div>
@@ -109,7 +109,7 @@
             </div>
         </div>
 
-        <!---- RENDER ACTIVITIES TO THE SCREEN  --->
+        <!---- TOGGLE FAVORITES  --->
         <div v-if="loggedin && !onAccount" v-for="activity of activities">
             <h1><i v-on:click="toggleFav" :class="activity.className" :act_id="activity.id"></i></h1>
         </div>

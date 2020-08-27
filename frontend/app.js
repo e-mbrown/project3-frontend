@@ -138,6 +138,7 @@ const app = new Vue({
                     for (let i = 0; i < data.length; i++) {
                         const activityName = `${data[i].activity.name} located at ${data[i].activity.address}`
                         this.favoriteActivities.push(activityName)
+                        this.favoriteActivities.push({activity:activityName, id: data[i].favorite.id})
                     }
                 })
             },
@@ -145,7 +146,7 @@ const app = new Vue({
         ////// UPDATE IF VISITED A SPOT /////
         editVisited: function(event){
             const URL = this.prodURL ? this.prodURL : this.devURL
-            let target = event.target.previousElementSibling
+            let target = event.target.previousElementSibling //Looks in the event in the console. then you can get the value of elements surrounding the button
             console.log(target.value)
             const updated = {visited: true}
 
