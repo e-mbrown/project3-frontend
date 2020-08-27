@@ -88,14 +88,14 @@
         <!-------------------------------------------------------------->
         <!-- MY ACCOUNT / BACK TO DASHBOARD BUTTON -->
         <div v-if="loggedin">
-            <button id="acct-btn" v-on:click="toggleAccountButton">My Account</button>
+            <button id="acct-btn" v-on:click="goToAccount">My Account</button>
         </div>
 
         <!-------------------------------------------------------------->
         <!-- MY ACCOUNT PROFILE PAGE -->
         <div v-if="onAccount">
             <box id="test-box" v-for="favoriteActivity of favoriteActivities">
-                <h1>{{ favoriteActivity.activity_id }}</h1> <!--need some way to grab the name, since it's entirely referenced -->
+                <h1>{{ favoriteActivity }}</h1>
             </box>
         </div>
 
