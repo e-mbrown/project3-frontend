@@ -1,3 +1,8 @@
+// == Modal Global Variables
+const $modal = $('.modal');
+const $span = $('.close')
+// 
+
 const app = new Vue({
     el: "#app",
     data: {
@@ -9,8 +14,12 @@ const app = new Vue({
         createPW: "",
         devURL: "http://localhost:3000",
         prodURL: null,
-        cities: ["Tokyo", "New York City", "San Francisco", "Los Angeles", "Paris", "London","Sydney", "Buenos Aires", "Cape Town","Rome"],
-        activities: []
+        activities: [],
+        token: '',
+        activities: [],
+        onAccount: false,
+        favoriteActivities: [],
+        clicked: false
     },
 
     methods: {
@@ -22,7 +31,7 @@ const app = new Vue({
             const user = {username: this.loginUN, password: this.loginPW}
             console.log(user) //if you type in username and password and see it in the console it works
             fetch(`${URL}/login`, {
-                method: "post", 
+                method: "post",
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -39,18 +48,18 @@ const app = new Vue({
                     this.loggedin = true
                     this.loginUN = "" //resets: clears out when you log in
                     this.loginPW = "" //resets: clears out when you log in
+                    window.sessionStorage.setItem('login', JSON.stringify(data)) //storing the data response in session storage
                 }
             })
-            
+
         },
 
         //////////// LOG OUT /////////////
         handleLogout: function() {
             const URL = this.prodURL ? this.prodURL : this.devURL
-            this.loggedin = false 
+            this.loggedin = false
             this.user = null
             this.token = null
-            //undo everything once logged out 
         },
 
 
@@ -82,11 +91,13 @@ const app = new Vue({
 
         //////////// GETTING ACTIVITY INFO FROM DB /////////////
         // requires event bc we are waiting for an on click on the button
-        handleActivities: function(event){
+        handleActivities: async function(event){
             const URL = this.prodURL ? this.prodURL : this.devURL
             const id = event.target.id
+            console.log(id)
+            console.log(URL)
 
-            fetch(`${URL}/activities/${id}`, {
+            fetch(`${URL}/activities/q/${id}`, {
                 method: "get",
                 headers: {
                     Authorization: `bearer ${this.token}`
@@ -94,9 +105,192 @@ const app = new Vue({
             })
                 .then(response => response.json())
                 .then(data => {
-                    this.activities = data
-                    console.log(data)
+                    // console.log(data);
+                    // for(i = 0; i < data.data.length; i ++){
+                    //    data.data[i].className = "fas fa-heart"
+                    // } //made the hearts
+                    this.activities = data.data
+                    console.log(data.data)
+                    console.log(`${URL}/activities/q/${id}`)
                 })
+
+                console.log(this.activities.length);
+                for(i = 0; i < this.activities.length; i ++){
+                    const fav = await fetch(`${URL}/favorites/${this.activities[i].id}`, {
+                        method: "get",
+                        headers: {
+                            Authorization: `bearer ${this.token}`
+                        }
+                    })
+                    const booly = await fav.json() //omg i have to await this im literally on the floor
+                    console.log(booly);
+                    !!(booly) ? Vue.set(this.activities[i], "className", "fas fa-heart" ) : Vue.set(this.activities[i], "className", "far fa-heart" )
+
+                 }
+        },
+
+        toggleFav: function(event){
+            const URL = this.prodURL ? this.prodURL : this.devURL
+            const actId = event.target.getAttribute("act_id")
+            fetch(`${URL}/favorites/${actId}`, {
+                method: "post",
+                headers: {
+                    Authorization: `bearer ${this.token}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.activities.filter(a=>a.id == actId)[0].className = data.status ? "fas fa-heart" : "far fa-heart"
+                })
+            console.log()
+        },
+        //////////// TAKES USER TO THE ACCOUNT PG /////////////
+        ////// When the user is taken to their account page, they will automatically see a list of all their favorites
+        goToAccount: function(event){
+            const URL = this.prodURL ? this.prodURL : this.devURL
+
+            /*
+          if class is fas-fa-heart ==>
+             */
+            fetch(`${URL}/favorites/`, {
+                method: "get", //this would probably then  be a post request
+                headers: {
+                    Authorization: `bearer ${this.token}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.favoriteActivities = data.data
+                    console.log(data.data)
+                    console.log(`${URL}/favorites`)
+                })
+        },
+
+        //////// TOGGLE BUTTON FROM 'MY ACCOUNT' TO 'DASHBOARD' ///////
+        toggleAccountButton: function(event){
+            if (!this.clicked){
+                $("#acct-btn").text("My Account")
+                this.onAccount = false
+            } else {
+                $("#acct-btn").text("Dashboard")
+                this.onAccount = true
+            }
+            this.clicked = !this.clicked
+           }
+        },
+
+    //////// LIFESTYLE OBJECT - checks to see if there is already login information from previous sessions ///////
+        created: function() {
+            const getLogin = JSON.parse(window.sessionStorage.getItem('login'))
+            if (getLogin) {
+                this.user = getLogin.user
+                this.token = getLogin.token
+                this.loggedin = true
+                this.getNotes()
         }
+    }
+
+})
+
+//////////////////////////// END VUE INSTANCE /////////////////////////////////////////////////
+
+// ==NAV BAR ONLY==
+
+let firstDiv = $(".navbar").append('<div class ="brand-title"><img class="logo" src="https://res.cloudinary.com/techhire/image/upload/v1598408188/travel-logo_bmeebn.png"></div>')
+let firstAttr = $(".navbar").append('<a href ="#" class="toggle-button"><span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </a>')
+let secondDiv = $(".navbar").append('<div class="navbar-links"><ul><li><a class="aaa" href="#pageCoverPhoto">Learn More</a></li><li><a class="aaa" href="#products">Help</a></li><li><a class="aaa" href="#contact">About</a></li></ul></div>')
+
+const toggleButton = document.getElementsByClassName('toggle-button')[0]
+const navbarLinks = document.getElementsByClassName('navbar-links')[0]
+
+toggleButton.addEventListener('click', () => {
+  navbarLinks.classList.toggle('active')
+})
+// ==NAV BAR ONLY end ==
+
+
+
+// == Functions that look into Vue container ==
+const handleActivities = async function(event){
+    const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
+    const id = event.target.id
+    console.log(id)
+    console.log(URL)
+    console.log(app._data.token)
+
+    const f = await fetch(`${URL}/activities/q/${id}`, {
+        method: "get",
+        headers: {
+            Authorization: `bearer ${app._data.token}`
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            app._data.activities = data.data
+            return fillModal(data.data, id)
+                  })
+}
+
+const fillModal = async (data, id) =>{
+    const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
+    $('.modal-body').empty()
+    $modal.css('display', 'flex')
+    $('.modal-footer').text(id)
+    let count = 0
+    for(i = 0; i < data.length; i++){
+        const activity = data[i]
+        console.log(activity)
+        const $event = $('<p>').text(`${activity.name} located at ${activity.address}`)
+        const className = await getFav(activity.id, URL)
+        const $heart = $('<i>').addClass(className).attr('act_id',activity.id).on('click',toggleClass)
+        $('.modal-body').append($event).append($heart)
+    }
+    // data.forEach((activity) =>{
+
+    // })
+   
+};
+
+const toggleClass = async(event) =>{
+    const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
+    const id = event.target.getAttribute("act_id")
+    const resp = await fetch(`${URL}/favorites/${id}`, {
+        method: "post",
+        headers: {
+            Authorization: `bearer ${app._data.token}`
+        }
+    })
+
+    const toggle = await resp.json()
+
+    event.target.className = toggle.status ? "fas fa-heart" : "far fa-heart" 
+
+}
+
+//gets class name for a favorite icon
+const getFav = async (id, url) =>{
+    const urlstring = `${url}/favorites/${id}`
+    const fav = await fetch(urlstring, {
+        method: "get",
+        headers: {
+            Authorization: `bearer ${app.token}`
+        }
+    })
+    console.log(urlstring);
+    const booly = await fav.json()
+
+    console.log(booly);
+    return booly ? "fas fa-heart" : "far fa-heart" 
+}
+
+$span.on('click', () =>{
+    $modal.css('display', 'none')
+});
+
+window.addEventListener('click', (event) => {
+    console.log('click')   
+    // matching the event target and jquery exactly
+    if (event.target == $modal[0]) {
+            $modal.css('display', "none")
     }
 })
