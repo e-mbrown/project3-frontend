@@ -147,10 +147,11 @@ const app = new Vue({
             const URL = this.prodURL ? this.prodURL : this.devURL
 
             /*
+            perhaps nest this into an if statement
           if class is fas-fa-heart ==>
              */
             fetch(`${URL}/favorites/`, {
-                method: "get", //this would probably then  be a post request
+                method: "get",
                 headers: {
                     Authorization: `bearer ${this.token}`
                 }
