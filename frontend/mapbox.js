@@ -133,8 +133,10 @@ geojson.features.forEach(function(marker) {
     //changed 'button' from 'div' CLAUDIA'
     const mark = document.createElement('button'); 
     mark.className = 'marker';
+    // Add attributes for functions in app.js
     mark.setAttribute("id", `${cities[i]}`)
     mark.addEventListener('click', handleActivities)
+    // Put markers on map
     new mapboxgl.Marker(mark)
         .setLngLat(marker.geometry.coordinates)
         .addTo(map)

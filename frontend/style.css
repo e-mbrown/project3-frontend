@@ -1,10 +1,18 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+.fas{
+    color:red
+}
+
+>>>>>>> c7b248724251d7a5fa01bf4fca58780b0f4cf013
 html, .username, .password, .createUN, .createPW {
     background: url(https://media.timeout.com/images/105476859/image.jpg);
     background-repeat: no-repeat;
     background-size: 1920px 1550px;
     opacity: 0.8;
 }
+<<<<<<< HEAD
 /* claudia code */
 .navbar {
     display: flex;
@@ -19,6 +27,11 @@ html, .username, .password, .createUN, .createPW {
 
  
 /**/ 
+=======
+
+
+
+>>>>>>> c7b248724251d7a5fa01bf4fca58780b0f4cf013
 /* vacation social platform header*/
 #loginform {
     display: flex;
@@ -34,7 +47,11 @@ html, .username, .password, .createUN, .createPW {
 .loginHeader {
     text-align: center;
     color: black;
+<<<<<<< HEAD
     background-color: lightslategray;
+=======
+    /* background-color: lightslategray; */
+>>>>>>> c7b248724251d7a5fa01bf4fca58780b0f4cf013
     width: 40%;
     height: 50px;
     margin-top: 50px;
@@ -177,15 +194,79 @@ html, .username, .password, .createUN, .createPW {
 }
 
 .marker {
+<<<<<<< HEAD
     background-image: url('/marker.png');
+=======
+    background-image: url('./marker.png');
+>>>>>>> c7b248724251d7a5fa01bf4fca58780b0f4cf013
     background-size: cover;
     width: 25px;
     height: 25px;
     border-radius: 50%;
     cursor: pointer;
 }
+<<<<<<< HEAD
 .modal{
   display: none;
+=======
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  justify-content: center;
+  align-items:center;
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+#contain {
+  width: 50%;
+}
+.modal-title {
+  padding: 10px 16px;
+  height: 50px;
+  background-color: #5cb85c;
+  color: white;
+  z-index: 2;
+}
+.modal-footer {
+  padding: 10px 16px;
+  height: 50px;
+  background-color: #5cb85c;
+  color: white;
+  z-index: 2;
+  font-size: 1.5em;
+}
+
+/* Modal Content/Box */
+.modal-body {
+  background-color: #fefefe;
+  min-height: 70px;
+  border: 1px solid #888;
+  padding: 15px 16px;
+  z-index: 2;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+>>>>>>> c7b248724251d7a5fa01bf4fca58780b0f4cf013
 }
 
 
@@ -222,6 +303,7 @@ html, .username, .password, .createUN, .createPW {
     margin-bottom: 200px;
     */
 }
+<<<<<<< HEAD
 /*NOT COMMITTED UNTIL PASTING THE LAST VERSION BY CLAUDIA*/ 
 
 =======
@@ -564,3 +646,126 @@ html, .username, .password, .createUN, .createPW {
  }
  /*======== NAV END ========*/
 >>>>>>> ee234be6979085a621af7e0569af88796b1b10ea
+=======
+
+/*======== NAV ========*/
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(70, 70, 70);
+    color: black;
+    width: 100%;
+    top: 0px;
+    opacity: 70%;
+ }
+
+ 
+ .logo{
+   float: left; 
+   width: 120px; 
+   height: 100px;
+ }
+ 
+ .navbar-links {
+   height: 100%;  
+ }
+ 
+ .navbar-links ul {
+   margin: 0;
+   padding: 0;
+   display: flex;
+ 
+ }
+ 
+ .navbar-links li {
+   list-style: none;
+ }
+
+ .navbar-links li a {
+   display: block;
+   text-decoration: none;
+   color: rgb(255, 255, 255);
+   margin: 10px;
+ }
+ 
+ .navbar-links li:hover {
+   background-color: rgb(138, 138, 138);
+ }
+ 
+ .toggle-button {
+   position: absolute;
+   top: .75rem;
+   right: 1rem;
+   display: none;
+   flex-direction: column;
+   justify-content: space-between;
+   width: 30px;
+   height: 21px;
+   background-color: rgba(179, 255, 0, 0.072);
+ 
+ }
+ 
+ .toggle-button .bar{
+   height: 3px;
+   width: 100%; 
+   background-color: black;
+   border-radius: 10px;
+   
+ }
+
+ /* JUST FOR TESTING */
+#test-box {
+    border: 1px solid black
+}
+ 
+ 
+ @media (max-width: 600px) {
+   .toggle-button{
+     display: flex;
+   }
+ 
+   .navbar-links{
+     display: none;
+     width: 100%;
+   }
+ 
+   .navbar {
+     flex-direction: column;
+     align-items: flex-start;
+   }
+ 
+   .navbar-links ul {
+      width: 100%;
+      flex-direction: column;
+   }
+   .navbar-links ul li {
+     text-align: center;
+   }
+ 
+   .navbar-links ul li a {
+     padding: .5rem 1rem;
+   }
+ 
+   .navbar-links.active {
+     display: flex;
+   }
+ 
+   .root {
+     display : flex;
+     position: relative;
+     padding-left: 50px;
+   } 
+   
+   .container {
+     /* margin: 7px; */
+     flex-wrap: wrap;
+     position: relative;
+   }
+ 
+ 
+ }
+ /*======== NAV END ========*/
+
+>>>>>>> c7b248724251d7a5fa01bf4fca58780b0f4cf013

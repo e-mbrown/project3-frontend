@@ -1,4 +1,7 @@
-
+// == Modal Global Variables
+const $modal = $('.modal');
+const $span = $('.close')
+// 
 
 const app = new Vue({
     el: "#app",
@@ -206,9 +209,8 @@ toggleButton.addEventListener('click', () => {
 // ==NAV BAR ONLY end ==
 
 
-// ==Moved Functions
-console.log(app)
 
+// == Functions that look into Vue container ==
 const handleActivities = async function(event){
     const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
     const id = event.target.id
@@ -222,27 +224,73 @@ const handleActivities = async function(event){
             Authorization: `bearer ${app._data.token}`
         }
     })
-
-    const data = await f.json()
-    app._data.activities = data.data 
-    await handleFavs()
+        .then(response => response.json())
+        .then(data => {
+            app._data.activities = data.data
+            return fillModal(data.data, id)
+                  })
 }
 
-async function handleFavs(){
+const fillModal = async (data, id) =>{
     const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
-    for(i = 0; i < app.activities.length; i++){
-        const fav = await fetch(`${URL}/favorites/${app.activities[i].id}`, {
-            method: "get",
-            headers: {
-                Authorization: `bearer ${app.token}`
-            }
-        })
-        console.log(fav)
-        const booly = await fav.json()
+    $('.modal-body').empty()
+    $modal.css('display', 'flex')
+    $('.modal-footer').text(id)
+    let count = 0
+    for(i = 0; i < data.length; i++){
+        const activity = data[i]
+        console.log(activity)
+        const $event = $('<p>').text(`${activity.name} located at ${activity.address}`)
+        const className = await getFav(activity.id, URL)
+        const $heart = $('<i>').addClass(className).attr('act_id',activity.id).on('click',toggleClass)
+        $('.modal-body').append($event).append($heart)
+    }
+    // data.forEach((activity) =>{
 
-        console.log(booly);
-        booly ? Vue.set(app.activities[i], "className", "fas fa-heart") : Vue.set(app.activities[i], "className", "far fa-heart" )
-         
-     }
+    // })
+   
+};
+
+const toggleClass = async(event) =>{
+    const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
+    const id = event.target.getAttribute("act_id")
+    const resp = await fetch(`${URL}/favorites/${id}`, {
+        method: "post",
+        headers: {
+            Authorization: `bearer ${app._data.token}`
+        }
+    })
+
+    const toggle = await resp.json()
+
+    event.target.className = toggle.status ? "fas fa-heart" : "far fa-heart" 
+
 }
 
+//gets class name for a favorite icon
+const getFav = async (id, url) =>{
+    const urlstring = `${url}/favorites/${id}`
+    const fav = await fetch(urlstring, {
+        method: "get",
+        headers: {
+            Authorization: `bearer ${app.token}`
+        }
+    })
+    console.log(urlstring);
+    const booly = await fav.json()
+
+    console.log(booly);
+    return booly ? "fas fa-heart" : "far fa-heart" 
+}
+
+$span.on('click', () =>{
+    $modal.css('display', 'none')
+});
+
+window.addEventListener('click', (event) => {
+    console.log('click')   
+    // matching the event target and jquery exactly
+    if (event.target == $modal[0]) {
+            $modal.css('display', "none")
+    }
+})
