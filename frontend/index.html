@@ -116,7 +116,7 @@
         <!-- MY ACCOUNT PROFILE PAGE -->
         <div v-if="onAccount" id="profile-grid"  v-for="favoriteActivity of favoriteActivities">
             <box id="test-box">
-                <h1>{{ favoriteActivity }} </h1>
+                <h1 class="activity">{{ favoriteActivity }} </h1>
             </box> <i class="fas fa-comment-dots"></i>
         </div>
 
@@ -125,7 +125,7 @@
         <div v-if="loggedin && !onAccount"> <!--this div had a id="log-in" in case it messes something up later-->
             <div>
                 <article>
-                    <h1>Where do you wanna travel?</h1>
+                    <h1 class="travel">Where do you wanna travel?</h1>
                 </article>
             </div>
         </div>
