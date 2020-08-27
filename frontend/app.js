@@ -161,16 +161,23 @@ const app = new Vue({
             })
                 .then(response => response.json())
                 .then(data => {
-                    this.favoriteActivities = data
-                    console.log(this.favoriteActivities)
-                    console.log(`${URL}/favorites`)
+                    this.favoriteActivities.activity = data
+                    this.favoriteActivities = []
+
+                    for (let i = 0; i < data.length; i++) {
+                        console.log(data[i])
+                        const activityName = `${data[i].activity.name} located at ${data[i].activity.address}`
+                        this.favoriteActivities.push(activityName)
+                        // const activityLocation = this.favoriteActivities[i].activity.address
+                        //     `${activityName} located at ${activityLocation}`
+                    }
                 })
-            for (i = 0; i <= this.favoriteActivities; i++) {
-                console.log(this.favoriteActivities[i])
-                const activityName = this.favoriteActivities[i].activity.name
-                const activityLocation = this.favoriteActivities[i].activity.address
-                    `${activityName} located at ${activityLocation}`
-            }
+            // for (i = 0; i <= this.favoriteActivities; i++) {
+            //     console.log(this.favoriteActivities[i])
+            //     const activityName = this.favoriteActivities[i].activity.name
+            //     const activityLocation = this.favoriteActivities[i].activity.address
+            //         `${activityName} located at ${activityLocation}`
+            // }
         }
 
         },
