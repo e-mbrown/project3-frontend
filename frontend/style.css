@@ -176,6 +176,7 @@ html, .username, .password, .createUN, .createPW {
     border-radius: 50%;
     cursor: pointer;
 }
+
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
@@ -335,6 +336,11 @@ html, .username, .password, .createUN, .createPW {
    border-radius: 10px;
    
  }
+
+ /* JUST FOR TESTING */
+#test-box {
+    border: 1px solid black
+}
  
  
  @media (max-width: 600px) {
@@ -381,5 +387,6 @@ html, .username, .password, .createUN, .createPW {
    }
  
  
- } 
+ }
  /*======== NAV END ========*/
+
