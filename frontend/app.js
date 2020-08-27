@@ -18,7 +18,8 @@ const app = new Vue({
         token: '',
         onAccount: false,
         favoriteActivities: [],
-        clicked: false
+        clicked: false,
+        dateVisited: "Not Yet"
     },
 
     methods: {
@@ -139,7 +140,25 @@ const app = new Vue({
                         this.favoriteActivities.push(activityName)
                     }
                 })
-            }
+            },
+
+        ////// UPDATE IF VISITED A SPOT /////
+        editVisited: function(event){
+            const URL = this.prodURL ? this.prodURL : this.devURL
+            console.log(event)
+            // const id = event.target.id
+            console.log("Hello World")
+            const updated = {visited: true}
+
+            fetch(`${URL}/favorites`,{
+                method: "put",
+                headers: {
+                    Authorization: `bearer ${this.token}`,
+                },
+            }).then((response) =>{
+
+            })
+        }
         },
     //////// LIFESTYLE OBJECT - checks to see if there is already login information from previous sessions ///////
         created: function() {
