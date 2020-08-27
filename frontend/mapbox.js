@@ -126,7 +126,7 @@ const geojson = {
         },
     ]
 };
-const cities = ["Tokyo", "New York City", "San Francisco", "Los Angeles", "Paris", "London","Sydney", "Buenos Aires", "Cape Town","Rome"];
+const cities = [ "New York City", "San Francisco", "Tokyo", "Los Angeles", "Paris", "London","Sydney","Rome", "Buenos Aires", "Cape Town"];
 i = 0
 
 geojson.features.forEach(function(marker) { 
