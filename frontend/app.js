@@ -16,7 +16,6 @@ const app = new Vue({
         prodURL: null,
         activities: [],
         token: '',
-        activities: [],
         onAccount: false,
         favoriteActivities: [],
         clicked: false
@@ -146,29 +145,9 @@ const app = new Vue({
         },
         //////////// TAKES USER TO THE ACCOUNT PG /////////////
         ////// When the user is taken to their account page, they will automatically see a list of all their favorites
-        goToAccount: function(event){
+        goToAccount: function(event) {
             const URL = this.prodURL ? this.prodURL : this.devURL
-
-            /*
-          if class is fas-fa-heart ==>
-             */
-            fetch(`${URL}/favorites/`, {
-                method: "get", //this would probably then  be a post request
-                headers: {
-                    Authorization: `bearer ${this.token}`
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    this.favoriteActivities = data.data
-                    console.log(data.data)
-                    console.log(`${URL}/favorites`)
-                })
-        },
-
-        //////// TOGGLE BUTTON FROM 'MY ACCOUNT' TO 'DASHBOARD' ///////
-        toggleAccountButton: function(event){
-            if (!this.clicked){
+            if (!this.clicked) {
                 $("#acct-btn").text("My Account")
                 this.onAccount = false
             } else {
@@ -176,8 +155,48 @@ const app = new Vue({
                 this.onAccount = true
             }
             this.clicked = !this.clicked
-           }
+
+            fetch(`${URL}/favorites/`, {
+                method: "get",
+                headers: {
+                    Authorization: `bearer ${this.token}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.favoriteActivities.activity = data
+                    this.favoriteActivities = []
+
+                    for (let i = 0; i < data.length; i++) {
+                        console.log(data[i])
+                        const activityName = `${data[i].activity.name} located at ${data[i].activity.address}`
+                        this.favoriteActivities.push(activityName)
+                        // const activityLocation = this.favoriteActivities[i].activity.address
+                        //     `${activityName} located at ${activityLocation}`
+                    }
+                })
+            // for (i = 0; i <= this.favoriteActivities; i++) {
+            //     console.log(this.favoriteActivities[i])
+            //     const activityName = this.favoriteActivities[i].activity.name
+            //     const activityLocation = this.favoriteActivities[i].activity.address
+            //         `${activityName} located at ${activityLocation}`
+            // }
+        }
+
         },
+
+        //////// TOGGLE BUTTON FROM 'MY ACCOUNT' TO 'DASHBOARD' ///////
+        // toggleAccountButton: function(event){
+        //     if (!this.clicked){
+        //         $("#acct-btn").text("My Account")
+        //         this.onAccount = false
+        //     } else {
+        //         $("#acct-btn").text("Dashboard")
+        //         this.onAccount = true
+        //     }
+        //     this.clicked = !this.clicked
+        //    }
+        // },
 
     //////// LIFESTYLE OBJECT - checks to see if there is already login information from previous sessions ///////
         created: function() {
@@ -186,7 +205,6 @@ const app = new Vue({
                 this.user = getLogin.user
                 this.token = getLogin.token
                 this.loggedin = true
-                this.getNotes()
         }
     }
 

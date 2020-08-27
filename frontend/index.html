@@ -84,16 +84,17 @@
             <button v-on:click="handleLogout">Logout</button>
         </div>
 
+        <!-------------------------------------------------------------->
         <!-- MY ACCOUNT / BACK TO DASHBOARD BUTTON -->
         <div v-if="loggedin">
-            <button id="acct-btn" v-on:click="toggleAccountButton" >My Account</button>
+            <button id="acct-btn" v-on:click="goToAccount">My Account</button>
         </div>
 
         <!-------------------------------------------------------------->
         <!-- MY ACCOUNT PROFILE PAGE -->
         <div v-if="onAccount">
-            <box id="test-box">
-                <h1>THIS IS WHERE THE FAVORITES WILL BE STORED</h1>
+            <box id="test-box" v-for="favoriteActivity of favoriteActivities">
+                <h1>{{ favoriteActivity }}</h1>
             </box>
         </div>
 
