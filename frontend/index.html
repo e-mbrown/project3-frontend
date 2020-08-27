@@ -34,8 +34,39 @@
     <script src="https://kit.fontawesome.com/e3ce9e053c.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav class="navbar"></nav>
+
     <div id="app">
+        <!----------- NAV BAR ----------->
+        <nav class="navbar">
+            <div class ="brand-title">
+                <img class="logo" src="https://res.cloudinary.com/techhire/image/upload/v1598408188/travel-logo_bmeebn.png">
+            </div>
+            <a href ="#" class="toggle-button">
+                <span class="bar"></span> 
+                <span class="bar"></span> 
+                <span class="bar"></span> 
+            </a>
+            <div class="navbar-links">
+                <ul>
+                    <li>
+                        <div v-if="loggedin">
+                            <a class="aaa" href="#pageCoverPhoto" id="acct-btn" v-on:click="goToAccount">My Account</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="aaa" href="#products">Help</a>
+                    </li>
+                    <li>
+                        <div id="login" v-if="loggedin">
+                            <a class="aaa" href="#contact" v-on:click="handleLogout">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        
+
         <!----------- CREATE / LOGIN SCREEN ----------->
         <div id="nologin" v-if="!loggedin">
             <div id="loginform">
@@ -71,15 +102,15 @@
 
         <!-------------------------------------------------------------->
         <!---- LOG OUT BUTTON --->
-        <div id="login" v-if="loggedin">
+        <!-- <div id="login" v-if="loggedin">
             <button v-on:click="handleLogout">Logout</button>
-        </div>
+        </div> -->
 
         <!-------------------------------------------------------------->
         <!-- MY ACCOUNT / BACK TO DASHBOARD BUTTON -->
-        <div v-if="loggedin">
+        <!-- <div v-if="loggedin">
             <button id="acct-btn" v-on:click="goToAccount">My Account</button>
-        </div>
+        </div> -->
 
         <!-------------------------------------------------------------->
         <!-- MY ACCOUNT PROFILE PAGE -->
