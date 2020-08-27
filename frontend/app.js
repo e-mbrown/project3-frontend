@@ -45,6 +45,7 @@ const app = new Vue({
                     this.loggedin = true
                     this.loginUN = "" //resets: clears out when you log in
                     this.loginPW = "" //resets: clears out when you log in
+                    window.sessionStorage.setItem('login', JSON.stringify(data)) //storing the data response in session storage
                 }
             })
             
@@ -172,7 +173,20 @@ const app = new Vue({
             }
             this.clicked = !this.clicked
            }
+        },
+
+    //LIFESTYLE OBJECT - checks to see if there is already login information from previous sessions
+    created: function() {
+        const getLogin = JSON.parse(window.sessionStorage.getItem('login'))
+        // console.log(getLogin)
+
+        if (getLogin) {
+            this.user = getLogin.user
+            this.token = getLogin.token
+            this.loggedin = true
+            this.getNotes()
         }
+    }
 })
 
 /////////////////////////////////////////////////////////////////////////////////////////////
