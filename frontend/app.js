@@ -259,6 +259,7 @@ const fillModal = async (data, id) =>{
     const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
     $('.modal-body').empty()
     $modal.css('display', 'flex')
+    $modal.find('.comment').hide()
     $('.modal-footer').text(id)
     let count = 0
     for(i = 0; i < data.length; i++){
@@ -271,9 +272,17 @@ const fillModal = async (data, id) =>{
     }
     // data.forEach((activity) =>{
 
-    // })
-   
+    // } 
 };
+
+const commentModal = (event) =>{
+    $('.modal-body').empty()
+    $modal.show()
+    $modal.find('.globe').hide()
+    $('.modal-footer').text(event.target.parentElement.firstChild.textContent)
+}
+
+// $('.fa-comment-dots').on('click', commentModal)
 
 const toggleClass = async(event) =>{
     const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
