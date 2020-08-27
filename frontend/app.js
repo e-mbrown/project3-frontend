@@ -145,19 +145,24 @@ const app = new Vue({
         ////// UPDATE IF VISITED A SPOT /////
         editVisited: function(event){
             const URL = this.prodURL ? this.prodURL : this.devURL
-            console.log(event)
-            // const id = event.target.id
-            console.log("Hello World")
+            let target = event.target.previousElementSibling
+            console.log(target.value)
             const updated = {visited: true}
 
-            fetch(`${URL}/favorites`,{
-                method: "put",
-                headers: {
-                    Authorization: `bearer ${this.token}`,
-                },
-            }).then((response) =>{
+            if (target.value == ""){
+                this.dateVisited = "Not Yet"
+            } else {
+                this.dateVisited = target.value
+            }
 
-            })
+            // fetch(`${URL}/favorites/${id}`,{
+            //     method: "put",
+            //     headers: {
+            //         Authorization: `bearer ${this.token}`,
+            //     },
+            // }).then((response) =>{
+            //
+            // })
         }
         },
     //////// LIFESTYLE OBJECT - checks to see if there is already login information from previous sessions ///////
