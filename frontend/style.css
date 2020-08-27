@@ -1,18 +1,23 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
 .fas{
     color:red
 }
 
+<<<<<<< HEAD
 >>>>>>> c7b248724251d7a5fa01bf4fca58780b0f4cf013
+=======
+.fa-comment-dots{
+  color:navy;
+  font-size: 4em
+}
+
+>>>>>>> 426c21fda823c3bd18c4a9374e572570a7df7d60
 html, .username, .password, .createUN, .createPW {
     background: url(https://media.timeout.com/images/105476859/image.jpg);
     background-repeat: no-repeat;
     background-size: 1920px 1550px;
     opacity: 0.8;
 }
-<<<<<<< HEAD
 /* claudia code */
 .navbar {
     display: flex;
@@ -27,11 +32,6 @@ html, .username, .password, .createUN, .createPW {
 
  
 /**/ 
-=======
-
-
-
->>>>>>> c7b248724251d7a5fa01bf4fca58780b0f4cf013
 /* vacation social platform header*/
 #loginform {
     display: flex;
@@ -715,9 +715,9 @@ html, .username, .password, .createUN, .createPW {
    
  }
 
- /* JUST FOR TESTING */
-#test-box {
-    border: 1px solid black
+#profile-grid{
+    display: grid;
+    grid-template-columns: auto auto;
 }
  
  
