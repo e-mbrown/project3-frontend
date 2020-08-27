@@ -94,8 +94,8 @@
         <!-- MY ACCOUNT PROFILE PAGE -->
         <div v-if="onAccount" id="profile-grid"  v-for="favoriteActivity of favoriteActivities">
             <box id="test-box">
-                <h1>{{ favoriteActivity }} </h1>
-            </box> <i class="fas fa-comment-dots"></i>
+                <h1>{{ `${favoriteActivity.activity.name} located at ${favoriteActivity.activity.address}` }} </h1>
+            </box> <i class="fas fa-comment-dots" :act_id="favoriteActivity.activity.id" v-on:click="setComment"></i>
         </div>
 
         <!-------------------------------------------------------------->

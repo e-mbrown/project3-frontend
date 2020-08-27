@@ -18,7 +18,8 @@ const app = new Vue({
         token: '',
         onAccount: false,
         favoriteActivities: [],
-        clicked: false
+        clicked: false,
+        commentActivity: ""
     },
 
     methods: {
@@ -164,16 +165,16 @@ const app = new Vue({
             })
                 .then(response => response.json())
                 .then(data => {
-                    this.favoriteActivities.activity = data
-                    this.favoriteActivities = []
+                    this.favoriteActivities = data
+                    // this.favoriteActivities = []
 
-                    for (let i = 0; i < data.length; i++) {
-                        console.log(data[i])
-                        const activityName = `${data[i].activity.name} located at ${data[i].activity.address}`
-                        this.favoriteActivities.push(activityName)
-                        // const activityLocation = this.favoriteActivities[i].activity.address
-                        //     `${activityName} located at ${activityLocation}`
-                    }
+                    // for (let i = 0; i < data.length; i++) {
+                    //     console.log(data[i])
+                    //     const activityName = `${data[i].activity.name} located at ${data[i].activity.address}`
+                    //     this.favoriteActivities.push(activityName)
+                    //     // const activityLocation = this.favoriteActivities[i].activity.address
+                    //     //     `${activityName} located at ${activityLocation}`
+                    // }
                 })
             // for (i = 0; i <= this.favoriteActivities; i++) {
             //     console.log(this.favoriteActivities[i])
@@ -181,6 +182,11 @@ const app = new Vue({
             //     const activityLocation = this.favoriteActivities[i].activity.address
             //         `${activityName} located at ${activityLocation}`
             // }
+        },
+
+        setComment: function(event) {
+            this.commentActivity = event.target.getAttribute("act_id")
+            console.log(this.commentActivity);
         }
 
         },
