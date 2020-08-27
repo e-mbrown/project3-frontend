@@ -2,6 +2,11 @@
     color:red
 }
 
+.fa-comment-dots{
+  color:navy;
+  font-size: 4em
+}
+
 html, .username, .password, .createUN, .createPW {
     background: url(https://media.timeout.com/images/105476859/image.jpg);
     background-repeat: no-repeat;
@@ -337,9 +342,9 @@ html, .username, .password, .createUN, .createPW {
    
  }
 
- /* JUST FOR TESTING */
-#test-box {
-    border: 1px solid black
+#profile-grid{
+    display: grid;
+    grid-template-columns: auto auto;
 }
  
  
