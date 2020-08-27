@@ -28,7 +28,7 @@ const app = new Vue({
             const user = {username: this.loginUN, password: this.loginPW}
             console.log(user) //if you type in username and password and see it in the console it works
             fetch(`${URL}/login`, {
-                method: "post", 
+                method: "post",
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -48,13 +48,13 @@ const app = new Vue({
                     window.sessionStorage.setItem('login', JSON.stringify(data)) //storing the data response in session storage
                 }
             })
-            
+
         },
 
         //////////// LOG OUT /////////////
         handleLogout: function() {
             const URL = this.prodURL ? this.prodURL : this.devURL
-            this.loggedin = false 
+            this.loggedin = false
             this.user = null
             this.token = null
         },
@@ -106,10 +106,11 @@ const app = new Vue({
                     // for(i = 0; i < data.data.length; i ++){
                     //    data.data[i].className = "fas fa-heart"
                     // } //made the hearts
-                    this.activities = data.data 
+                    this.activities = data.data
                     console.log(data.data)
                     console.log(`${URL}/activities/q/${id}`)
                 })
+
                 console.log(this.activities.length);
                 for(i = 0; i < this.activities.length; i ++){
                     const fav = await fetch(`${URL}/favorites/${this.activities[i].id}`, {
@@ -121,7 +122,7 @@ const app = new Vue({
                     const booly = await fav.json() //omg i have to await this im literally on the floor
                     console.log(booly);
                     !!(booly) ? Vue.set(this.activities[i], "className", "fas fa-heart" ) : Vue.set(this.activities[i], "className", "far fa-heart" )
-                     
+
                  }
         },
 
@@ -144,11 +145,12 @@ const app = new Vue({
         ////// When the user is taken to their account page, they will automatically see a list of all their favorites
         goToAccount: function(event){
             const URL = this.prodURL ? this.prodURL : this.devURL
-            // console.log(URL)
-            this.onAccount = true
 
+            /*
+          if class is fas-fa-heart ==>
+             */
             fetch(`${URL}/favorites/`, {
-                method: "get",
+                method: "get", //this would probably then  be a post request
                 headers: {
                     Authorization: `bearer ${this.token}`
                 }
@@ -161,35 +163,33 @@ const app = new Vue({
                 })
         },
 
+        //////// TOGGLE BUTTON FROM 'MY ACCOUNT' TO 'DASHBOARD' ///////
         toggleAccountButton: function(event){
             if (!this.clicked){
                 $("#acct-btn").text("My Account")
-                // $(".option").text("THIS IS ON")
                 this.onAccount = false
             } else {
                 $("#acct-btn").text("Dashboard")
-                // $(".option").text("THIS IS OFF")
                 this.onAccount = true
             }
             this.clicked = !this.clicked
            }
         },
 
-    //LIFESTYLE OBJECT - checks to see if there is already login information from previous sessions
-    created: function() {
-        const getLogin = JSON.parse(window.sessionStorage.getItem('login'))
-        // console.log(getLogin)
-
-        if (getLogin) {
-            this.user = getLogin.user
-            this.token = getLogin.token
-            this.loggedin = true
-            this.getNotes()
+    //////// LIFESTYLE OBJECT - checks to see if there is already login information from previous sessions ///////
+        created: function() {
+            const getLogin = JSON.parse(window.sessionStorage.getItem('login'))
+            if (getLogin) {
+                this.user = getLogin.user
+                this.token = getLogin.token
+                this.loggedin = true
+                this.getNotes()
         }
     }
+
 })
 
-/////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////// END VUE INSTANCE /////////////////////////////////////////////////
 
 // ==NAV BAR ONLY==
 
@@ -241,7 +241,8 @@ async function handleFavs(){
         const booly = await fav.json()
 
         console.log(booly);
-        booly ? Vue.set(app.activities[i], "className", "fas fa-heart" ) : Vue.set(app.activities[i], "className", "far fa-heart" )
+        booly ? Vue.set(app.activities[i], "className", "fas fa-heart") : Vue.set(app.activities[i], "className", "far fa-heart" )
          
      }
 }
+
