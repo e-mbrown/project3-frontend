@@ -124,7 +124,6 @@ const app = new Vue({
                 this.onAccount = true
             }
             this.clicked = !this.clicked
-
             fetch(`${URL}/favorites/`, {
                 method: "get",
                 headers: {
@@ -194,10 +193,6 @@ const app = new Vue({
 //////////////////////////// END VUE INSTANCE /////////////////////////////////////////////////
 
 // ==NAV BAR ONLY==
-
-// let firstDiv = $(".navbar").append('<div class ="brand-title"><img class="logo" src="https://res.cloudinary.com/techhire/image/upload/v1598408188/travel-logo_bmeebn.png"></div>')
-// let firstAttr = $(".navbar").append('<a href ="#" class="toggle-button"><span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </a>')
-// let secondDiv = $(".navbar").append('<div class="navbar-links"><ul><li><a class="aaa" href="#pageCoverPhoto">Learn More</a></li><li><a class="aaa" href="#products">Help</a></li><li><a class="aaa" href="#contact">About</a></li></ul></div>')
 
 const toggleButton = document.getElementsByClassName('toggle-button')[0]
 const navbarLinks = document.getElementsByClassName('navbar-links')[0]
