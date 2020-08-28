@@ -137,33 +137,43 @@ const app = new Vue({
 
                     for (let i = 0; i < data.length; i++) {
                         const activityName = `${data[i].activity.name} located at ${data[i].activity.address}`
-                        this.favoriteActivities.push(activityName)
-                        this.favoriteActivities.push({activity:activityName, id: data[i].favorite.id})
+                        const id = data[i].favorite.id
+                        this.favoriteActivities.push({activity:activityName, id: id})
+                        console.log(this.favoriteActivities)
                     }
                 })
             },
 
-        ////// UPDATE IF VISITED A SPOT /////
+        ///////////// UPDATE IF VISITED A SPOT ////////////
         editVisited: function(event){
             const URL = this.prodURL ? this.prodURL : this.devURL
+            const id = event.target.id
+            console.log(id)
             let target = event.target.previousElementSibling //Looks in the event in the console. then you can get the value of elements surrounding the button
             console.log(target.value)
-            const updated = {visited: true}
 
-            if (target.value == ""){
-                this.dateVisited = "Not Yet"
-            } else {
-                this.dateVisited = target.value
+            if (id == target) {
+                console.log(event)
+                if (target.value == "") {
+                    this.dateVisited = "Not Yet"
+                } else {
+                    this.dateVisited = target.value
+                }
             }
 
-            // fetch(`${URL}/favorites/${id}`,{
-            //     method: "put",
-            //     headers: {
-            //         Authorization: `bearer ${this.token}`,
-            //     },
-            // }).then((response) =>{
-            //
-            // })
+            fetch(`${URL}/favorites/${id}`,{
+                method: "put",
+                headers: {
+                    Authorization: `bearer ${this.token}`,
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    //data.visited : true
+                    //
+
+            })
         }
         },
     //////// LIFESTYLE OBJECT - checks to see if there is already login information from previous sessions ///////
