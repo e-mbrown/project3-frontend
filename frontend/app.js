@@ -139,7 +139,8 @@ const app = new Vue({
                     for (let i = 0; i < data.length; i++) {
                         const activityName = `${data[i].activity.name} located at ${data[i].activity.address}`
                         const id = data[i].favorite.id
-                        this.favoriteActivities.push({activity:activityName, id: id, dateVisited: "Not Yet"})
+                        const actid =  data[i].activity.id
+                        this.favoriteActivities.push({activity:activityName, id: id, actid:actid, dateVisited: "Not Yet"})
                         console.log(this.favoriteActivities)
                     }
                 })
@@ -255,7 +256,7 @@ const commentModal = async (event) =>{
     $modal.find('.globe').hide()
     $('.modal-footer').text(event.target.parentElement.firstChild.textContent)
 
-    const comments = await fetch(`${URL}/comments/${event.target.getAttribute("act_id")}`, {
+    const comments = await fetch(`${URL}/activities/comments/${event.target.getAttribute("act_id")}`, {
         method: "get",
         headers: {
             Authorization: `bearer ${app._data.token}`

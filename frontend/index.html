@@ -117,7 +117,7 @@
         <div v-if="onAccount && loggedin" id="profile-grid"  v-for="favoriteActivity of favoriteActivities">
             <box id="test-box">
                 <h1 v-bind:id="favoriteActivity.id">{{ favoriteActivity.activity }} </h1>
-            </box> <i class="fas fa-comment-dots"></i>
+            </box> <i class="fas fa-comment-dots" :act_id="favoriteActivity.actid" onclick='commentModal(event)'></i> 
 
             <!--- DATE INPUT FIELD AND SUBMIT BUTTON -->
             <div> <!-- Source: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date -->
