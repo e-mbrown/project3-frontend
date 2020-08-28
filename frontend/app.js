@@ -243,3 +243,9 @@ window.addEventListener('click', (event) => {
             $modal.css('display', "none")
     }
 })
+
+
+
+// $("body").click(function() {
+//     alert( "Handler for .click() called." );
+//   });
