@@ -152,28 +152,31 @@ const app = new Vue({
             console.log('hi')
             console.log(id)
             let target = event.target.previousElementSibling //Looks in the event in the console. then you can get the value of elements surrounding the button
-            const updateVisit = {
-                visited: this.visited
-            }
-
-            console.log(target.value)
-
             // if (id === target)
             if (target.value == ""){
                 this.dateVisited = "Not Yet"
+                this.visited = false
             } else {
                 this.dateVisited = target.value
+                this.visited = true
             }
 
-            fetch(`${URL}/favorites/${id}`,{
+            const updateVisit = {
+                visited: this.visited
+            }
+            const res = fetch(`${URL}/favorites/${id}`,{
                 method: "put",
                 headers: {
                     Authorization: `bearer ${this.token}`,
+                    "Content-Type": "application/json"
+                    
                 },
-                body:JSON.stringify(updateVisit)
+                body: JSON.stringify(updateVisit)
             })
                 .then((response) => {
-                    this.goToAccount()
+                    // this.goToAccount()
+                    console.log(response)
+                    console.log(updateVisit)
                 }
             )
         }
