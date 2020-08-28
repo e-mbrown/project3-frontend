@@ -16,18 +16,86 @@ font-size: 4em
 padding-left: 10px;
 }
 
-/* html, .username, .password, .createUN, .createPW {
-  background: url(https://media.timeout.com/images/105476859/image.jpg);
-  background-repeat: no-repeat;
-  background-size: 1920px 1550px;
-  opacity: 0.8;
-} */
+.fab.fa-instagram-square{
+color: rgb(145, 145, 145);;
+font-size: 3em;
+}
+.fab.fa-facebook-square{
+color: rgb(145, 145, 145);
+font-size: 3em;
+}
+
+
+.nologin{
+padding-top: 50px;
+}
+
+.container {
+min-height: 100%;
+}
 
 body {
-background: url(https://media.timeout.com/images/105476859/image.jpg); 
-background-repeat: no-repeat;
-background-size: 1920px 1550px;
+background-color: mintcream;
 }
+
+/* #bottom-block-login{
+display: flex;
+width: 100%;
+margin: auto;
+flex-wrap: wrap;
+flex-direction: row;
+height: 150px;
+color: white;
+text-align: center;
+background: url(https://res.cloudinary.com/techhire/image/upload/v1598631021/Screen_Shot_2020-08-28_at_12.10.04_PM_hkya1s.png);
+} */
+
+#bottom-block-login{
+position: fixed;
+ left: 0;
+ bottom: 0;
+ width: 100%;
+ background-color: red;
+ color: white;
+ text-align: center;
+ height: 100px;
+ padding: 30px;
+
+}
+
+.socialIcons {
+top: 50%;
+background-color: rgba(21, 21, 21, 0.329);
+padding: 25px;
+border-radius: 5px;
+text-align: center;
+height: 150px;
+}
+
+
+.login-background {
+/* background-size: 1420px 600px; */
+/* background-size: 100%; */
+/* width: 100%; */
+/* background-image: url(https://res.cloudinary.com/techhire/image/upload/v1598633070/Voyage.com_3_awbc6u.png);
+background-repeat: no-repeat;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover; */
+
+ background-image: url(https://res.cloudinary.com/techhire/image/upload/v1598633070/Voyage.com_3_awbc6u.png);
+
+background-size: 100%;
+background-position: 50% 50%;
+
+}
+
+/* @media only screen and (max-width: 767px) {
+body {
+  background-image: url(images/background-photo-mobile-devices.jpg);
+}
+} */
 
 .travel{
 text-align: center;
@@ -45,6 +113,7 @@ font-size: 25px;
 .loginDiv {
   display:flex;
   justify-content: center;
+  padding: 0;
 }
 /*responsible for the color and design */
 .loginHeader {
@@ -61,8 +130,8 @@ font-size: 25px;
 .handlelogin {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
-  margin-bottom: 100px;
+  /* margin-top: 50px;
+  margin-bottom: 100px; */
   
 }
 
@@ -170,6 +239,7 @@ font-size: 25px;
 .secondFieldset {
   text-align: center;
   height: 200px;
+  border: 10px black;
 }
 
 /*targeting the Create Account text*/
@@ -222,14 +292,14 @@ width: 50%;
 .modal-title {
 padding: 10px 16px;
 height: 50px;
-background-color: #5cb85c;
+background-color: #545754;
 color: white;
 z-index: 2;
 }
 .modal-footer {
 padding: 10px 16px;
 height: 50px;
-background-color: #5cb85c;
+background-color: #545754;
 color: white;
 z-index: 2;
 font-size: 1.5em;
@@ -327,6 +397,7 @@ border-radius: 10px;
  float: left; 
  width: 120px; 
  height: 100px;
+ 
 }
 
 .navbar-links {

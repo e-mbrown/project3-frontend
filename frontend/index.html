@@ -11,8 +11,8 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify@1.2.2/dist/vuetify.min.js"></script>
 
     <!-- BOOTSTRAP -->
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+   
     <!--JS & CSS-->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
@@ -39,7 +39,9 @@
         <!----------- NAV BAR ----------->
         <nav class="navbar">
             <div class ="brand-title">
+                <a href="https://vooyage.netlify.app/index.html">
                 <img class="logo" src="https://res.cloudinary.com/techhire/image/upload/v1598408188/travel-logo_bmeebn.png">
+                </a>
             </div>
             <a href ="#" class="toggle-button">
                 <span class="bar"></span> 
@@ -69,13 +71,15 @@
 
         <!----------- CREATE / LOGIN SCREEN ----------->
         <div id="nologin" v-if="!loggedin">
+            <div class="login-background">
             <div id="loginform">
-                <div class=loginDiv><h1 class="loginHeader"> Choose your next vacation!</h1></div>
+                
+                <div class=loginDiv><h1 class="loginHeader"></h1></div>
 
                 <!--- LOGIN FORM --->
                 <div class="handlelogin">
                     <form v-on:submit.prevent="handleLogin">
-                        <fieldset class="firstFieldset"><legend class="legendLogin">LOGIN</legend>
+                        <fieldset class="firstFieldset"><legend class="legendLogin"></legend>
                             <div class="loginFieldset">
                         <input class="username" type="text" placeholder="username" v-model="loginUN">
                         <input class="password" type="password" placeholder="password" v-model="loginPW">
@@ -83,6 +87,7 @@
                             </div>
                         </fieldset>
                     </form>
+                   
                 </div>
 
                 <!--- CREATE ACCOUNT FORM --->
@@ -97,7 +102,14 @@
                         </fieldset>
                     </form>
                 </div>
+                <footer id="bottom-block-login" style="background-color: mintcream;">
+                    <div id="socialIcons">
+                        <span onclick="window.location.href=;"><i class="fab fa-instagram-square"></i></span> 
+                        <span onclick="window.location.href=;"><i class="fab fa-facebook-square"></i></span> 
+                    </div>
+                </footer>
             </div>
+        </div>
         </div>
 
         <!-------------------------------------------------------------->
@@ -114,10 +126,20 @@
 
         <!-------------------------------------------------------------->
         <!-- MY ACCOUNT PROFILE PAGE -->
-        <div v-if="onAccount" id="profile-grid"  v-for="favoriteActivity of favoriteActivities">
+        <div v-if="onAccount && loggedin" id="profile-grid"  v-for="favoriteActivity of favoriteActivities">
             <box id="test-box">
-                <h1 class="activity">{{ favoriteActivity }} </h1>
+                <h1 v-bind:id="favoriteActivity.id">{{ favoriteActivity.activity }} </h1>
             </box> <i class="fas fa-comment-dots"></i>
+
+            <!--- DATE INPUT FIELD AND SUBMIT BUTTON -->
+            <div> <!-- Source: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date -->
+                <label for="start">Visited?</label>
+                <input type="date" id="start" name="trip-start"
+                       min="2005-01-01" max="2025-12-31" v-bind:id="favoriteActivity.id">
+                <button v-on:click="editVisited" v-bind:id="favoriteActivity.id">Submit</button>
+                <h4>Have you visited this location?:</h4>
+                <form type="text" v-bind:id="favoriteActivity.id">{{ favoriteActivity.dateVisited }}</form>
+            </div>
         </div>
 
         <!-------------------------------------------------------------->
@@ -130,7 +152,7 @@
             </div>
         </div>
 
-        <!---- RENDER ACTIVITIES TO THE SCREEN  --->
+        <!---- TOGGLE FAVORITES  --->
         <div v-if="loggedin && !onAccount" v-for="activity of activities">
             <h1><i v-on:click="toggleFav" :class="activity.className" :act_id="activity.id"></i></h1>
         </div>
@@ -145,17 +167,17 @@
     <!-- Modal -->
    <!-- Modal content -->
    <div class="modal">
-        <div id="contain">
-            <div class="modal-title">
-                <span class="close">&times;</span>
-                <h2 class="title">Where do you wanna travel?</h2>
-            </div>
-            <div class="modal-body">
-            </div>
-            <div class="modal-footer">
-                <h3>Modal Footer</h3>
-            </div>
-        </div>
+    <div id="contain">
+    <div class="modal-title">
+        <span class="close">&times;</span>
+        <h2 class="title globe">Where do you wanna travel?</h2>
+        <h2 class="comment">What do you want to say?</h2>
+    </div>
+    <div class="modal-body">
+    </div>
+    <div class="modal-footer">
+        <h3>Modal Footer</h3>
+    </div>
     </div>
 
 <!-- Modal end -->
