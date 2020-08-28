@@ -436,7 +436,7 @@ html, .username, .password, .createUN, .createPW {
     font-size: 15px;
     width: 100px;
     height: 30px;
-    border: 3px solid black;
+    border: 3px black;
     border-radius: 5px;
     font-size: 20px;
     color: black;
@@ -447,6 +447,7 @@ html, .username, .password, .createUN, .createPW {
 .secondFieldset {
     text-align: center;
     height: 200px;
+    border: 10px black;
 }
 
 /*targeting the Create Account text*/

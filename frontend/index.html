@@ -131,7 +131,7 @@
         </div>
 
         <!---- RENDER ACTIVITIES TO THE SCREEN  --->
-        <div v-if="loggedin && !onAccount" v-for="activity of activities">
+        <div class="dashboard" v-if="loggedin && !onAccount" v-for="activity of activities">
             <h1><i v-on:click="toggleFav" :class="activity.className" :act_id="activity.id"></i></h1>
         </div>
     </div>

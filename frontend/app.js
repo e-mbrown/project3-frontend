@@ -46,6 +46,20 @@ const app = new Vue({
                     this.loginPW = "" //resets: clears out when you log in
                     window.sessionStorage.setItem('login', JSON.stringify(data)) //storing the data response in session storage
                     this.mapLoader(this.loggedin)
+
+                    //////////// TESTING JQUERY: MIGHT DELETE LATER 
+                    // $(".loginButton").click(function() {
+                    //     alert( "Handler for .click() called." );
+                    //   });
+
+                    //   $('.loginButton').append(function())
+
+                    // $(".loginButton").toggle(
+                    //     //function(){$("body").css({"back-ground-color": "red"});},
+                    //     function(){$(".loginButton").css({"color": "red"});},
+                    //   );
+                      
+                    /////////////// END OF TESTING
                 }
             })
         },
@@ -245,7 +259,3 @@ window.addEventListener('click', (event) => {
 })
 
 
-
-// $("body").click(function() {
-//     alert( "Handler for .click() called." );
-//   });
