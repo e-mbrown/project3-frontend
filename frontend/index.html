@@ -85,7 +85,7 @@
         <!-- MY ACCOUNT PROFILE PAGE -->
         <div v-if="onAccount && loggedin" id="profile-grid"  v-for="favoriteActivity of favoriteActivities">
             <box id="test-box">
-                <h1>{{ favoriteActivity.activity }} </h1>
+                <h1 v-bind:id="favoriteActivity.id">{{ favoriteActivity.activity }} </h1>
             </box> <i class="fas fa-comment-dots"></i>
 
             <!--- DATE INPUT FIELD AND SUBMIT BUTTON -->
@@ -95,7 +95,7 @@
                        min="2005-01-01" max="2025-12-31" v-bind:id="favoriteActivity.id">
                 <button v-on:click="editVisited" v-bind:id="favoriteActivity.id">Submit</button>
                 <h4>Have you visited this location?:</h4>
-                <form type="text">{{ dateVisited }}</form>
+                <form type="text" v-bind:id="favoriteActivity.id">{{ dateVisited }}</form>
             </div>
         </div>
 

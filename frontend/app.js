@@ -19,7 +19,8 @@ const app = new Vue({
         onAccount: false,
         favoriteActivities: [],
         clicked: false,
-        dateVisited: "Not Yet"
+        dateVisited: "Not Yet",
+        visited: true
     },
 
     methods: {
@@ -148,17 +149,20 @@ const app = new Vue({
         editVisited: function(event){
             const URL = this.prodURL ? this.prodURL : this.devURL
             const id = event.target.id
+            console.log('hi')
             console.log(id)
             let target = event.target.previousElementSibling //Looks in the event in the console. then you can get the value of elements surrounding the button
+            const updateVisit = {
+                visited: this.visited
+            }
+
             console.log(target.value)
 
-            if (id == target) {
-                console.log(event)
-                if (target.value == "") {
-                    this.dateVisited = "Not Yet"
-                } else {
-                    this.dateVisited = target.value
-                }
+            // if (id === target)
+            if (target.value == ""){
+                this.dateVisited = "Not Yet"
+            } else {
+                this.dateVisited = target.value
             }
 
             fetch(`${URL}/favorites/${id}`,{
@@ -166,14 +170,12 @@ const app = new Vue({
                 headers: {
                     Authorization: `bearer ${this.token}`,
                 },
+                body:JSON.stringify(updateVisit)
             })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data)
-                    //data.visited : true
-                    //
-
-            })
+                .then((response) => {
+                    this.goToAccount()
+                }
+            )
         }
         },
     //////// LIFESTYLE OBJECT - checks to see if there is already login information from previous sessions ///////
