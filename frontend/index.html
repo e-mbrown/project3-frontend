@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify@1.2.2/dist/vuetify.min.js"></script>
 
-    <!-- BOOTSTRAP (for modals) -->
+    <!-- BOOTSTRAP -->
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     -->
     <!--JS & CSS-->
@@ -34,20 +34,43 @@
     <script src="https://kit.fontawesome.com/e3ce9e053c.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav class="navbar"></nav>
+
     <div id="app">
+        <!----------- NAV BAR ----------->
+        <nav class="navbar">
+            <div class ="brand-title">
+                <img class="logo" src="https://res.cloudinary.com/techhire/image/upload/v1598408188/travel-logo_bmeebn.png">
+            </div>
+            <a href ="#" class="toggle-button">
+                <span class="bar"></span> 
+                <span class="bar"></span> 
+                <span class="bar"></span> 
+            </a>
+            <div class="navbar-links">
+                <ul>
+                    <li>
+                        <div v-if="loggedin">
+                            <a class="aaa" href="#pageCoverPhoto" id="acct-btn" v-on:click="goToAccount">My Account</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="aaa" href="#products">Help</a>
+                    </li>
+                    <li>
+                        <div id="login" v-if="loggedin">
+                            <a class="aaa" href="#contact" v-on:click="handleLogout">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        
+
         <!----------- CREATE / LOGIN SCREEN ----------->
         <div id="nologin" v-if="!loggedin">
             <div id="loginform">
-                <div class=loginDiv><h1 class="loginHeader"> Choose your next vacation!</h1></div> 
-
-                <!-- WILL DELETE ONLY TESTING SOMETHING-->
-                <!-- <a href="" target="_blank">Open page in new window</a> -->
-                <!-- SOON TO BE DELETED-->
-
-        <!-- WILL DELETE ONLY TESTING SOMETHING
-        <a href="" target="_blank">Open page in new window</a>
-         SOON TO BE DELETED-->
+                <div class=loginDiv><h1 class="loginHeader"> Choose your next vacation!</h1></div>
 
                 <!--- LOGIN FORM --->
                 <div class="handlelogin">
@@ -57,8 +80,7 @@
                         <input class="username" type="text" placeholder="username" v-model="loginUN">
                         <input class="password" type="password" placeholder="password" v-model="loginPW">
                         <input class="loginButton" type="submit" value="Login">
-                            </div>  
-                        
+                            </div>
                         </fieldset>
                     </form>
                 </div>
@@ -80,15 +102,15 @@
 
         <!-------------------------------------------------------------->
         <!---- LOG OUT BUTTON --->
-        <div id="login" v-if="loggedin">
+        <!-- <div id="login" v-if="loggedin">
             <button v-on:click="handleLogout">Logout</button>
-        </div>
+        </div> -->
 
         <!-------------------------------------------------------------->
         <!-- MY ACCOUNT / BACK TO DASHBOARD BUTTON -->
-        <div v-if="loggedin">
+        <!-- <div v-if="loggedin">
             <button id="acct-btn" v-on:click="goToAccount">My Account</button>
-        </div>
+        </div> -->
 
         <!-------------------------------------------------------------->
         <!-- MY ACCOUNT PROFILE PAGE -->
@@ -104,14 +126,14 @@
         <div v-if="loggedin && !onAccount"> <!--this div had a id="log-in" in case it messes something up later-->
             <div>
                 <article>
-                    <h1>Where do you wanna travel?</h1>
+                    <h1 class="travel">Where do you wanna travel?</h1>
                 </article>
-
             </div>
         </div>
 
+        <!---- RENDER ACTIVITIES TO THE SCREEN  --->
         <div v-if="loggedin && !onAccount" v-for="activity of activities">
-            <h1>{{ activity.name }} <i v-on:click="toggleFav" :class="activity.className" :act_id="activity.id"></i></h1>
+            <h1><i v-on:click="toggleFav" :class="activity.className" :act_id="activity.id"></i></h1>
         </div>
     </div>
 
@@ -120,6 +142,7 @@
     <!--Map Box-->
     <div id="map" class="marker"></div>
     <!-- Map Box end -->
+
     <!-- Modal -->
    <!-- Modal content -->
    <div class="modal">
@@ -135,7 +158,6 @@
         <h3>Modal Footer</h3>
     </div>
     </div>
-</div>
 
 <!-- Modal end -->
 </body>
