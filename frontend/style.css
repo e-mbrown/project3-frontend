@@ -297,6 +297,11 @@ padding: 15px 16px;
 z-index: 2;
 }
 
+textarea{
+  display: block;
+  border: 1px solid black;
+}
+
 /* The Close Button */
 .close {
 color: #aaa;
@@ -343,6 +348,16 @@ p {
   font-size: 40px;
 }
 
+#headingdate {
+    font-size: 15px;
+
+}
+
+#formdate, #date {
+    padding: 1vw
+}
+
+
 #profile-grid {
 display: grid;
 grid-template-columns: auto auto;
@@ -352,8 +367,6 @@ padding:  0px 120px 20px 120px;
 #test-box {
 background-color: rgb(254, 254, 254);
 border-radius: 10px;
-}
-
 
 /*======== NAV ========*/
 
@@ -428,6 +441,12 @@ border-radius: 10px;
  background-color: black;
  border-radius: 10px;
  
+}
+
+.activities-profile {
+    padding: 10px;
+    text-align: center;
+    border-radius: 20px
 }
 
 @media (max-width: 600px) {
