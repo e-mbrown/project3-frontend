@@ -153,8 +153,8 @@ const app = new Vue({
                     for (let i = 0; i < data.length; i++) {
                         const activityName = `${data[i].activity.name} located at ${data[i].activity.address}`
                         const id = data[i].favorite.id
-                        this.favoriteActivities.push({activity:activityName, id: id, dateVisited: "Not Yet"})
-                        console.log(this.favoriteActivities)
+                        const actid =  data[i].activity.id
+                        this.favoriteActivities.push({activity:activityName, id: id, actid:actid, dateVisited: "Not Yet"})
                     }
                 })
         },
@@ -168,9 +168,9 @@ const app = new Vue({
         editVisited: function(event){
             const URL = this.prodURL ? this.prodURL : this.devURL
             const id = event.target.id
-            const test =this.favoriteActivities.find(x => x.id == `${id}`)
+            const test =this.favoriteActivities.find(x => x.id == `${id}`) // x stands for each object in the arrays. give us the object where the id is equal to for example 55
             let target = event.target.previousElementSibling //Looks in the event in the console. then you can get the value of elements surrounding the button
-            // if (id === target)
+
             if (target.value == ""){
                 test.dateVisited = "Not Yet"
                 this.visited = false
@@ -191,12 +191,6 @@ const app = new Vue({
                 },
                 body: JSON.stringify(updateVisit)
             })
-                .then((response) => {
-                    // this.goToAccount()
-                    console.log(response)
-                    console.log(updateVisit)
-                }
-            )
         }
         },
     //////// LIFESTYLE OBJECT - checks to see if there is already login information from previous sessions ///////
@@ -269,7 +263,7 @@ const commentModal = async (event) =>{
     $modal.find('.globe').hide()
     $('.modal-footer').text(event.target.parentElement.firstChild.textContent)
 
-    const comments = await fetch(`${URL}/comments/${event.target.getAttribute("act_id")}`, {
+    const comments = await fetch(`${URL}/activities/comments/${event.target.getAttribute("act_id")}`, {
         method: "get",
         headers: {
             Authorization: `bearer ${app._data.token}`
