@@ -19,7 +19,8 @@ const app = new Vue({
         onAccount: false,
         favoriteActivities: [],
         clicked: false,
-        commentActivity: ""
+        commentActivity: "",
+        visited: true
     },
 
     methods: {
@@ -133,22 +134,15 @@ const app = new Vue({
                 .then(response => response.json())
                 .then(data => {
                     this.favoriteActivities = data
-                    // this.favoriteActivities = []
+                    this.favoriteActivities = []
 
-                    // for (let i = 0; i < data.length; i++) {
-                    //     console.log(data[i])
-                    //     const activityName = `${data[i].activity.name} located at ${data[i].activity.address}`
-                    //     this.favoriteActivities.push(activityName)
-                    //     // const activityLocation = this.favoriteActivities[i].activity.address
-                    //     //     `${activityName} located at ${activityLocation}`
-                    // }
+                    for (let i = 0; i < data.length; i++) {
+                        const activityName = `${data[i].activity.name} located at ${data[i].activity.address}`
+                        const id = data[i].favorite.id
+                        this.favoriteActivities.push({activity:activityName, id: id, dateVisited: "Not Yet"})
+                        console.log(this.favoriteActivities)
+                    }
                 })
-            // for (i = 0; i <= this.favoriteActivities; i++) {
-            //     console.log(this.favoriteActivities[i])
-            //     const activityName = this.favoriteActivities[i].activity.name
-            //     const activityLocation = this.favoriteActivities[i].activity.address
-            //         `${activityName} located at ${activityLocation}`
-            // }
         },
 
         setComment: function(event) {
@@ -156,6 +150,45 @@ const app = new Vue({
             console.log(this.commentActivity);
         }
 
+                   
+                    }
+                })
+            },
+
+        ///////////// UPDATE IF VISITED A SPOT ////////////
+        editVisited: function(event){
+            const URL = this.prodURL ? this.prodURL : this.devURL
+            const id = event.target.id
+            const test =this.favoriteActivities.find(x => x.id == `${id}`)
+            let target = event.target.previousElementSibling //Looks in the event in the console. then you can get the value of elements surrounding the button
+            // if (id === target)
+            if (target.value == ""){
+                test.dateVisited = "Not Yet"
+                this.visited = false
+            } else {
+                test.dateVisited = target.value
+                this.visited = true
+            }
+
+            const updateVisit = {
+                visited: this.visited
+            }
+            const res = fetch(`${URL}/favorites/${id}`,{
+                method: "put",
+                headers: {
+                    Authorization: `bearer ${this.token}`,
+                    "Content-Type": "application/json"
+                    
+                },
+                body: JSON.stringify(updateVisit)
+            })
+                .then((response) => {
+                    // this.goToAccount()
+                    console.log(response)
+                    console.log(updateVisit)
+                }
+            )
+        }
         },
     //////// LIFESTYLE OBJECT - checks to see if there is already login information from previous sessions ///////
         created: function() {

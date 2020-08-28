@@ -114,11 +114,26 @@
 
         <!-------------------------------------------------------------->
         <!-- MY ACCOUNT PROFILE PAGE -->
-        <div v-if="onAccount" id="profile-grid"  v-for="favoriteActivity of favoriteActivities">
+        <div v-if="onAccount && loggedin" id="profile-grid"  v-for="favoriteActivity of favoriteActivities">
             <box id="test-box">
+<<<<<<< HEAD
                 <h1>{{ `${favoriteActivity.activity.name} located at ${favoriteActivity.activity.address}` }} </h1>
             </box> <i class="fas fa-comment-dots" :act_id="favoriteActivity.activity.id" onclick='commentModal(event)'></i> 
             <!-- v-on:click="setComment"></i> -->
+=======
+                <h1 v-bind:id="favoriteActivity.id">{{ favoriteActivity.activity }} </h1>
+            </box> <i class="fas fa-comment-dots"></i>
+
+            <!--- DATE INPUT FIELD AND SUBMIT BUTTON -->
+            <div> <!-- Source: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date -->
+                <label for="start">Visited?</label>
+                <input type="date" id="start" name="trip-start"
+                       min="2005-01-01" max="2025-12-31" v-bind:id="favoriteActivity.id">
+                <button v-on:click="editVisited" v-bind:id="favoriteActivity.id">Submit</button>
+                <h4>Have you visited this location?:</h4>
+                <form type="text" v-bind:id="favoriteActivity.id">{{ favoriteActivity.dateVisited }}</form>
+            </div>
+>>>>>>> narissa_has_visited
         </div>
 
         <!-------------------------------------------------------------->
@@ -131,7 +146,7 @@
             </div>
         </div>
 
-        <!---- RENDER ACTIVITIES TO THE SCREEN  --->
+        <!---- TOGGLE FAVORITES  --->
         <div v-if="loggedin && !onAccount" v-for="activity of activities">
             <h1><i v-on:click="toggleFav" :class="activity.className" :act_id="activity.id"></i></h1>
         </div>
