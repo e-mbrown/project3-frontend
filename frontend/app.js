@@ -18,7 +18,9 @@ const app = new Vue({
         token: '',
         onAccount: false,
         favoriteActivities: [],
-        clicked: false
+        clicked: false,
+        commentActivity: "",
+        visited: true
     },
 
     methods: {
@@ -145,15 +147,62 @@ const app = new Vue({
             })
                 .then(response => response.json())
                 .then(data => {
-                    this.favoriteActivities.activity = data
+                    this.favoriteActivities = data
                     this.favoriteActivities = []
 
                     for (let i = 0; i < data.length; i++) {
                         const activityName = `${data[i].activity.name} located at ${data[i].activity.address}`
-                        this.favoriteActivities.push(activityName)
+                        const id = data[i].favorite.id
+                        this.favoriteActivities.push({activity:activityName, id: id, dateVisited: "Not Yet"})
+                        console.log(this.favoriteActivities)
                     }
                 })
+        },
+
+        setComment: function(event) {
+            this.commentActivity = event.target.getAttribute("act_id")
+            console.log(this.commentActivity);
+        }
+
+                   
+                    }
+                })
+            },
+
+        ///////////// UPDATE IF VISITED A SPOT ////////////
+        editVisited: function(event){
+            const URL = this.prodURL ? this.prodURL : this.devURL
+            const id = event.target.id
+            const test =this.favoriteActivities.find(x => x.id == `${id}`)
+            let target = event.target.previousElementSibling //Looks in the event in the console. then you can get the value of elements surrounding the button
+            // if (id === target)
+            if (target.value == ""){
+                test.dateVisited = "Not Yet"
+                this.visited = false
+            } else {
+                test.dateVisited = target.value
+                this.visited = true
             }
+
+            const updateVisit = {
+                visited: this.visited
+            }
+            const res = fetch(`${URL}/favorites/${id}`,{
+                method: "put",
+                headers: {
+                    Authorization: `bearer ${this.token}`,
+                    "Content-Type": "application/json"
+                    
+                },
+                body: JSON.stringify(updateVisit)
+            })
+                .then((response) => {
+                    // this.goToAccount()
+                    console.log(response)
+                    console.log(updateVisit)
+                }
+            )
+        }
         },
     //////// LIFESTYLE OBJECT - checks to see if there is already login information from previous sessions ///////
         created: function() {
@@ -206,6 +255,7 @@ const fillModal = async (data, id) =>{
     const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
     $('.modal-body').empty()
     $modal.css('display', 'flex')
+    $modal.find('.comment').hide()
     $('.modal-footer').text(id)
     let count = 0
     for(i = 0; i < data.length; i++){
@@ -216,6 +266,40 @@ const fillModal = async (data, id) =>{
         $('.modal-body').append($event).append($heart)
     }
 };
+
+const commentModal = async (event) =>{
+    const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
+    $('.modal-body').empty()
+    $modal.css('display', 'flex')
+    $modal.find('.globe').hide()
+    $('.modal-footer').text(event.target.parentElement.firstChild.textContent)
+
+    const comments = await fetch(`${URL}/comments/${event.target.getAttribute("act_id")}`, {
+        method: "get",
+        headers: {
+            Authorization: `bearer ${app._data.token}`
+        }
+    })
+
+    const theJson = await comments.json()
+
+    theJson.forEach(res =>{
+        const $comment = $('<p>').text(res.comment.message)
+        $('.modal-body').append($comment)
+        if (res.can_delete){
+            const $trash = $('<i class="fas fa-trash-alt"></i>').attr('comm_id',res.comment.id).css('color','red')
+            // .on('click',toggleClass) the on click for trash should delete the comment
+            $('.modal-body').append($trash)
+        }
+    })
+
+    console.log(theJson);
+
+    // const toggle = await resp.json()
+
+}
+
+// $('.fa-comment-dots').on('click', commentModal)
 
 const toggleClass = async(event) =>{
     const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
