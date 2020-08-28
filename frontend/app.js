@@ -162,12 +162,7 @@ const app = new Vue({
         setComment: function(event) {
             this.commentActivity = event.target.getAttribute("act_id")
             console.log(this.commentActivity);
-        }
-
-                   
-                    }
-                })
-            },
+        },
 
         ///////////// UPDATE IF VISITED A SPOT ////////////
         editVisited: function(event){
@@ -248,7 +243,7 @@ const handleActivities = async function(event){
         .then(data => {
             app._data.activities = data.data
             return fillModal(data.data, id)
-                  })
+                })
 }
 
 const fillModal = async (data, id) =>{
