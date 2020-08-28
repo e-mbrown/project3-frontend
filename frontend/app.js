@@ -45,6 +45,7 @@ const app = new Vue({
                     this.loginUN = "" //resets: clears out when you log in
                     this.loginPW = "" //resets: clears out when you log in
                     window.sessionStorage.setItem('login', JSON.stringify(data)) //storing the data response in session storage
+                    this.mapLoader(this.loggedin)
                 }
             })
         },
@@ -55,8 +56,18 @@ const app = new Vue({
             this.loggedin = false
             this.user = null
             this.token = null
+            this.mapLoader(this.loggedin)
         },
-
+        
+        /////////// MapLoad /////////////////
+        mapLoader: function(bool) {
+            if (bool == true) {
+                mapLoad(true)
+            }else {
+                mapLoad(false)
+            }
+        },
+        
         //////////// CREATE USER /////////////
         handleSignup: function(){
             const URL = this.prodURL ? this.prodURL : this.devURL
@@ -146,9 +157,9 @@ const app = new Vue({
 
 // ==NAV BAR ONLY==
 
-let firstDiv = $(".navbar").append('<div class ="brand-title"><img class="logo" src="https://res.cloudinary.com/techhire/image/upload/v1598408188/travel-logo_bmeebn.png"></div>')
-let firstAttr = $(".navbar").append('<a href ="#" class="toggle-button"><span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </a>')
-let secondDiv = $(".navbar").append('<div class="navbar-links"><ul><li><a class="aaa" href="#pageCoverPhoto">Learn More</a></li><li><a class="aaa" href="#products">Help</a></li><li><a class="aaa" href="#contact">About</a></li></ul></div>')
+// let firstDiv = $(".navbar").append('<div class ="brand-title"><img class="logo" src="https://res.cloudinary.com/techhire/image/upload/v1598408188/travel-logo_bmeebn.png"></div>')
+// let firstAttr = $(".navbar").append('<a href ="#" class="toggle-button"><span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </a>')
+// let secondDiv = $(".navbar").append('<div class="navbar-links"><ul><li><a class="aaa" href="#pageCoverPhoto">Learn More</a></li><li><a class="aaa" href="#products">Help</a></li><li><a class="aaa" href="#contact">About</a></li></ul></div>')
 
 const toggleButton = document.getElementsByClassName('toggle-button')[0]
 const navbarLinks = document.getElementsByClassName('navbar-links')[0]

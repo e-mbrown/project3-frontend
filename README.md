@@ -9,11 +9,11 @@ APPLIES TO BACKEND AND FRONTEND
 |Day 1 - Sunday| Project Description | Complete
 |Day 1 - Sunday| Wireframes / Priority Matrix / Timeline `backend` and `frontend`| Complete
 |Day 1 - Sunday| Deploy Heroku | Complete
-|Day 1 - Sunday| User Model | Incomplete
-|Day 2 - Monday| Remaining Models | Incomplete
-|Day 2 - Monday| Login Frontend | Incomplete
+|Day 1 - Sunday| User Model | Complete
+|Day 2 - Monday| Remaining Models | Complete
+|Day 2 - Monday| Login Frontend | Complete
 |Day 3 - Tuesday| CRUD | Incomplete
-|Day 4 - Wednesday| Core Application Structure (HTML, CSS, etc.) | Incomplete
+|Day 4 - Wednesday| Core Application Structure (HTML, CSS, etc.) | Complete
 |Day 5 - Thursday| Complete MVP & Bug Fixes | Incomplete
 |Day 6- Friday| Final Touches and Present | Incomplete
 

@@ -1,3 +1,6 @@
+/* * {
+  border: 1px solid red;
+}     */
 
 .fas{
     color:red
@@ -11,27 +14,35 @@
   font-size: 4em
 }
 
+<<<<<<< HEAD
 >>>>>>> 426c21fda823c3bd18c4a9374e572570a7df7d60
 html, .username, .password, .createUN, .createPW {
+=======
+.fas.fa-comment-dots{
+  /* background-color: rgb(254, 254, 254); */
+  padding-left: 10px;
+}
+
+/* html, .username, .password, .createUN, .createPW {
+>>>>>>> a43cd984594654b7ab2b8c3f6974bd14ce69497f
     background: url(https://media.timeout.com/images/105476859/image.jpg);
     background-repeat: no-repeat;
     background-size: 1920px 1550px;
     opacity: 0.8;
-}
-/* claudia code */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgb(70, 70, 70);
-    color: black;
-    width: 100%;
-    top: 0px;
-    opacity: 70%;
- }
+} */
 
- 
-/**/ 
+body {
+  /* background: url(https://media.timeout.com/images/105476859/image.jpg); */
+  background-repeat: no-repeat;
+  background-size: 1920px 1550px;
+}
+
+.travel{
+  text-align: center;
+  padding: 20px;
+  font-size: 25px;
+}
+
 /* vacation social platform header*/
 #loginform {
     display: flex;
@@ -47,11 +58,7 @@ html, .username, .password, .createUN, .createPW {
 .loginHeader {
     text-align: center;
     color: black;
-<<<<<<< HEAD
-    background-color: lightslategray;
-=======
     /* background-color: lightslategray; */
->>>>>>> c7b248724251d7a5fa01bf4fca58780b0f4cf013
     width: 40%;
     height: 50px;
     margin-top: 50px;
@@ -194,21 +201,13 @@ html, .username, .password, .createUN, .createPW {
 }
 
 .marker {
-<<<<<<< HEAD
-    background-image: url('/marker.png');
-=======
     background-image: url('./marker.png');
->>>>>>> c7b248724251d7a5fa01bf4fca58780b0f4cf013
     background-size: cover;
     width: 25px;
     height: 25px;
     border-radius: 50%;
     cursor: pointer;
 }
-<<<<<<< HEAD
-.modal{
-  display: none;
-=======
 
 /* The Modal (background) */
 .modal {
@@ -266,7 +265,6 @@ html, .username, .password, .createUN, .createPW {
   color: black;
   text-decoration: none;
   cursor: pointer;
->>>>>>> c7b248724251d7a5fa01bf4fca58780b0f4cf013
 }
 
 
@@ -526,6 +524,21 @@ html, .username, .password, .createUN, .createPW {
     */
 }
 
+#profile-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding:  0px 120px 20px 120px;
+  /* border: 3px solid slategray;
+  border-radius: 10px; */
+}
+
+#test-box {
+background-color: rgb(254, 254, 254);
+/* border: 3px solid slategray; */
+border-radius: 10px;
+}
+
+
 /*======== NAV ========*/
 
 .navbar {
@@ -566,6 +579,7 @@ html, .username, .password, .createUN, .createPW {
    text-decoration: none;
    color: rgb(255, 255, 255);
    margin: 10px;
+   font-size: 20px;
  }
  
  .navbar-links li:hover {
@@ -593,6 +607,7 @@ html, .username, .password, .createUN, .createPW {
    
  }
 
+<<<<<<< HEAD
  /* JUST FOR TESTING */
 #test-box {
     border: 1px solid black
@@ -721,6 +736,7 @@ html, .username, .password, .createUN, .createPW {
 }
  
  
+
  @media (max-width: 600px) {
    .toggle-button{
      display: flex;
@@ -765,7 +781,5 @@ html, .username, .password, .createUN, .createPW {
    }
  
  
- }
+}
  /*======== NAV END ========*/
-
->>>>>>> c7b248724251d7a5fa01bf4fca58780b0f4cf013
