@@ -95,7 +95,7 @@
                        min="2005-01-01" max="2025-12-31" v-bind:id="favoriteActivity.id">
                 <button v-on:click="editVisited" v-bind:id="favoriteActivity.id">Submit</button>
                 <h4>Have you visited this location?:</h4>
-                <form type="text" v-bind:id="favoriteActivity.id">{{ dateVisited }}</form>
+                <form type="text" v-bind:id="favoriteActivity.id">{{ favoriteActivity.dateVisited }}</form>
             </div>
         </div>
 

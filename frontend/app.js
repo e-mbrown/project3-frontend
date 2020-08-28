@@ -19,7 +19,6 @@ const app = new Vue({
         onAccount: false,
         favoriteActivities: [],
         clicked: false,
-        dateVisited: "Not Yet",
         visited: true
     },
 
@@ -139,7 +138,7 @@ const app = new Vue({
                     for (let i = 0; i < data.length; i++) {
                         const activityName = `${data[i].activity.name} located at ${data[i].activity.address}`
                         const id = data[i].favorite.id
-                        this.favoriteActivities.push({activity:activityName, id: id})
+                        this.favoriteActivities.push({activity:activityName, id: id, dateVisited: "Not Yet"})
                         console.log(this.favoriteActivities)
                     }
                 })
@@ -149,15 +148,14 @@ const app = new Vue({
         editVisited: function(event){
             const URL = this.prodURL ? this.prodURL : this.devURL
             const id = event.target.id
-            console.log('hi')
-            console.log(id)
+            const test =this.favoriteActivities.find(x => x.id == `${id}`)
             let target = event.target.previousElementSibling //Looks in the event in the console. then you can get the value of elements surrounding the button
             // if (id === target)
             if (target.value == ""){
-                this.dateVisited = "Not Yet"
+                test.dateVisited = "Not Yet"
                 this.visited = false
             } else {
-                this.dateVisited = target.value
+                test.dateVisited = target.value
                 this.visited = true
             }
 
