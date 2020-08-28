@@ -84,7 +84,7 @@ background-repeat: no-repeat;
 -o-background-size: cover;
 background-size: cover; */
 
- background-image: url(https://res.cloudinary.com/techhire/image/upload/v1598633070/Voyage.com_3_awbc6u.png);
+ background-image: url(https://res.cloudinary.com/techhire/image/upload/v1598641279/Voyage.com_4_jxivwx.png);
 
 background-size: 100%;
 background-position: 50% 50%;
@@ -99,7 +99,6 @@ body {
 
 .travel{
 text-align: center;
-padding: 20px;
 font-size: 25px;
 }
 
@@ -399,6 +398,12 @@ border-radius: 10px;
  height: 100px;
  
 }
+
+.logo2{
+  float: center; 
+  width: 400px; 
+  height: 200px;
+ }
 
 .navbar-links {
  height: 100%;  

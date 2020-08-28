@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify@1.2.2/dist/vuetify.min.js"></script>
 
     <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
    
     <!--JS & CSS-->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
@@ -40,7 +40,7 @@
         <nav class="navbar">
             <div class ="brand-title">
                 <a href="https://vooyage.netlify.app/index.html">
-                <img class="logo" src="https://res.cloudinary.com/techhire/image/upload/v1598408188/travel-logo_bmeebn.png">
+                <img class="logo" src="https://res.cloudinary.com/techhire/image/upload/v1598639900/Vooyage_1_a4f8nh.png">
                 </a>
             </div>
             <a href ="#" class="toggle-button">
@@ -140,6 +140,12 @@
                 <h4>Have you visited this location?:</h4>
                 <form type="text" v-bind:id="favoriteActivity.id">{{ favoriteActivity.dateVisited }}</form>
             </div>
+            <footer id="bottom-block-login" style="background-color: mintcream;">
+                <div id="socialIcons">
+                    <span onclick="window.location.href=;"><i class="fab fa-instagram-square"></i></span> 
+                    <span onclick="window.location.href=;"><i class="fab fa-facebook-square"></i></span> 
+                </div>
+            </footer>
         </div>
 
         <!-------------------------------------------------------------->
@@ -147,7 +153,7 @@
         <div v-if="loggedin && !onAccount"> <!--this div had a id="log-in" in case it messes something up later-->
             <div>
                 <article>
-                    <h1 class="travel">Where do you wanna travel?</h1>
+                    <h1 class="travel"><img class="logo2" src="https://res.cloudinary.com/techhire/image/upload/v1598640691/Blue_Beach_Photo_Facebook_Cover_jmrkvl.png"></h1>
                 </article>
             </div>
         </div>
