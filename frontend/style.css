@@ -244,6 +244,11 @@ body {
   z-index: 2;
 }
 
+textarea{
+  display: block;
+  border: 1px solid black;
+}
+
 /* The Close Button */
 .close {
   color: #aaa;

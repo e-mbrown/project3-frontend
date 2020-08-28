@@ -251,9 +251,11 @@ const fillModal = async (data, id) =>{
 
 const commentModal = async (event) =>{
     const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
-    $('.modal-body').empty()
+    const $mb = $('.modal-body').attr('act_id',event.target.getAttribute("act_id"))
+    $mb.empty()
     $modal.css('display', 'flex')
     $modal.find('.globe').hide()
+    
     $('.modal-footer').text(event.target.parentElement.firstChild.textContent)
 
     const comments = await fetch(`${URL}/activities/comments/${event.target.getAttribute("act_id")}`, {
@@ -262,23 +264,71 @@ const commentModal = async (event) =>{
             Authorization: `bearer ${app._data.token}`
         }
     })
+    try{
+        const theJson = await comments.json()
+        console.log(`theJson:${Object.keys(theJson)}`);
+        theJson.forEach(res =>{
+            const $comment = $('<p>').text(res.comment.message)
+            $mb.append($comment)
+            if (res.can_delete){
+                const $trash = $('<i class="fas fa-trash-alt"></i>').attr('comm_id',res.comment.id).css('color','red').on('click',deleteComment)
+                $mb.append($trash)
+            }
+        })
+    }catch(err){
+        console.log(err);
+    }
 
-    const theJson = await comments.json()
 
-    theJson.forEach(res =>{
-        const $comment = $('<p>').text(res.comment.message)
-        $('.modal-body').append($comment)
-        if (res.can_delete){
-            const $trash = $('<i class="fas fa-trash-alt"></i>').attr('comm_id',res.comment.id).css('color','red')
-            // .on('click',toggleClass) the on click for trash should delete the comment
-            $('.modal-body').append($trash)
-        }
-    })
-
-    console.log(theJson);
+    const $ta = $('<textarea>')
+    const $but = $('<button>').text('Comment').on('click', sendComment)
+    $mb.append($ta)
+    $mb.append($but)
+    // console.log(theJson); 
 
     // const toggle = await resp.json()
 
+}
+
+async function sendComment(event){
+    const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
+    const comment = $('textarea').val()
+    if (comment){
+        const theBody = {
+            message:comment,
+            activity_id:$('.modal-body').attr('act_id')
+        }
+        const submission = comments = await fetch(`${URL}/comments`, {
+            method: "post",
+            headers: {
+                Authorization: `bearer ${app._data.token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(theBody)
+        })
+
+        const res = await submission.json()
+
+        const $comment = $('<p>').text(res.message)
+        $('textarea').before($comment)
+        const $trash = $('<i class="fas fa-trash-alt"></i>').attr('comm_id',res.id).css('color','red').on('click',deleteComment)
+        $('textarea').before($trash)
+    }
+}
+
+async function deleteComment(event){
+    const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
+    const deleted = await fetch(`${URL}/comments/${event.target.getAttribute("comm_id")}`, {
+        method: "delete",
+        headers: {
+            Authorization: `bearer ${app._data.token}`
+        }
+    })
+
+    if (deleted){
+        event.target.previousSibling.remove()
+        event.target.remove()
+    }
 }
 
 // $('.fa-comment-dots').on('click', commentModal)
