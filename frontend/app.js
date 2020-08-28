@@ -275,11 +275,36 @@ const fillModal = async (data, id) =>{
     // } 
 };
 
-const commentModal = (event) =>{
+const commentModal = async (event) =>{
+    const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
     $('.modal-body').empty()
-    $modal.show()
+    $modal.css('display', 'flex')
     $modal.find('.globe').hide()
     $('.modal-footer').text(event.target.parentElement.firstChild.textContent)
+
+    const comments = await fetch(`${URL}/comments/${event.target.getAttribute("act_id")}`, {
+        method: "get",
+        headers: {
+            Authorization: `bearer ${app._data.token}`
+        }
+    })
+
+    const theJson = await comments.json()
+
+    theJson.forEach(res =>{
+        const $comment = $('<p>').text(res.comment.message)
+        $('.modal-body').append($comment)
+        if (res.can_delete){
+            const $trash = $('<i class="fas fa-trash-alt"></i>').attr('comm_id',res.comment.id).css('color','red')
+            // .on('click',toggleClass) the on click for trash should delete the comment
+            $('.modal-body').append($trash)
+        }
+    })
+
+    console.log(theJson);
+
+    // const toggle = await resp.json()
+
 }
 
 // $('.fa-comment-dots').on('click', commentModal)
