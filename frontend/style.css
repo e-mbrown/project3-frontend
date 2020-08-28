@@ -240,7 +240,7 @@ font-size: 25px;
 }
 
 .marker {
-  background-image: url('/marker.png');
+  background-image: url('https://res.cloudinary.com/techhire/image/upload/v1598649215/marker_copy_lpqmih.png');
   background-size: cover;
   width: 25px;
   height: 25px;
