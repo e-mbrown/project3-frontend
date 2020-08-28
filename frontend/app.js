@@ -18,7 +18,8 @@ const app = new Vue({
         token: '',
         onAccount: false,
         favoriteActivities: [],
-        clicked: false
+        clicked: false,
+        commentActivity: ""
     },
 
     methods: {
@@ -131,15 +132,30 @@ const app = new Vue({
             })
                 .then(response => response.json())
                 .then(data => {
-                    this.favoriteActivities.activity = data
-                    this.favoriteActivities = []
+                    this.favoriteActivities = data
+                    // this.favoriteActivities = []
 
-                    for (let i = 0; i < data.length; i++) {
-                        const activityName = `${data[i].activity.name} located at ${data[i].activity.address}`
-                        this.favoriteActivities.push(activityName)
-                    }
+                    // for (let i = 0; i < data.length; i++) {
+                    //     console.log(data[i])
+                    //     const activityName = `${data[i].activity.name} located at ${data[i].activity.address}`
+                    //     this.favoriteActivities.push(activityName)
+                    //     // const activityLocation = this.favoriteActivities[i].activity.address
+                    //     //     `${activityName} located at ${activityLocation}`
+                    // }
                 })
-            }
+            // for (i = 0; i <= this.favoriteActivities; i++) {
+            //     console.log(this.favoriteActivities[i])
+            //     const activityName = this.favoriteActivities[i].activity.name
+            //     const activityLocation = this.favoriteActivities[i].activity.address
+            //         `${activityName} located at ${activityLocation}`
+            // }
+        },
+
+        setComment: function(event) {
+            this.commentActivity = event.target.getAttribute("act_id")
+            console.log(this.commentActivity);
+        }
+
         },
     //////// LIFESTYLE OBJECT - checks to see if there is already login information from previous sessions ///////
         created: function() {
@@ -192,6 +208,7 @@ const fillModal = async (data, id) =>{
     const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
     $('.modal-body').empty()
     $modal.css('display', 'flex')
+    $modal.find('.comment').hide()
     $('.modal-footer').text(id)
     let count = 0
     for(i = 0; i < data.length; i++){
@@ -202,6 +219,40 @@ const fillModal = async (data, id) =>{
         $('.modal-body').append($event).append($heart)
     }
 };
+
+const commentModal = async (event) =>{
+    const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
+    $('.modal-body').empty()
+    $modal.css('display', 'flex')
+    $modal.find('.globe').hide()
+    $('.modal-footer').text(event.target.parentElement.firstChild.textContent)
+
+    const comments = await fetch(`${URL}/comments/${event.target.getAttribute("act_id")}`, {
+        method: "get",
+        headers: {
+            Authorization: `bearer ${app._data.token}`
+        }
+    })
+
+    const theJson = await comments.json()
+
+    theJson.forEach(res =>{
+        const $comment = $('<p>').text(res.comment.message)
+        $('.modal-body').append($comment)
+        if (res.can_delete){
+            const $trash = $('<i class="fas fa-trash-alt"></i>').attr('comm_id',res.comment.id).css('color','red')
+            // .on('click',toggleClass) the on click for trash should delete the comment
+            $('.modal-body').append($trash)
+        }
+    })
+
+    console.log(theJson);
+
+    // const toggle = await resp.json()
+
+}
+
+// $('.fa-comment-dots').on('click', commentModal)
 
 const toggleClass = async(event) =>{
     const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL

@@ -116,8 +116,9 @@
         <!-- MY ACCOUNT PROFILE PAGE -->
         <div v-if="onAccount" id="profile-grid"  v-for="favoriteActivity of favoriteActivities">
             <box id="test-box">
-                <h1 class="activity">{{ favoriteActivity }} </h1>
-            </box> <i class="fas fa-comment-dots"></i>
+                <h1>{{ `${favoriteActivity.activity.name} located at ${favoriteActivity.activity.address}` }} </h1>
+            </box> <i class="fas fa-comment-dots" :act_id="favoriteActivity.activity.id" onclick='commentModal(event)'></i> 
+            <!-- v-on:click="setComment"></i> -->
         </div>
 
         <!-------------------------------------------------------------->
@@ -145,17 +146,17 @@
     <!-- Modal -->
    <!-- Modal content -->
    <div class="modal">
-        <div id="contain">
-            <div class="modal-title">
-                <span class="close">&times;</span>
-                <h2 class="title">Where do you wanna travel?</h2>
-            </div>
-            <div class="modal-body">
-            </div>
-            <div class="modal-footer">
-                <h3>Modal Footer</h3>
-            </div>
-        </div>
+    <div id="contain">
+    <div class="modal-title">
+        <span class="close">&times;</span>
+        <h2 class="title globe">Where do you wanna travel?</h2>
+        <h2 class="comment">What do you want to say?</h2>
+    </div>
+    <div class="modal-body">
+    </div>
+    <div class="modal-footer">
+        <h3>Modal Footer</h3>
+    </div>
     </div>
 
 <!-- Modal end -->
