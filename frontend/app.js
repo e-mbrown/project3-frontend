@@ -59,7 +59,6 @@ const app = new Vue({
             this.user = null
             this.token = null
             this.mapLoader(this.loggedin)
-            window.sessionStorage.removeItem('login')
         },
         
         /////////// MapLoad /////////////////
