@@ -12,7 +12,6 @@
 
     <!-- BOOTSTRAP -->
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
-   
     <!--JS & CSS-->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
@@ -129,7 +128,7 @@
         <div v-if="onAccount && loggedin" id="profile-grid"  v-for="favoriteActivity of favoriteActivities">
             <box id="test-box">
                 <h1 v-bind:id="favoriteActivity.id">{{ favoriteActivity.activity }} </h1>
-            </box> <i class="fas fa-comment-dots"></i>
+            </box> <i class="fas fa-comment-dots" :act_id="favoriteActivity.actid" onclick='commentModal(event)'></i> 
 
             <!--- DATE INPUT FIELD AND SUBMIT BUTTON -->
             <div> <!-- Source: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date -->
@@ -154,6 +153,7 @@
             <div>
                 <article>
                     <h1 class="travel"><img class="logo2" src="https://res.cloudinary.com/techhire/image/upload/v1598640691/Blue_Beach_Photo_Facebook_Cover_jmrkvl.png"></h1>
+                    <h1 class="travel">Where do you wanna travel?</h1>
                 </article>
             </div>
         </div>

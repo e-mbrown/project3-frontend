@@ -72,6 +72,11 @@ text-align: center;
 height: 150px;
 }
 
+body {
+  /* background: url(https://media.timeout.com/images/105476859/image.jpg); */
+  background-repeat: no-repeat;
+  background-size: 1920px 1550px;
+}
 
 .login-background {
 /* background-size: 1420px 600px; */
@@ -315,6 +320,7 @@ z-index: 2;
 
 /* The Close Button */
 .close {
+
 color: #aaa;
 float: right;
 font-size: 28px;
@@ -479,6 +485,7 @@ border-radius: 10px;
  .navbar-links ul li a {
    padding: .5rem 1rem;
  }
+
 
  .navbar-links.active {
    display: flex;
