@@ -114,34 +114,32 @@ const app = new Vue({
 
         //////////// TAKES USER TO THE ACCOUNT PG /////////////
         ////// When the user is taken to their account page, they will automatically see a list of all their favorites
-        goToAccount: function(event) {
+        goToAccount: async function(event) {
             const URL = this.prodURL ? this.prodURL : this.devURL
-            if (!this.clicked) {
-                $("#acct-btn").text("My Account")
-                this.onAccount = false
-            } else {
-                $("#acct-btn").text("Dashboard")
-                this.onAccount = true
-            }
-            this.clicked = !this.clicked
-            fetch(`${URL}/favorites/`, {
+            // if (!this.clicked) {
+            //     $("#acct-btn").text("My Account")
+            //     this.onAccount = false
+            // } else {
+            //     $("#acct-btn").text("Dashboard")
+            //     this.onAccount = true
+            // }
+            this.onAccount = !this.onAccount
+            const f = await fetch(`${URL}/favorites/`, {
                 method: "get",
                 headers: {
                     Authorization: `bearer ${this.token}`
                 }
             })
-                .then(response => response.json())
-                .then(data => {
-                    this.favoriteActivities = data
-                    this.favoriteActivities = []
-
-                    for (let i = 0; i < data.length; i++) {
-                        const activityName = `${data[i].activity.name} located at ${data[i].activity.address}`
-                        const id = data[i].favorite.id
-                        const actid =  data[i].activity.id
-                        this.favoriteActivities.push({activity:activityName, id: id, actid:actid, dateVisited: "Not Yet"})
-                    }
-                })
+            const data = await f.json()
+            // this.favoriteActivities = data
+            this.favoriteActivities = []
+            console.log(data);
+            for (let i = 0; i < data.length; i++) {
+                const activityName = `${data[i].activity.name} located at ${data[i].activity.address}`
+                const id = data[i].favorite.id
+                const actid =  data[i].activity.id
+                this.favoriteActivities.push({activity:activityName, id: id, actid:actid, dateVisited: "Not Yet"})
+            }
         },
 
         setComment: function(event) {
@@ -214,11 +212,11 @@ const handleActivities = async function(event){
             Authorization: `bearer ${app._data.token}`
         }
     })
-        .then(response => response.json())
-        .then(data => {
-            app._data.activities = data.data
-            return fillModal(data.data, id)
-                })
+
+    const data = await f.json()
+    app._data.activities = data.data
+    return fillModal(data.data, id)
+
 }
 
 const fillModal = async (data, id) =>{
