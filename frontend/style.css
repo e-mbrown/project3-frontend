@@ -1,3 +1,8 @@
+html {
+    background-size: 100%;
+    background-position: 50%;
+}
+
 /* * {
   border: 1px solid red;
 }     */
