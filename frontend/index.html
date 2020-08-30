@@ -10,17 +10,15 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify@1.2.2/dist/vuetify.min.js"></script>
 
-    <!-- BOOTSTRAP (for modals) -->
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    -->
+    <!-- BOOTSTRAP -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!--JS & CSS-->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/e3ce9e053c.js" crossorigin="anonymous"></script>
-    <!-- Milligram -->
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" />-->
 </head>
 
     <script
@@ -34,67 +32,118 @@
     <script src="https://kit.fontawesome.com/e3ce9e053c.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav class="navbar"></nav>
+
     <div id="app">
+        <!----------- NAV BAR ----------->
+        <nav class="navbar">
+            <div class ="brand-title">
+                <a href="https://vooyage.netlify.app/index.html">
+                <img class="logo" src="https://res.cloudinary.com/techhire/image/upload/v1598639900/Vooyage_1_a4f8nh.png">
+                </a>
+            </div>
+            <a href ="#" class="toggle-button">
+                <span class="bar"></span> 
+                <span class="bar"></span> 
+                <span class="bar"></span> 
+            </a>
+            <div class="navbar-links">
+                <ul>
+                    <li>
+                        <div v-if="loggedin && !onAccount">
+                            <a class="btn btn-outline-info" href="#pageCoverPhoto" id="acct-btn" v-on:click="goToAccount">My Account</a>
+                        </div>
+                        <div v-if="loggedin && onAccount">
+                            <a class="btn btn-outline-info" href="#pageCoverPhoto" id="acct-btn" v-on:click="goToAccount">Dashboard</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="aaa" href="#products"></a>
+                    </li>
+                    <li>
+                        <div id="login" v-if="loggedin">
+                            <a class="btn btn-outline-info" href="#contact" v-on:click="handleLogout">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        
+
         <!----------- CREATE / LOGIN SCREEN ----------->
         <div id="nologin" v-if="!loggedin">
+            <div class="login-background">
             <div id="loginform">
-                <div class=loginDiv><h1 class="loginHeader"> Choose your next vacation!</h1></div> 
-
-                <!-- WILL DELETE ONLY TESTING SOMETHING-->
-                <!-- <a href="" target="_blank">Open page in new window</a> -->
-                <!-- SOON TO BE DELETED-->
-
-        <!-- WILL DELETE ONLY TESTING SOMETHING
-        <a href="" target="_blank">Open page in new window</a>
-         SOON TO BE DELETED-->
+                
+                <div class=loginDiv><h1 class="loginHeader"></h1></div>
 
                 <!--- LOGIN FORM --->
                 <div class="handlelogin">
                     <form v-on:submit.prevent="handleLogin">
-                        <fieldset class="firstFieldset"><legend class="legendLogin">LOGIN</legend>
+                        <fieldset class="firstFieldset"><legend class="legendLogin"></legend>
                             <div class="loginFieldset">
                         <input class="username" type="text" placeholder="username" v-model="loginUN">
                         <input class="password" type="password" placeholder="password" v-model="loginPW">
-                        <input class="loginButton" type="submit" value="Login">
-                            </div>  
-                        
+                        <input class="btn btn-info" type="submit" value="Login">
+                            </div>
                         </fieldset>
                     </form>
                 </div>
 
                 <!--- CREATE ACCOUNT FORM --->
                 <div class="handleSignup"> 
-                    <form v-on:submit.prevent="handleSignup">
+                    <form v-on:submit.prevent="handleSignup" class="createaccount">
                         <fieldset class="secondFieldset"><legend class="legendSignup">Create Account</legend>
-                                    <div class="signupFieldset">
+                                <div class="signupFieldset">
                             <input class="createUN" type="text" placeholder="username" v-model="createUN">
                             <input class="createPW" type="password" placeholder="password" v-model="createPW">
-                            <input class="signupButton"type="submit" value="Sign Up">
+                            <input class="btn btn-info"type="submit" value="Sign Up">
                                     </div>
                         </fieldset>
                     </form>
                 </div>
+                <footer id="bottom-block-login" style="background-color: mintcream;">
+                    <div id="socialIcons">
+                        <span onclick="window.location.href='https://github.com/e-mbrown/project3-frontend/';"><i class="fab fa-github-square"></i></span> 
+                    </div>
+                </footer>
             </div>
+        </div>
         </div>
 
         <!-------------------------------------------------------------->
         <!---- LOG OUT BUTTON --->
-        <div id="login" v-if="loggedin">
+        <!-- <div id="login" v-if="loggedin">
             <button v-on:click="handleLogout">Logout</button>
-        </div>
+        </div> -->
 
+        <!-------------------------------------------------------------->
         <!-- MY ACCOUNT / BACK TO DASHBOARD BUTTON -->
-        <div v-if="loggedin">
-            <button id="acct-btn" v-on:click="toggleAccountButton" >My Account</button>
-        </div>
+        <!-- <div v-if="loggedin">
+            <button id="acct-btn" v-on:click="goToAccount">My Account</button>
+        </div> -->
 
         <!-------------------------------------------------------------->
         <!-- MY ACCOUNT PROFILE PAGE -->
-        <div v-if="onAccount">
+        <div v-if="onAccount && loggedin" id="profile-grid"  v-for="favoriteActivity of favoriteActivities">
             <box id="test-box">
-                <h1>THIS IS WHERE THE FAVORITES WILL BE STORED</h1>
-            </box>
+                <h3 v-bind:id="favoriteActivity.id" class="activities-profile">{{ favoriteActivity.activity }} </h3>
+            </box> <i class="fas fa-comment-dots" :act_id="favoriteActivity.actid" onclick='commentModal(event)'></i> 
+
+            <!--- DATE INPUT FIELD AND SUBMIT BUTTON -->
+            <div class="date-input"> <!-- Source: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date -->
+                <label for="start">Visited?</label>
+                <input type="date" id="start" name="trip-start"
+                       min="2005-01-01" max="2025-12-31" v-bind:id="favoriteActivity.id" id="date">
+                <button v-on:click="editVisited" v-bind:id="favoriteActivity.id" class="btn btn-info">Submit</button>
+                <h5><b id="headingdate">Have you visited this location?:</b></h5>
+                <form type="text" v-bind:id="favoriteActivity.id" id="formdate">{{ favoriteActivity.dateVisited }}</form>
+            </div>
+            <footer id="bottom-block-login" style="background-color: mintcream;">
+                <div id="socialIcons">
+                    <span onclick="window.location.href='https://github.com/e-mbrown/project3-frontend/';"><i class="fab fa-github-square"></i></span> 
+                </div>
+            </footer>
         </div>
 
         <!-------------------------------------------------------------->
@@ -102,14 +151,15 @@
         <div v-if="loggedin && !onAccount"> <!--this div had a id="log-in" in case it messes something up later-->
             <div>
                 <article>
-                    <h1>Where do you wanna travel?</h1>
+                    <h1 class="travel"><img class="logo2" src="https://res.cloudinary.com/techhire/image/upload/v1598640691/Blue_Beach_Photo_Facebook_Cover_jmrkvl.png"></h1>
+                    <h1 class="travel"></h1>
                 </article>
-
             </div>
         </div>
 
+        <!---- TOGGLE FAVORITES  --->
         <div v-if="loggedin && !onAccount" v-for="activity of activities">
-            <h1>{{ activity.name }} <i v-on:click="toggleFav" :class="activity.className" :act_id="activity.id"></i></h1>
+            <h1><i v-on:click="toggleFav" :class="activity.className" :act_id="activity.id"></i></h1>
         </div>
     </div>
 
@@ -118,13 +168,15 @@
     <!--Map Box-->
     <div id="map" class="marker"></div>
     <!-- Map Box end -->
+
     <!-- Modal -->
    <!-- Modal content -->
    <div class="modal">
     <div id="contain">
     <div class="modal-title">
         <span class="close">&times;</span>
-        <h2 class="title">Where do you wanna travel?</h2>
+        <h2 class="title globe">Where do you wanna travel?</h2>
+        <h2 class="comment">What do you want to say?</h2>
     </div>
     <div class="modal-body">
     </div>
@@ -132,7 +184,6 @@
         <h3>Modal Footer</h3>
     </div>
     </div>
-</div>
 
 <!-- Modal end -->
 </body>

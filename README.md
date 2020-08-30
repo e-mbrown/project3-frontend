@@ -9,11 +9,11 @@ APPLIES TO BACKEND AND FRONTEND
 |Day 1 - Sunday| Project Description | Complete
 |Day 1 - Sunday| Wireframes / Priority Matrix / Timeline `backend` and `frontend`| Complete
 |Day 1 - Sunday| Deploy Heroku | Complete
-|Day 1 - Sunday| User Model | Incomplete
-|Day 2 - Monday| Remaining Models | Incomplete
-|Day 2 - Monday| Login Frontend | Incomplete
+|Day 1 - Sunday| User Model | Complete
+|Day 2 - Monday| Remaining Models | Complete
+|Day 2 - Monday| Login Frontend | Complete
 |Day 3 - Tuesday| CRUD | Incomplete
-|Day 4 - Wednesday| Core Application Structure (HTML, CSS, etc.) | Incomplete
+|Day 4 - Wednesday| Core Application Structure (HTML, CSS, etc.) | Complete
 |Day 5 - Thursday| Complete MVP & Bug Fixes | Incomplete
 |Day 6- Friday| Final Touches and Present | Incomplete
 
@@ -49,19 +49,20 @@ Our project will be focused on creating a travel app, where users can save their
 | Component | Priority | Estimated Time | Time Invetsted | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
 | Frontend Login Dashboard | H | 4hr | -hr | -hr|
-| Create User Profile Frontend | H | 2hr | -hr | -hr|
-| Create Comments Frontend | H | 2hr | -hr | -hr|
-| Working with Foursquare API Frontend | H | 3hrs| -hr | -hr |
-| Delete comments Frontend | H | 2hr | -hr | -hr|
-| Delete activity Frontend| H | 2hr | -hr | -hr|
-| Debugging Frontend | H | 5hr | -hr | -hr|
+| Create User Profile Frontend | H | 2hr | 7hr | -hr|
+| Create Comments Frontend | H | 2hr | 2hr | -hr|
+| Delete comments Frontend | H | 2hr | 2hr | -hr|
+| Show comments comments Frontend | H | 2hr | 2hr | -hr|
+| Delete favorite Frontend| H | 2hr | .5hr | -hr|
+| Activities Modal| H | 2hr | Ask Ebony | -hr|
+| Debugging Frontend | H | 5hr | 6hr | -hr|
 | Total | H | 18hrs| -hrs | -hrs |
 
 #### PostMVP
 | Component | Priority | Estimated Time | Time Invetsted | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
 | Map on dashboard Frontend| L | 3hr | -hr | -hr|
-| Update if user visited location Button| L | 2hr | -hr | -hr|
+| Update if user visited location Button| L | 2hr | 7hr | -hr|
 | --| M | 4hr | -hr | -hr|
 | -- | H | 4hr | -hr | -hr|
 | Total | H | 5hrs| -hrs | -hrs |
