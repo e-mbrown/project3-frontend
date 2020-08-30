@@ -13,7 +13,7 @@ const app = new Vue({
         createUN: "",
         createPW: "",
         devURL: "http://localhost:3000",
-        prodURL: null,
+        prodURL: "https://project3encsd.herokuapp.com",
         activities: [],
         token: '',
         onAccount: false,
