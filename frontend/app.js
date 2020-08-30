@@ -375,8 +375,3 @@ window.addEventListener('click', (event) => {
             $modal.css('display', "none")
     }
 })
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 9ee8272aa18c3d00954ca79a8d18528c1b3bc9d7
