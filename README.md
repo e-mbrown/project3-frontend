@@ -108,7 +108,8 @@ editVisited: function(event){
 
 ## Issues and Resolutions
 
-Narissa - update function
+- Narissa: Update function
+
 Issue: Couldn't figure out how to update only one date per activity. Once you clicked submit to update 1 date, it would go and update all the dates for all your favorite activites
 
 Resolution: Using: `const id = event.target.id` and `const test = this.favoriteActivities.find(x => x.id == ${id})`. 
