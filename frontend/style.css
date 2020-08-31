@@ -464,7 +464,23 @@ border-radius: 10px;
     text-align: center;
     border-radius: 20px
 }
+/*ADDED DIVS ON ACCOUNT PAGE*/
+.activityAndComment{
+  width: 1250px; 
+  display: flex; 
+  flex-direction: row;
+}
 
+/* DIV TARGETING THE ACTIVITY */
+.accountActivityDiv{
+  width: 1250px;
+}
+
+/* END OF ADDED DIVS ON ACCOUNT PAGE */
+
+
+
+/*START OF TABLET MEDIA QUERY*/
 @media (max-width: 600px) {
  .toggle-button{
    display: flex;
