@@ -69,23 +69,48 @@ Our project will be focused on creating a travel app, where users can save their
 
 ## Additional Libraries
 - [Bootstrap](https://getbootstrap.com/) 
-- [Milligram](https://cdnjs.com/libraries/milligram)
  
 
 ## Code Snippet
 
-TBD
-
-Use this section to include a brief code snippet of functionality that you are proud of an a brief description  
-
+Narissa - update function to edit if you visited an activity
 ```
-function reverse(string) {
-	// here is the code to reverse a string of text
-}
+editVisited: function(event){
+            ...
+            const id = event.target.id
+            const test = this.favoriteActivities.find(x => x.id == `${id}`) // x stands for each object in the arrays. give us the object where the id is equal to for example 55
+            let target = event.target.previousElementSibling //Looks in the event in the console. then you can get the value of elements surrounding the button
+
+            if (target.value == ""){
+                test.dateVisited = "Not Yet"
+                this.visited = false
+            } else {
+                test.dateVisited = target.value
+                this.visited = true
+            }
+
+            const updateVisit = {
+                visited: this.visited
+            }
+            const res = fetch(`${URL}/favorites/${id}`,{
+                method: "put",
+                headers: {
+                    Authorization: `bearer ${this.token}`,
+                    "Content-Type": "application/json"
+                    
+                },
+                body: JSON.stringify(updateVisit)
+            })
+        }
+        },
+
 ```
 
 ## Issues and Resolutions
 
-TBD
- Use this section to list of all major issues encountered and their resolution.
+Narissa - update function
+Issue: Couldn't figure out how to update only one date per activity. Once you clicked submit to update 1 date, it would go and update all the dates for all your favorite activites
+
+Resolution: Using `const test = this.favoriteActivities.find(x => x.id == `${id}`)` 
+`event.target.previousElementSibling` to get values of elements surrounding the buttons and making that the target. (with major help from Ebony!)
 
