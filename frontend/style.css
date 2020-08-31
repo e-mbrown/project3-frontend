@@ -469,12 +469,29 @@ border-radius: 10px;
   width: 1250px; 
   display: flex; 
   flex-direction: row;
+  margin-top: 100px;
 }
 
 /* DIV TARGETING THE ACTIVITY */
 .accountActivityDiv{
   width: 1250px;
 }
+/*start of date div*/
+.date-input {
+  margin-top: 100px;
+}
+
+.visited {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#formdate{
+  font-size: 15px;
+  font-weight: bolder;
+}
+/*end of date div*/
+
 
 /* END OF ADDED DIVS ON ACCOUNT PAGE */
 
