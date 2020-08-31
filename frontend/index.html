@@ -126,9 +126,11 @@
         <!-------------------------------------------------------------->
         <!-- MY ACCOUNT PROFILE PAGE -->
         <div v-if="onAccount && loggedin" id="profile-grid"  v-for="favoriteActivity of favoriteActivities">
+            
+            <!-- <div class="activityAndDate"> -->
                  <div class="activityAndComment">
             <box id="test-box">
-                        <div class="accountActivityDiv" style="width: 1100px">
+                        <div class="accountActivityDiv">
                 <h3 v-bind:id="favoriteActivity.id" class="activities-profile">{{ favoriteActivity.activity }} </h3>
                         </div>
 
@@ -142,8 +144,11 @@
                 <button v-on:click="editVisited" v-bind:id="favoriteActivity.id" class="btn btn-info">Submit</button>
                 <h5><b id="headingdate">Have you visited this location?:</b></h5>
                 <form type="text" v-bind:id="favoriteActivity.id" id="formdate">{{ favoriteActivity.dateVisited }}</form>
-            </div>
             
+            </div>  <!--Date-input end -->
+            
+        <!-- </div> dateAndactivity end -->
+
             <footer id="bottom-block-login" style="background-color: mintcream;">
                 <div id="socialIcons">
                     <span onclick="window.location.href='https://github.com/e-mbrown/project3-frontend/';"><i class="fab fa-github-square"></i></span> 
