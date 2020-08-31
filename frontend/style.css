@@ -646,6 +646,12 @@ border-radius: 10px;
   justify-content: center;
   align-items: center;
 }
+
+.activityAndComment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 /* END OF ADDED DIVS ON ACCOUNT PAGE */
 
 
@@ -666,6 +672,7 @@ border-radius: 10px;
     .navbar {
       flex-direction: column;
       align-items: flex-start;
+      width: 100%
     }
   
     .navbar-links ul {
@@ -703,6 +710,11 @@ border-radius: 10px;
     .activityName {
       font-size: 15px;
     }
-  
+    
+    .activityAndComment{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
  }
   /*======== NAV END ========*/
