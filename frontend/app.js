@@ -116,13 +116,6 @@ const app = new Vue({
         ////// When the user is taken to their account page, they will automatically see a list of all their favorites
         goToAccount: async function(event) {
             const URL = this.prodURL ? this.prodURL : this.devURL
-            // if (!this.clicked) {
-            //     $("#acct-btn").text("My Account")
-            //     this.onAccount = false
-            // } else {
-            //     $("#acct-btn").text("Dashboard")
-            //     this.onAccount = true
-            // }
             this.onAccount = !this.onAccount
             const f = await fetch(`${URL}/favorites/`, {
                 method: "get",
@@ -131,9 +124,7 @@ const app = new Vue({
                 }
             })
             const data = await f.json()
-            // this.favoriteActivities = data
             this.favoriteActivities = []
-            console.log(data);
             for (let i = 0; i < data.length; i++) {
                 const activityName = `${data[i].activity.name} located at ${data[i].activity.address}`
                 const id = data[i].favorite.id
@@ -144,7 +135,6 @@ const app = new Vue({
 
         setComment: function(event) {
             this.commentActivity = event.target.getAttribute("act_id")
-            console.log(this.commentActivity);
         },
 
         ///////////// UPDATE IF VISITED A SPOT ////////////
@@ -252,7 +242,6 @@ const commentModal = async (event) =>{
     })
     try{
         const theJson = await comments.json()
-        console.log(`theJson:${Object.keys(theJson)}`);
         theJson.forEach(res =>{
             const $comment = $('<p>').text(res.comment.message)
             $mb.append($comment)
@@ -262,7 +251,6 @@ const commentModal = async (event) =>{
             }
         })
     }catch(err){
-        console.log(err);
     }
 
 
@@ -270,9 +258,6 @@ const commentModal = async (event) =>{
     const $but = $('<button>').text('Comment').on('click', sendComment)
     $mb.append($ta)
     $mb.append($but)
-    // console.log(theJson); 
-
-    // const toggle = await resp.json()
 
 }
 
@@ -316,8 +301,6 @@ async function deleteComment(event){
         event.target.remove()
     }
 }
-
-// $('.fa-comment-dots').on('click', commentModal)
 
 const toggleClass = async(event) =>{
     const URL = app._data.prodURL ? app._data.prodURL : app._data.devURL
