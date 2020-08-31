@@ -106,6 +106,15 @@ editVisited: function(event){
 
 ```
 
+Donovan:  making a ruby hash from Foursquare data
+```rb
+  ).parsed_response()['response']['groups'][0]['items'].map do |i|
+    {
+        name: i['venue']['name'],
+        location: c,
+        address: i['venue']['location']['formattedAddress'].join("\n")
+```
+
 ## Issues and Resolutions
 
 - Narissa: Update function
