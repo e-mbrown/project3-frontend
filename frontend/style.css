@@ -318,7 +318,6 @@ display: grid;
 grid-template-columns: 1fr auto;
 font-size: 30px;
 overflow: scroll;
-margin-top: 10px;
 }
 
 /*ACTIVITY NAME: ADDED ON app.js LINE 245*/
@@ -613,7 +612,7 @@ border-radius: 10px;
     position: absolute;
     top: .75rem;
     right: 1rem;
-    display: none;
+    /* display: none; */
     flex-direction: column;
     justify-content: space-between;
     width: 30px;
