@@ -111,7 +111,5 @@ editVisited: function(event){
 Narissa - update function
 Issue: Couldn't figure out how to update only one date per activity. Once you clicked submit to update 1 date, it would go and update all the dates for all your favorite activites
 
-Resolution: Using:
-- `const id = event.target.id`
-- `const test = this.favoriteActivities.find(x => x.id == ${id})`. 
-Since favoriteActivities is an array of objects, we used `.find` to query for the object's id and finding where it is equal to the variable called `id` (the id of the target). This query is stored a variable called `test` and is used later so that some functions will only run if this condition is true.
+Resolution: Using: `const id = event.target.id` and `const test = this.favoriteActivities.find(x => x.id == ${id})`. 
+Since favoriteActivities is an array of objects, we used `.find` to query for the object's id and finding where it is equal to the variable called `id` (the id of the target). This query is stored a variable called `test` and is used later so that some functions will only run if this condition is true (recieved major help from Ebony!).
