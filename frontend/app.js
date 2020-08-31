@@ -242,7 +242,7 @@ const fillModal = async (data, id) =>{
     let count = 0
     for(i = 0; i < data.length; i++){
         const activity = data[i]
-        const $event = $('<p>').text(`${activity.name} located at ${activity.address}`)
+        const $event = $('<p>').text(`${activity.name} located at ${activity.address}`).addClass('activityName')
         const className = await getFav(activity.id, URL)
         const $heart = $('<i>').addClass(className).attr('act_id',activity.id).on('click',toggleClass)
         $('.modal-body').append($event).append($heart)

@@ -279,9 +279,11 @@ overflow: auto; /* Enable scroll if needed */
 background-color: rgb(0,0,0); /* Fallback color */
 background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
+
 #contain {
 width: 60%;
 }
+
 .modal-title {
 padding: 10px 16px;
 height: 50px;
@@ -292,6 +294,7 @@ font-size: 20px;
 font-weight: bold;
 border-radius: 8px;
 }
+
 .modal-footer {
 padding: 10px 16px;
 height: 50px;
@@ -313,8 +316,18 @@ padding: 15px 16px;
 z-index: 2;
 display: grid;
 grid-template-columns: 1fr auto;
+font-size: 30px;
+overflow: scroll;
+
 }
 
+/*ACTIVITY NAME: ADDED ON app.js LINE 245*/
+.activityName{
+  font-size: 20px;
+  font-weight: bolder;
+  
+}
+ 
 textarea{
   display: block;
   border: 1px solid black;
