@@ -318,14 +318,13 @@ display: grid;
 grid-template-columns: 1fr auto;
 font-size: 30px;
 overflow: scroll;
-
+margin-top: 10px;
 }
 
 /*ACTIVITY NAME: ADDED ON app.js LINE 245*/
 .activityName{
-  font-size: 20px;
+  font-size: 23px;
   font-weight: bolder;
-  
 }
  
 textarea{
@@ -356,7 +355,7 @@ p {
   font-size: 1.5em;
 }
 
-/*THIS IS FOR ACTIVITIES PAGE AFTER RECENT VERSION HAS BEEN COMMITTED*/
+/*THIS IS FOR PAGE AFTER RECENT VERSION HAS BEEN COMMITTED*/
 /*leave display:none on map until dashboard css is completed*/
 .dashboard {
   background-color: black;
@@ -385,7 +384,7 @@ p {
 }
 
 #formdate, #date {
-    padding: 1vw
+    padding: 1vw;
 }
 
 
@@ -434,7 +433,6 @@ border-radius: 10px;
  margin: 0;
  padding: 0;
  display: flex;
-
 }
 
 .navbar-links li {
@@ -477,20 +475,34 @@ border-radius: 10px;
 .activities-profile {
     padding: 10px;
     text-align: center;
-    border-radius: 20px
+    border-radius: 20px;
 }
+
 /*ADDED DIVS ON ACCOUNT PAGE*/
 .activityAndComment{
   width: 1250px; 
   display: flex; 
   flex-direction: row;
+  margin-top: 100px;
 }
 
+.date-input{
+  margin-top: 100px;
+}
 /* DIV TARGETING THE ACTIVITY */
 .accountActivityDiv{
   width: 1250px;
 }
 
+.visited {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#formdate{
+  font-size: 15px;
+  font-weight: bolder;
+}
 /* END OF ADDED DIVS ON ACCOUNT PAGE */
 
 

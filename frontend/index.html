@@ -126,7 +126,7 @@
         <!-------------------------------------------------------------->
         <!-- MY ACCOUNT PROFILE PAGE -->
         <div v-if="onAccount && loggedin" id="profile-grid"  v-for="favoriteActivity of favoriteActivities">
-                 <div class="activityAndComment" style="width: 1350px; display: flex; flex-direction: row;">
+                 <div class="activityAndComment">
             <box id="test-box">
                         <div class="accountActivityDiv" style="width: 1100px">
                 <h3 v-bind:id="favoriteActivity.id" class="activities-profile">{{ favoriteActivity.activity }} </h3>
@@ -136,7 +136,7 @@
         </div> 
             <!--- DATE INPUT FIELD AND SUBMIT BUTTON -->
             <div class="date-input"> <!-- Source: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date -->
-                <label for="start">Visited?</label>
+                <label class="visited" for="start">Visited?</label>
                 <input type="date" id="start" name="trip-start"
                        min="2005-01-01" max="2025-12-31" v-bind:id="favoriteActivity.id" id="date">
                 <button v-on:click="editVisited" v-bind:id="favoriteActivity.id" class="btn btn-info">Submit</button>
