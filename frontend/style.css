@@ -54,7 +54,9 @@ background-color: mintcream;
 
 
 #bottom-block-login{
-position: fixed;
+/* position: fixed; */
+position: relative;
+top: 80px;
  left: 0;
  bottom: 0;
  width: 100%;
@@ -634,6 +636,9 @@ border-radius: 10px;
      grid-template-columns: auto auto;
  }
   
+ .modal-footer {
+  height: 80px;
+}
  .accountActivityDiv{
   width: 90%;
 }
@@ -707,6 +712,10 @@ border-radius: 10px;
       font-size: 15px;
       font-weight: lighter
     } 
+
+    .modal-footer {
+      height: 130px;
+    }
     .activityName {
       font-size: 15px;
     }
