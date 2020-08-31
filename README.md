@@ -54,7 +54,7 @@ Our project will be focused on creating a travel app, where users can save their
 | Delete comments Frontend | H | 2hr | 2hr | -hr|
 | Show comments comments Frontend | H | 2hr | 2hr | -hr|
 | Delete favorite Frontend| H | 2hr | .5hr | -hr|
-| Activities Modal| H | 2hr | Ask Ebony | -hr|
+| Activities Modal| H | 2hr | 1hr | 1hr|
 | Debugging Frontend | H | 5hr | 6hr | -hr|
 | Total | H | 18hrs| -hrs | -hrs |
 
@@ -68,7 +68,8 @@ Our project will be focused on creating a travel app, where users can save their
 | Total | H | 5hrs| -hrs | -hrs |
 
 ## Additional Libraries
-- [Bootstrap](https://getbootstrap.com/) 
+- [Bootstrap](https://getbootstrap.com/)
+- [Mapbox](mapbox.com)
  
 
 ## Code Snippet
@@ -114,6 +115,20 @@ Donovan:  making a ruby hash from Foursquare data
         location: c,
         address: i['venue']['location']['formattedAddress'].join("\n")
 ```
+Ebony: Using find for the first time and using the event object to access a sibling elements
+```js
+const id = event.target.id
+            const test =this.favoriteActivities.find(x => x.id == `${id}`) // x stands for each object in the arrays. give us the object where the id is equal to for example 55
+            let target = event.target.previousElementSibling //Looks in the event in the console. then you can get the value of elements surrounding the button
+
+            if (target.value == ""){
+                test.dateVisited = "Not Yet"
+                this.visited = false
+            } else {
+                test.dateVisited = target.value
+                this.visited = true
+            }
+```
 
 ## Issues and Resolutions
 
@@ -123,3 +138,8 @@ Issue: Couldn't figure out how to update only one date per activity. Once you cl
 
 Resolution: Using: `const id = event.target.id` and `const test = this.favoriteActivities.find(x => x.id == ${id})`. 
 Since favoriteActivities is an array of objects, we used `.find` to query for the object's id and finding where it is equal to the variable called `id` (the id of the target). This query is stored a variable called `test` and is used later so that some functions will only run if this condition is true (recieved major help from Ebony!).
+
+-Ebony
+Issue: Our Mapbox couldnt function within the VueBox without additional libraries, which the documentation didn't really explain. The map needed information from the Vue instance for a fetch request.
+
+Resolution:  After moving the mapbox, I was able to access the information by using `app._data` and make a fetch request with the authorization.
