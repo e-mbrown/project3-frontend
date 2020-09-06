@@ -18,6 +18,7 @@ padding-left: 10px;
 .fab.fa-github-square{
 color: rgb(145, 145, 145);;
 font-size: 3em;
+cursor: pointer;
 }
 
 .nologin{
@@ -55,6 +56,13 @@ position: fixed;
   #bottom-block-login{
     background-color:#ffffff00
   }
+
+  .fab.fa-github-square{
+    position: absolute;
+    left: 1em;
+  }
+
+
 }
 
 .socialIcons {
@@ -177,6 +185,10 @@ font-size: 25px;
 .signuplogin {
   margin-top: 50px;
   margin-bottom: 100px;
+}
+
+.signupFieldset{
+  margin:100px;
 }
 
 .createaccount {
