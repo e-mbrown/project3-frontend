@@ -122,7 +122,7 @@ font-size: 25px;
 /* targets the entire login form*/
 .handlelogin {
   display: flex;
-  justify-content: center;  
+  justify-content: center;
 }
 
 /* div to center the fieldset*/
@@ -188,7 +188,7 @@ font-size: 25px;
 }
 
 .signupFieldset{
-  margin:100px;
+  padding-bottom: 130px;
 }
 
 .createaccount {
@@ -355,13 +355,13 @@ p {
 
 .citiesParentDiv{
   display: flex;
-  justify-content: center; 
-  
-} 
+  justify-content: center;
+
+}
 
 .cityButtonsDiv {
-  display: flex; 
-  justify-content: center; 
+  display: flex;
+  justify-content: center;
 }
 
 .cityButtons{
@@ -405,15 +405,16 @@ border-radius: 10px;
 
 
 .logo{
- float: left; 
- width: 120px; 
+ float: left;
+ width: 120px;
  height: 100px;
- 
+
 }
 
 @media(max-width:800px){
+
   .logo{
-    width: 240px; 
+    width: 240px;
     height: 200px;
   }
   .login-background {
@@ -424,13 +425,13 @@ border-radius: 10px;
 }
 
 .logo2{
-  float: center; 
-  width: 400px; 
+  float: center;
+  width: 400px;
   height: 200px;
  }
 
 .navbar-links {
- height: 100%;  
+ height: 100%;
 }
 
 .navbar-links ul {
@@ -471,10 +472,10 @@ border-radius: 10px;
 
 .toggle-button .bar{
  height: 3px;
- width: 100%; 
+ width: 100%;
  background-color: black;
  border-radius: 10px;
- 
+
 }
 
 .activities-profile {
@@ -519,8 +520,8 @@ border-radius: 10px;
    display : flex;
    position: relative;
    padding-left: 50px;
- } 
- 
+ }
+
  .container {
    /* margin: 7px; */
    flex-wrap: wrap;
